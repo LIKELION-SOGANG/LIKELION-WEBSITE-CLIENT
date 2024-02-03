@@ -1,14 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import Header from '../components/common/Header';
 
 function About() {
   return (
-    <div>
-      <Hello>jeasdfa</Hello>
-    </div>
+    <>
+      <Header />
+      
+    </>
   );
 }
-
-const Hello = styled.div``;
 
 export default About;
