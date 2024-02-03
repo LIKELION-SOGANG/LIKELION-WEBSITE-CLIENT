@@ -1,10 +1,14 @@
 import React from 'react';
-import './App.css';
-
+import Router from './Router';
+import styled from 'styled-components';
 function App() {
-  return <div className="App">
-    
-  </div>;
+  return (
+    <AppContainer>
+      <Router />
+    </AppContainer>
+  );
 }
+
+const AppContainer = styled.div``;
 
 export default App;
