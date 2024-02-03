@@ -2,7 +2,7 @@
 name: Feature
 about: feature issue template
 title: ''
-labels: "\U0001F4AB feat"
+labels: 'Feature'
 assignees: ''
 ---
 

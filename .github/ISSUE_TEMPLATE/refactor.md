@@ -2,7 +2,7 @@
 name: Refactor
 about: refactor template
 title: ''
-labels: 'refactor'
+labels: 'Refactor'
 assignees: ''
 ---
 
