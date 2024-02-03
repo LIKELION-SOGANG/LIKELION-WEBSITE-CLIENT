@@ -1,5 +1,50 @@
 @font-face {
   font-family: 'PP-Editorial';
   font-weight: 400;
-  src: url('../assets/font/regular.otf');
+  src: url('../assets/font/pp-regular.otf');
 }
+@font-face {
+  font-family: 'PP-Editorial';
+  font-weight: 400;
+  font-style: italic;
+  src: url('../assets/font/pp-italic.otf');
+}
+@font-face {
+  font-family: 'PP-Editorial';
+  font-weight: 500;
+  src: url('../assets/font/pp-ultria-bold.otf');
+}
+@font-face {
+  font-family: 'PP-Editorial';
+  font-weight: 500;
+  font-style: italic;
+  src: url('../assets/font/pp-ultra-bolditalic.otf');
+}
+@font-face {
+  font-family: 'PP-Editorial';
+  font-weight: 300;
+  src: url('../assets/font/pp-ultra-light.otf');
+}
+@font-face {
+  font-family: 'PP-Editorial';
+  font-weight: 400;
+  font-style: italic;
+  src: url('../assets/font/pp-ultra-lightitalic.otf');
+}
+@font-face {
+  font-family: Pretendard;
+  font-weight: 600;
+  src: url('../assets/font/Pretendard-Bold.woff');
+}
+@font-face {
+  font-family: Pretendard;
+  font-weight: 500;
+  src: url('../assets/font/Pretendard-Medium.woff');
+}
+@font-face {
+  font-family: Pretendard;
+  font-weight: 400;
+  src: url('../assets/font/Pretendard-Regular.woff');
+}
+
+
