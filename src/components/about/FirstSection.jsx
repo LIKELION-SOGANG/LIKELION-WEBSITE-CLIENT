@@ -63,7 +63,7 @@ const LogoCaption = styled.div`
   white-space: nowrap;
   color: #fff;
   leading-trim: both;
-  font-size: calc(40rem - ${(props) => props.$process} * (44.6rem) / 100);
+  font-size: calc(40rem - ${(props) => props.$process} * (38rem) / 100);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -72,7 +72,7 @@ const LogoCaption = styled.div`
 
 const PossibiltyCaption = styled.img`
   position: absolute;
-  top: calc(100vh - 13rem);
+  top: calc(100vh - 13rem + 34rem * ${(props) => props?.$process} / 100);
   right: calc(10rem + (100vw - 50rem) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1.5 / 100);
 `;
