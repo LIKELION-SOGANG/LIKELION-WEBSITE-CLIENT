@@ -5,21 +5,10 @@ import object2 from '../../assets/icon/object-2.png';
 import object3 from '../../assets/icon/object-3.png';
 import caption1 from '../../assets/caption/about-caption.svg';
 import Header from '../common/Header';
+import useThrottleScroll from '../../hooks/useThrottleScroll';
 
 function FirstSection() {
-  const [scrollHeight, setScrollHeight] = useState(0);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY < 800) {
-        setScrollHeight(window.scrollY);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-  console.log(scrollHeight);
+  const scrollHeight = useThrottleScroll(50, 0);
   return (
     <FirstSectionWrapper>
       <Header />
@@ -27,10 +16,15 @@ function FirstSection() {
       <Object2 src={object2} alt="3d 오브젝트2" />
       <Object3 src={object3} alt="3d 오브젝트3" />
       {/*  process: 0~100 */}
-      <LogoCaption $process={(scrollHeight / 800) * 100}>
+      <LogoCaption
+        $process={scrollHeight > 800 ? 100 : (scrollHeight / 800) * 100}
+      >
         Likelion Sogang
       </LogoCaption>
-      <PossibiltyCaption src={caption1} $process={(scrollHeight / 800) * 100} />
+      <PossibiltyCaption
+        src={caption1}
+        $process={scrollHeight > 800 ? 100 : (scrollHeight / 800) * 100}
+      />
     </FirstSectionWrapper>
   );
 }
@@ -61,10 +55,10 @@ const Object3 = styled.img`
 const LogoCaption = styled.div`
   font-family: 'PP-Editorial';
   position: fixed;
-  top: calc(
-    100vh - 65rem - ${(props) => props.$process} * (100vh - 67rem) / 100
-  );
-  left: 2.5rem;
+  transform: translateY(
+      calc(100vh - 65rem - ${(props) => props.$process} * (100vh - 67rem) / 100)
+    )
+    translateX(2.5rem);
   z-index: 999;
   white-space: nowrap;
   color: #fff;
@@ -75,10 +69,12 @@ const LogoCaption = styled.div`
   line-height: normal;
   text-transform: capitalize;
 `;
+
 const PossibiltyCaption = styled.img`
   position: absolute;
-  top: calc(100vh - 13rem + ${(props) => props.$process} * (40rem) / 100);
+  top: calc(100vh - 13rem);
+  transform: translateY(calc(100vh - 13rem)) translateX(calc(100vw - 10rem));
   scale: calc(1 + ${(props) => props.$process} * (1.5) / 100);
-  right: calc(10rem + ${(props) => props.$process} * (100vw - 50rem) / 100);
 `;
+
 export default FirstSection;
