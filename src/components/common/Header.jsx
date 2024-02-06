@@ -43,6 +43,7 @@ function Header() {
 const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
+  z-index: 999;
   padding: 2.5rem;
   width: 100%;
   display: flex;

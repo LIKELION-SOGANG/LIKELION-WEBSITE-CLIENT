@@ -5,7 +5,6 @@ import FirstSection from '../components/about/FirstSection';
 function About() {
   return (
     <>
-      <Header />
       <FirstSection />
     </>
   );
