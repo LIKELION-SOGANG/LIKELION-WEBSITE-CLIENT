@@ -7,6 +7,7 @@ function SecondSection() {
 
 const SeondWholeSection = styled.section`
   background-color: white;
+  height: 200vh;
 `;
 
 export default SecondSection;
