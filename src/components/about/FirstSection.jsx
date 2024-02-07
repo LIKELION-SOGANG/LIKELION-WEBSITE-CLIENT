@@ -6,20 +6,22 @@ import object3 from '../../assets/icon/object-3.png';
 import caption1 from '../../assets/caption/about-caption.svg';
 import Header from '../common/Header';
 import useThrottleScroll from '../../hooks/useThrottleScroll';
+import Space from '../../util/Space';
 
-function FirstSection() {
-  const scrollHeight = useThrottleScroll(30, 0, 400);
+function FirstSection({ isVisibleHeaderLogo }) {
+  console.log(isVisibleHeaderLogo);
+  const scrollHeight = useThrottleScroll(10, 0, 400);
   return (
     <FirstSectionWrapper>
-      <Header />
       <Object1 src={object1} alt="3d 오브젝트1" />
       <Object2 src={object2} alt="3d 오브젝트2" />
       <Object3 src={object3} alt="3d 오브젝트3" />
       {/*  process: 0~100 */}
       <LogoCaption
         $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
+        $isVisibleHeaderLogo={isVisibleHeaderLogo}
       >
-        Likelion Sogang
+        Like<span>lion</span> So<span>gang</span>
       </LogoCaption>
       <PossibiltyCaption
         src={caption1}
@@ -37,6 +39,7 @@ function FirstSection() {
           </LoopText>
         </div>
       </TriangleLoop>
+      <Space height={'10rem'} />
     </FirstSectionWrapper>
   );
 }
@@ -76,10 +79,14 @@ const LogoCaption = styled.div`
   color: #fff;
   leading-trim: both;
   font-size: calc(40rem - ${(props) => props.$process} * (38rem) / 100);
+  visibility: ${(props) => (props.$isVisibleHeaderLogo ? 'hidden' : 'visible')};
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-transform: capitalize;
+  span {
+    font-style: italic;
+  }
 `;
 
 const PossibiltyCaption = styled.img`
