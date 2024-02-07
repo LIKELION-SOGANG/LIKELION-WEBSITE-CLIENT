@@ -30,6 +30,9 @@ function FirstSection() {
           <LoopText>
             ✶ Now recruiting <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
             <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
+            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
+            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
+            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
             <span>Likelion 12th</span> Member ✶
           </LoopText>
         </div>
@@ -102,7 +105,7 @@ const TriangleLoop = styled.div`
   .track {
     white-space: nowrap;
     position: absolute;
-    animation: ${textLoop} 20s linear infinite;
+    animation: ${textLoop} 40s linear infinite;
   }
 `;
 
