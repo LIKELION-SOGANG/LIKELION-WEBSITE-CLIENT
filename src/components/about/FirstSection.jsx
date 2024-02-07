@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import object1 from '../../assets/icon/object-1.png';
 import object2 from '../../assets/icon/object-2.png';
 import object3 from '../../assets/icon/object-3.png';
@@ -26,7 +26,13 @@ function FirstSection() {
         $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
       />
       <TriangleLoop>
-        <LoopText>✶ Now recruiting likelion 12th Member ✶ </LoopText>
+        <div className="track">
+          <LoopText>
+            ✶ Now recruiting <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
+            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
+            <span>Likelion 12th</span> Member ✶
+          </LoopText>
+        </div>
       </TriangleLoop>
     </FirstSectionWrapper>
   );
@@ -79,14 +85,25 @@ const PossibiltyCaption = styled.img`
   right: calc(10rem + (100vw - 50rem) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1.5 / 100);
 `;
-
+const textLoop = keyframes`
+from { transform: translateX(0); }
+to { transform: translateX(-50%); }
+`;
 const TriangleLoop = styled.div`
   width: 130%;
   height: 35.2rem;
   position: absolute;
   background-color: white;
   bottom: -15.2rem;
+  overflow-x: hidden;
+  overflow-y: hidden;
   transform: rotate(-12.35deg);
+
+  .track {
+    white-space: nowrap;
+    position: absolute;
+    animation: ${textLoop} 20s linear infinite;
+  }
 `;
 
 const LoopText = styled.p`
@@ -100,6 +117,11 @@ const LoopText = styled.p`
   line-height: normal;
   letter-spacing: 0.14rem;
   text-transform: uppercase;
+  font-weight: 400;
+  span {
+    font-family: 'PP-Editorial';
+    font-weight: 400;
+  }
 `;
 
 export default FirstSection;

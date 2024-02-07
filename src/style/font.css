@@ -66,10 +66,10 @@
 @font-face {
   font-family: Figtree;
   font-weight: 500;
-  src: url('../assets//font/Figtree-Regular.ttf');
+  src: url('../assets//font/Figtree-Medium.ttf');
 }
 @font-face {
   font-family: Figtree;
   font-weight: 400;
-  src: url('../assets//font/Figtree-Medium.ttf');
+  src: url('../assets//font/Figtree-Regular.ttf');
 }
