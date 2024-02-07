@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import styled from 'styled-components';
-function Header() {
+// 헤더 배경 검은색 , 헤더 로고 보일지 여부 props 전달받기 (기본값 true)
+function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
   const { pathname } = useLocation();
   const [activate, setActivate] = useState({
     about: false,
@@ -18,22 +19,53 @@ function Header() {
     }
   }, [pathname]);
   return (
-    <HeaderWrapper>
+    <HeaderWrapper $isBackGroundBlack={isBackGroundBlack}>
       <MenuList>
+        <LogoItem
+          $isBackGroundBlack={isBackGroundBlack}
+          $isVisibleHeaderLogo={isVisibleHeaderLogo}
+        >
+          Like<span>lion</span> So<span>gang</span>
+        </LogoItem>
         <Link to={'/'}>
-          <MenuItem $isActive={activate?.about}>About</MenuItem>
+          <MenuItem
+            $isActive={activate?.about}
+            $isBackGroundBlack={isBackGroundBlack}
+          >
+            About
+          </MenuItem>
         </Link>
         <Link to={'/people'}>
-          <MenuItem $isActive={activate?.people}>People</MenuItem>
+          <MenuItem
+            $isActive={activate?.people}
+            $isBackGroundBlack={isBackGroundBlack}
+          >
+            People
+          </MenuItem>
         </Link>
         <Link to={'/projects'}>
-          <MenuItem $isActive={activate?.projects}>Projects</MenuItem>
+          <MenuItem
+            $isActive={activate?.projects}
+            $isBackGroundBlack={isBackGroundBlack}
+          >
+            Projects
+          </MenuItem>
         </Link>
         <Link to={'/recruit'}>
-          <MenuItem $isActive={activate?.recruit}>Recruit</MenuItem>
+          <MenuItem
+            $isActive={activate?.recruit}
+            $isBackGroundBlack={isBackGroundBlack}
+          >
+            Recruit
+          </MenuItem>
         </Link>
         <Link to="contact">
-          <MenuItem $isActive={activate?.contact}>Contact</MenuItem>
+          <MenuItem
+            $isActive={activate?.contact}
+            $isBackGroundBlack={isBackGroundBlack}
+          >
+            Contact
+          </MenuItem>
         </Link>
       </MenuList>
     </HeaderWrapper>
@@ -47,16 +79,27 @@ const HeaderWrapper = styled.header`
   padding: 2.5rem;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
 `;
 const MenuList = styled.ul`
   display: flex;
-  margin-left: auto;
+  width: 100%;
   gap: 2.5rem;
+`;
+
+const LogoItem = styled.div`
+  font-size: 2rem;
+  padding-bottom: 0.2rem;
+  font-family: 'PP-Editorial';
+  color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
+  margin-right: auto;
+  visibility: ${(props) => (props.$isVisibleHeaderLogo ? 'visible' : 'hidden')};
+  span {
+    font-style: italic;
+  }
 `;
 const MenuItem = styled.div`
   font-size: 2rem;
-  color: white;
+  color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
   font-family: 'PP-Editorial';
   font-weight: ${(props) => (props.$isActive ? 400 : 300)};
   border-bottom: ${(props) => (props.$isActive ? '1px solid white' : 'none')};
