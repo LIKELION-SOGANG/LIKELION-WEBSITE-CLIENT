@@ -8,11 +8,7 @@ import Header from '../common/Header';
 import useThrottleScroll from '../../hooks/useThrottleScroll';
 
 function FirstSection() {
-<<<<<<< HEAD
-  const scrollHeight = useThrottleScroll(30, 0);
-=======
-  const scrollHeight = useThrottleScroll(50, 0);
->>>>>>> 641ab203687db252bb2b3173f8d782d2c122747c
+  const scrollHeight = useThrottleScroll(30, 0, 400);
   return (
     <FirstSectionWrapper>
       <Header />
@@ -21,27 +17,22 @@ function FirstSection() {
       <Object3 src={object3} alt="3d 오브젝트3" />
       {/*  process: 0~100 */}
       <LogoCaption
-<<<<<<< HEAD
         $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
-=======
-        $process={scrollHeight > 800 ? 100 : (scrollHeight / 800) * 100}
->>>>>>> 641ab203687db252bb2b3173f8d782d2c122747c
       >
         Likelion Sogang
       </LogoCaption>
       <PossibiltyCaption
         src={caption1}
-<<<<<<< HEAD
         $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
-=======
-        $process={scrollHeight > 800 ? 100 : (scrollHeight / 800) * 100}
->>>>>>> 641ab203687db252bb2b3173f8d782d2c122747c
       />
+      <TriangleLoop>
+        <LoopText>✶ Now recruiting likelion 12th Member ✶ </LoopText>
+      </TriangleLoop>
     </FirstSectionWrapper>
   );
 }
 const FirstSectionWrapper = styled.div`
-  height: 200vh;
+  height: 176vh;
   position: relative;
   background-color: black;
 `;
@@ -84,15 +75,31 @@ const LogoCaption = styled.div`
 
 const PossibiltyCaption = styled.img`
   position: absolute;
-<<<<<<< HEAD
   top: calc(100vh - 13rem + 34rem * ${(props) => props?.$process} / 100);
   right: calc(10rem + (100vw - 50rem) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1.5 / 100);
-=======
-  top: calc(100vh - 13rem);
-  transform: translateY(calc(100vh - 13rem)) translateX(calc(100vw - 10rem));
-  scale: calc(1 + ${(props) => props.$process} * (1.5) / 100);
->>>>>>> 641ab203687db252bb2b3173f8d782d2c122747c
+`;
+
+const TriangleLoop = styled.div`
+  width: 130%;
+  height: 35.2rem;
+  position: absolute;
+  background-color: white;
+  bottom: -15.2rem;
+  transform: rotate(-12.35deg);
+`;
+
+const LoopText = styled.p`
+  color: black;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: Figtree;
+  font-size: 2.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
 `;
 
 export default FirstSection;
