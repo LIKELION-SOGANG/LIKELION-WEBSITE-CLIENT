@@ -17,6 +17,7 @@ function About() {
           setIsVisibleHeaderLogo(true);
         } else {
           setIsHeaderBlack(true);
+          setIsVisibleHeaderLogo(false);
         }
       },
       {
