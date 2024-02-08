@@ -106,4 +106,4 @@ const MenuItem = styled.div`
   font-style: italic;
   transition: 1s;
 `;
-export default Header;
+export default React.memo(Header);
