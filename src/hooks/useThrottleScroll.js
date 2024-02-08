@@ -4,18 +4,24 @@ const useThrottleScroll = (delay, top, threshold) => {
   const [scrollPosition, setScrollPosition] = useState(top);
   const throttleTimeout = useRef(null);
   const requestRef = useRef(null);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!throttleTimeout.current && scrollPosition < threshold) {
         throttleTimeout.current = setTimeout(() => {
           requestRef.current = requestAnimationFrame(() => {
-            setScrollPosition(top + window.scrollY);
+            const currentScrollY = top + window.scrollY;
+            // Round scrollPosition to the nearest 50
+            const roundedScrollPosition = Math.round(currentScrollY / 50) * 50;
+            setScrollPosition(roundedScrollPosition);
           });
           throttleTimeout.current = null;
         }, delay);
       }
     };
+
     window.addEventListener('scroll', handleScroll);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (throttleTimeout.current) {
@@ -26,6 +32,7 @@ const useThrottleScroll = (delay, top, threshold) => {
       }
     };
   }, [delay, top]);
+
   return scrollPosition;
 };
 
