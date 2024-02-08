@@ -3,7 +3,6 @@ import Schedule from '../components/Recruit/Schedule';
 import styled from 'styled-components';
 
 function Recruit() {
-  <div>hi</div>;
   return (
     <RecruitContainer>
       <Schedule />
