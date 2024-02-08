@@ -11,7 +11,6 @@ const useThrottleScroll = (delay, top, threshold) => {
         throttleTimeout.current = setTimeout(() => {
           requestRef.current = requestAnimationFrame(() => {
             const currentScrollY = top + window.scrollY;
-            // Round scrollPosition to the nearest 50
             const roundedScrollPosition = Math.round(currentScrollY / 50) * 50;
             setScrollPosition(roundedScrollPosition);
           });

@@ -4,8 +4,6 @@ import object1 from '../../assets/icon/object-1.png';
 import object2 from '../../assets/icon/object-2.png';
 import object3 from '../../assets/icon/object-3.png';
 import caption1 from '../../assets/caption/about-caption.svg';
-import Header from '../common/Header';
-import useThrottleScroll from '../../hooks/useThrottleScroll';
 import Space from '../../util/Space';
 
 function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
@@ -37,7 +35,7 @@ function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
           </LoopText>
         </div>
       </TriangleLoop>
-      <Space height={'10rem'} />
+      <Space height={'100rem'} />
     </FirstSectionWrapper>
   );
 }
@@ -103,10 +101,10 @@ const TriangleLoop = styled.div`
   height: 35.2rem;
   position: absolute;
   background-color: white;
-  bottom: -15.2rem;
+  bottom: -13rem;
   overflow-x: hidden;
   overflow-y: hidden;
-  transform: rotate(-12.35deg);
+  transform: rotate(-8deg);
 
   .track {
     white-space: nowrap;
