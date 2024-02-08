@@ -89,6 +89,7 @@ const MenuList = styled.ul`
 const LogoItem = styled.div`
   font-size: 2rem;
   padding-bottom: 0.2rem;
+  cursor: pointer;
   font-family: 'PP-Editorial';
   color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
   margin-right: auto;
@@ -99,11 +100,30 @@ const LogoItem = styled.div`
 `;
 const MenuItem = styled.div`
   font-size: 2rem;
+  display: inline-block;
   color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
   font-family: 'PP-Editorial';
   font-weight: ${(props) => (props.$isActive ? 400 : 300)};
   border-bottom: ${(props) => (props.$isActive ? '1px solid white' : 'none')};
   font-style: italic;
-  transition: 1s;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:after {
+    content: '';
+    display: block;
+    transform: scaleX(0);
+    border-bottom: ${(props) =>
+      props.$isActive
+        ? 'none'
+        : props.$isBackGroundBlack
+          ? '1px solid white'
+          : '1px solid black'};
+    transition: transform 250ms ease-in-out;
+  }
+  &:hover {
+    &:after {
+      transform: scaleX(1);
+    }
+  }
 `;
 export default React.memo(Header);

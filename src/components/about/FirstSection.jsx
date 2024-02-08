@@ -75,7 +75,7 @@ const LogoCaption = React.memo(styled.div`
   font-size: calc(40rem - ${(props) => props.$process} * (38rem) / 100);
   visibility: ${(props) => (props.$isVisibleHeaderLogo ? 'hidden' : 'visible')};
   transform: translateY(
-      calc(100vh - 65rem - ${(props) => props.$process} * (100vh - 67rem) / 100)
+      calc(100vh - 58rem - ${(props) => props.$process} * (100vh - 60rem) / 100)
     )
     translateX(2.5rem);
   -webkit-transition: all 0.3s cubic-bezier(0.25, 0.25, 0.75, 0.75);
