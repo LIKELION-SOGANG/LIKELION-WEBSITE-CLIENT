@@ -104,7 +104,12 @@ const MenuItem = styled.div`
   color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
   font-family: 'PP-Editorial';
   font-weight: ${(props) => (props.$isActive ? 400 : 300)};
-  border-bottom: ${(props) => (props.$isActive ? '1px solid white' : 'none')};
+  border-bottom: ${(props) =>
+    !props.$isActive
+      ? 'none'
+      : props.$isBackGroundBlack
+        ? '1px solid white'
+        : '1px solid black'};
   font-style: italic;
   cursor: pointer;
   transition: all 0.3s ease;
