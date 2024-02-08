@@ -13,7 +13,6 @@ function About() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        console.log(entries);
         if (!entries[0].isIntersecting) {
           setIsHeaderBlack(false);
           setIsVisibleHeaderLogo(true);
@@ -43,7 +42,9 @@ function About() {
           scrollHeight={scrollHeight}
         />
       </div>
-      <SecondSection />
+      <div ref={observationRef2}>
+        <SecondSection />
+      </div>
     </>
   );
 }
