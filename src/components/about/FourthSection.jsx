@@ -68,7 +68,7 @@ function FourthSection() {
           })}
         </div>
       </div>
-      <Space height={'8rem'} />
+      <Space height={'15rem'} />
     </FourthWholeSection>
   );
 }
@@ -83,7 +83,6 @@ const loopAnimation = keyframes`
 const FourthWholeSection = styled.section`
   margin-top: 2.7rem;
   background-color: white;
-  height: 100vh;
   h1.likelion {
     font-family: PP-Editorial;
     text-align: center;
