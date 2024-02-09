@@ -5,6 +5,7 @@ import SecondSection from '../components/about/SecondSection';
 import useThrottleScroll from '../hooks/useThrottleScroll';
 import ThirdSection from '../components/about/ThirdSection';
 import FourthSection from '../components/about/FourthSection';
+import FifthSection from '../components/about/FifthSection';
 
 function About() {
   const observationRef1 = useRef(null);
@@ -62,6 +63,9 @@ function About() {
       {/* about9 */}
       <div className="fourth-section">
         <FourthSection />
+      </div>
+      <div className="fifth-section">
+        <FifthSection />
       </div>
     </>
   );
