@@ -4,6 +4,7 @@ import FirstSection from '../components/about/FirstSection';
 import SecondSection from '../components/about/SecondSection';
 import useThrottleScroll from '../hooks/useThrottleScroll';
 import ThirdSection from '../components/about/ThirdSection';
+import FourthSection from '../components/about/FourthSection';
 
 function About() {
   const observationRef1 = useRef(null);
@@ -43,17 +44,24 @@ function About() {
         isBackGroundBlack={isHeaderBlack}
         isVisibleHeaderLogo={isVisibleHeaderLogo}
       />
+      {/* about1~2 */}
       <div className="first-section" ref={observationRef1}>
         <FirstSection
           isVisibleHeaderLogo={isVisibleHeaderLogo}
           scrollHeight={scrollHeight}
         />
       </div>
+      {/* about3~6 */}
       <div className="second-section" ref={observationRef2}>
         <SecondSection />
       </div>
+      {/* about7~10 */}
       <div className="third-section" ref={observationRef3}>
         <ThirdSection />
+      </div>
+      {/* about9 */}
+      <div className="fourth-section">
+        <FourthSection />
       </div>
     </>
   );

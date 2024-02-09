@@ -11,7 +11,7 @@ const useThrottleScroll = (delay, top, threshold) => {
         throttleTimeout.current = setTimeout(() => {
           requestRef.current = requestAnimationFrame(() => {
             const currentScrollY = top + window.scrollY;
-            const roundedScrollPosition = Math.round(currentScrollY / 50) * 50;
+            const roundedScrollPosition = Math.round(currentScrollY / 20) * 20;
             setScrollPosition(roundedScrollPosition);
           });
           throttleTimeout.current = null;
