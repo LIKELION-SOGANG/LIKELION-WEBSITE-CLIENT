@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import About from './page/About';
 import Credit from './page/Credit';
@@ -9,6 +9,7 @@ import Recruit from './page/Recruit';
 import Apply from './page/Apply';
 
 function Router() {
+
   return (
     <Routes>
       <Route path="/" element={<About />} />

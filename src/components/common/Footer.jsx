@@ -61,7 +61,7 @@ const FooterWrapper = styled.footer`
   color: ${(props) => (props.isBackgroundBlack ? 'white' : 'black')};
   font-family: 'PP-Editorial';
   .inner {
-    width: 90%;
+    width: calc(100% - 5rem);
     margin: 0 auto;
     height: 6.4rem;
     align-items: center;

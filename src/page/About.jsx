@@ -11,6 +11,8 @@ function About() {
   const observationRef1 = useRef(null);
   const observationRef2 = useRef(null);
   const observationRef3 = useRef(null);
+  const observationRef4 = useRef(null);
+  const observationRef5 = useRef(null);
   const [isVisibleHeaderLogo, setIsVisibleHeaderLogo] = useState(false);
   const [isHeaderBlack, setIsHeaderBlack] = useState(true);
   const scrollHeight = useThrottleScroll(10, 0, 400);
@@ -25,8 +27,14 @@ function About() {
             setIsHeaderBlack(entries[0]?.isIntersecting);
           } else if (entries[0].target.className === 'third-section') {
             setIsHeaderBlack(entries[0]?.isIntersecting);
+          } else if (entries[0].target.className === 'fourth-section') {
+            console.log('!');
+            setIsHeaderBlack(!entries[0]?.isIntersecting);
+          } else if (entries[0].target.className === 'fifth-section') {
+            setIsHeaderBlack(!entries[0]?.isIntersecting);
           }
         }
+        console.log(entries);
       },
       {
         threshold: 0,
@@ -36,7 +44,13 @@ function About() {
       observer.observe(observationRef1.current);
       observer.observe(observationRef2.current);
       observer.observe(observationRef3.current);
+      observer.observe(observationRef4.current);
+      observer.observe(observationRef5.current);
     }
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
   }, []);
 
   return (
@@ -61,10 +75,10 @@ function About() {
         <ThirdSection />
       </div>
       {/* about9 */}
-      <div className="fourth-section">
+      <div className="fourth-section" ref={observationRef4}>
         <FourthSection />
       </div>
-      <div className="fifth-section">
+      <div className="fifth-section" ref={observationRef5}>
         <FifthSection />
       </div>
     </>
