@@ -111,7 +111,8 @@ const Link = styled.a`
     content: '';
     display: block;
     transition: transform 250ms ease-in-out;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid
+      ${(props) => (props.isBackgroundBlack ? 'white' : 'black')};
     transform: scaleX(0);
   }
   &:hover {

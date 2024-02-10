@@ -18,9 +18,12 @@ const FirstSectionWrapper = styled.div`
 `;
 const Text = styled.h1`
   font-family: 'PP Editorial New';
-  font-size: 6rem;
+  font-size: 4vw;
   font-style: italic;
   font-weight: 200;
   margin: auto;
+  @media (max-width: 768px) {
+    font-size: 8vw;
+  }
 `;
 export default FirstSection;
