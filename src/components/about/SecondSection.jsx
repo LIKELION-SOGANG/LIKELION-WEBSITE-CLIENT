@@ -4,13 +4,27 @@ import Space from '../../util/Space';
 import gsap from 'gsap';
 import { TextPlugin } from 'gsap/all';
 gsap.registerPlugin(TextPlugin);
-function SecondSection() {
-  const textRef1 = useRef(null);
-  const textRef2 = useRef(null);
-  const textRef3 = useRef(null);
+function SecondSection({ isHeaderBlack }) {
+  const newLettersRef = useRef();
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          const showTextEls = document.querySelectorAll('.show-text');
+          showTextEls.forEach((item) => item.classList.add('hidden'));
+          console.log(showTextEls);
+        }
 
+        // showTextEls.classList.add('.visible');
+      },
+      {
+        threshold: 0,
+      },
+    );
+    observer.observe(newLettersRef.current);
+  }, []);
   return (
-    <SeondWholeSection>
+    <SeondWholeSection $isHeaderBlack={isHeaderBlack}>
       <Space height={'40rem'} />
       <div className="sticky">
         <p>
@@ -37,24 +51,28 @@ function SecondSection() {
           <div className="show-text">
             멋쟁이사자처럼 서강대학교는 대면 교육 세션, 데모데이 등 다채로운
             활동을 통해
-            <br /> 매년 구성원들의 <strong>폭발적인 성장</strong>을 이끌어내고
+            <br /> 매년 구성원들의 <span>폭발적인 성장</span>을 이끌어내고
             있습니다.
           </div>
           <Space height={'1rem'} />
           <div className="show-text">
             그 성과로, 대학생 1500명이 참여한 작년 ‘멋쟁이사자처럼 전국 연합
             해커톤’에서 <br />
-            <strong>동상 수상 팀을 배출</strong>했습니다.
+            <span>동상 수상 팀을 배출</span>했습니다.
           </div>
+          <Space height={'10rem'} />
+          <Space height={'8.6rem'} ref={newLettersRef} />
         </section>
       </div>
-      <Space height={'8.6rem'} />
+
+      <Space height={'10rem'} />
     </SeondWholeSection>
   );
 }
 
 const SeondWholeSection = styled.section`
-  background-color: white;
+  background-color: ${(props) => (props.$isHeaderBlack ? 'black' : 'white')};
+  transition: 1s;
   .sticky {
     height: 150vh;
   }
@@ -83,6 +101,14 @@ const SeondWholeSection = styled.section`
     font-weight: 500;
     line-height: normal;
     text-transform: capitalize;
+    span {
+      font-weight: 600;
+    }
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+  }
+  .hidden {
+    opacity: 1;
   }
   .logo-text {
     font-family: 'PP-Editorial';

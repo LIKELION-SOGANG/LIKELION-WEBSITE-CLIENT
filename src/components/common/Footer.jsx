@@ -117,7 +117,7 @@ const Link = styled.a`
   }
   &:hover {
     &:after {
-      transform: scale(1);
+      transform: scaleX(1);
     }
   }
 `;

@@ -28,6 +28,9 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
         <LogoItem
           $isBackGroundBlack={isBackGroundBlack}
           $isVisibleHeaderLogo={isVisibleHeaderLogo}
+          onClick={() => {
+            window.scrollTo({ top: 0 });
+          }}
         >
           Like<span>lion</span> So<span>gang</span>
         </LogoItem>

@@ -34,7 +34,6 @@ function About() {
             setIsHeaderBlack(!entries[0]?.isIntersecting);
           }
         }
-        console.log(entries);
       },
       {
         threshold: 0,
@@ -68,7 +67,7 @@ function About() {
       </div>
       {/* about3~6 */}
       <div className="second-section" ref={observationRef2}>
-        <SecondSection />
+        <SecondSection isHeaderBlack={isHeaderBlack} />
       </div>
       {/* about7~10 */}
       <div className="third-section" ref={observationRef3}>
@@ -76,7 +75,7 @@ function About() {
       </div>
       {/* about9 */}
       <div className="fourth-section" ref={observationRef4}>
-        <FourthSection />
+        <FourthSection isBackGroundBlack={isHeaderBlack} />
       </div>
       <div className="fifth-section" ref={observationRef5}>
         <FifthSection />
