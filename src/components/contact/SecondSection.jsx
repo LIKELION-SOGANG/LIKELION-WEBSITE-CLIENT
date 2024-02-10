@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Footer from '../common/Footer';
+import { useMousePosition } from '../../util/MouseContextProvider';
+import { motion } from 'framer-motion';
 
 const contacts = [
   {
@@ -31,6 +33,8 @@ const contacts = [
 ];
 
 function SecondSection() {
+  const { textEnter, textLeave } = useMousePosition();
+
   return (
     <>
       <SecondSectionWrapper>
@@ -38,7 +42,12 @@ function SecondSection() {
           {contacts.map(({ name, url, display }) => (
             <ContactContainer key={name}>
               <TopText>{name}</TopText>
-              <BottomText href={url} target="_blank">
+              <BottomText
+                onMouseEnter={textEnter}
+                onMouseLeave={textLeave}
+                href={url}
+                target="_blank"
+              >
                 {display}
               </BottomText>
             </ContactContainer>
@@ -51,7 +60,6 @@ function SecondSection() {
 }
 
 const SecondSectionWrapper = styled.div`
-  height: 100vh;
   background-color: white;
 `;
 
@@ -85,7 +93,7 @@ const TopText = styled.div`
   }
 `;
 
-const BottomText = styled.a`
+const BottomText = styled(motion.a)`
   font-family: 'PP Editorial New';
   font-size: 3.5vw;
   font-weight: 400;
