@@ -6,6 +6,7 @@ import ExistingApplication from '../components/Recruit/ExistingApplication';
 import Progress from '../components/Recruit/Progress';
 import InputField from '../components/Recruit/InputField';
 import Form from '../components/Recruit/Form';
+import Question from '../components/Recruit/Question';
 const Apply = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const goNext = () => {
@@ -25,10 +26,16 @@ const Apply = () => {
           />
         </>
       )}
-      {currentStep >= 1 && (
+      {currentStep == 1 && (
         <>
           <Progress step={currentStep - 1} />
           <Form />
+        </>
+      )}
+      {currentStep == 2 && (
+        <>
+          <Progress step={currentStep - 1} />
+          <Question />
         </>
       )}
 
