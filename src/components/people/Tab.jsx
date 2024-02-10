@@ -15,14 +15,10 @@ const TabElement = styled.div`
   font-style: italic;
   font-weight: 400;
   color: ${(props) => (props.isSelected ? 'black' : '#B7B7B7')};
+  /* height: 6rem; */
   margin-bottom: ${(props) => (props.isSelected ? '-0.75rem' : '0rem')};
   cursor: pointer;
   padding: 1rem;
-  @media (max-width: 768px) {
-    font-size: ${(props) => (props.isSelected ? '3.75rem' : '1.75rem')};
-    margin-bottom: ${(props) => (props.isSelected ? '-0.5rem' : '0rem')};
-    padding: 0.5rem;
-  }
 `;
 
 const Tabs = () => {
@@ -65,89 +61,38 @@ const dummyData = {
     generation: '11th',
     adult_lion: [
       {
-        id: 1,
+        id: 3,
         name: '이종미',
         part: 'Back-End',
         emoji: 'https://avatars.githubusercontent.com/u/87219998?v=4',
         generation_id: 2,
       },
       {
-        id: 2,
+        id: 4,
         name: '한우석',
         part: 'Front-End',
         emoji: 'https://avatars.githubusercontent.com/u/128376848?v=4',
         generation_id: 2,
       },
-      {
-        id: 3,
-        name: '김유이',
-        part: 'Back-End',
-        emoji: 'https://avatars.githubusercontent.com/u/74279249?v=4',
-        generation_id: 11,
-      },
-      {
-        id: 4,
-        name: '장세환',
-        part: 'Front-End',
-        emoji: 'https://avatars.githubusercontent.com/u/61905053?v=4',
-        generation_id: 11,
-      },
-      {
-        id: 5,
-        name: '이선명',
-        part: 'Front-End',
-        emoji: 'https://avatars.githubusercontent.com/u/112926965?v=4',
-        generation_id: 11,
-      },
     ],
     baby_lion: [
       {
-        id: 1,
+        id: 4,
         name: '김규빈',
         part: 'Back-End',
-        generation_id: 11,
+        generation_id: 2,
       },
       {
-        id: 2,
+        id: 3,
         name: '김민지',
         part: 'Front-End',
-        generation_id: 11,
-      },
-      {
-        id: 3,
-        name: '정태현',
-        part: 'Back-End',
-        generation_id: 11,
-      },
-      {
-        id: 4,
-        name: '송경호',
-        part: 'Front-End',
-        generation_id: 11,
+        generation_id: 2,
       },
       {
         id: 5,
-        name: '이선명',
-        part: 'Back-End',
-        generation_id: 11,
-      },
-      {
-        id: 3,
         name: '정태현',
         part: 'Back-End',
-        generation_id: 11,
-      },
-      {
-        id: 4,
-        name: '송경호',
-        part: 'Front-End',
-        generation_id: 11,
-      },
-      {
-        id: 5,
-        name: '이선명',
-        part: 'Back-End',
-        generation_id: 11,
+        generation_id: 2,
       },
     ],
   },
