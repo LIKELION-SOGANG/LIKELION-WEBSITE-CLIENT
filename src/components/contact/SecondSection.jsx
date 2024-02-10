@@ -60,27 +60,52 @@ const ContactsContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 20rem;
-  gap: 10rem;
+  margin-bottom: 20rem;
+  gap: 10vw;
+  @media (max-width: 768px) {
+    padding: 2rem;
+    gap: 15vw;
+  }
 `;
 
 const ContactContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.5vw;
 `;
 
 const TopText = styled.div`
   font-family: 'PP Editorial New';
-  font-size: 2rem;
+  font-size: 1.5vw;
   font-weight: 400;
   color: black;
+
+  @media (max-width: 768px) {
+    font-size: 3vw;
+  }
 `;
 
 const BottomText = styled.a`
   font-family: 'PP Editorial New';
-  font-size: 6rem;
+  font-size: 3.5vw;
   font-weight: 400;
   color: black;
+  &:after {
+    content: '';
+    display: block;
+    transform: scaleX(0);
+    border-bottom: 2px solid black;
+    transition: transform 250ms ease-in-out;
+  }
+  &:hover {
+    &:after {
+      transform: scaleX(1);
+      transform-origin: 0% 50%;
+    }
+  }
+  @media (max-width: 768px) {
+    font-size: 6vw;
+  }
 `;
 
 export default SecondSection;
