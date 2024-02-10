@@ -1,30 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const Progress = () => {
+const Progress = ({ step }) => {
   const steps = ['인적사항 입력', '지원서 작성', '지원서 저장'];
-  const [currentStep, setCurrentStep] = useState(0);
-  const goNext = () => {
-    setCurrentStep((prevStep) => {
-      if (prevStep < steps.length - 1) {
-        console.log(prevStep);
-        return prevStep + 1;
-      }
-      return prevStep;
-    });
-  };
+  // const [currentStep, setCurrentStep] = useState(0);
+  const [internalStep, setInternalStep] = useState(step);
+  useEffect(() => {
+    if (step !== internalStep) {
+      setInternalStep(step);
+    }
+  }, [step, internalStep]);
   return (
     <ProgressContainer>
-      {steps.map((step, index) => (
+      {steps.map((stepItem, index) => (
         <React.Fragment key={index}>
-          <Circle active={index <= currentStep}>{index + 1}</Circle>
-          <StepDescription active={index <= currentStep}>
-            {step}
-          </StepDescription>
-          {index < steps.length - 1 && <Line active={index < currentStep} />}
+          <Circle active={index <= step}>{index + 1}</Circle>
+          <StepDescription active={index <= step}>{stepItem}</StepDescription>
+          {index < steps.length - 1 && <Line active={index < step} />}
         </React.Fragment>
       ))}
-      <button onClick={goNext}>다음</button>
+      {/* <button onClick={goNext}>다음</button> */}
     </ProgressContainer>
   );
 };

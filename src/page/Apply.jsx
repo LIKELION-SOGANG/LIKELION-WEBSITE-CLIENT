@@ -6,17 +6,39 @@ import ExistingApplication from '../components/Recruit/ExistingApplication';
 import Progress from '../components/Recruit/Progress';
 import InputField from '../components/Recruit/InputField';
 import Form from '../components/Recruit/Form';
+import Question from '../components/Recruit/Question';
 const Apply = () => {
-  const [page, setPage] = useState('new');
+  const [currentStep, setCurrentStep] = useState(0);
+  const goNext = () => {
+    setCurrentStep((prevStep) => (prevStep < 2 ? prevStep + 1 : prevStep));
+  };
   return (
     <ApplyContainer>
       <TopBanner />
-      <Progress />
-      <Form />
-      {/* <div style={{ marginBottom: '19rem' }} /> */}
-      {/* {page === 'new' && <NewApplication />} */}
-      {/* <div style={{ marginBottom: '7rem' }} /> */}
-      {/* {page === 'new' && <ExistingApplication />} */}
+      {currentStep === 0 && (
+        <>
+          <div style={{ marginBottom: '19rem' }} />
+          <NewApplication onNewApplication={() => setCurrentStep(1)} />
+          <div style={{ marginBottom: '7rem' }} />
+          <ExistingApplication
+            onGoNext={goNext}
+            onExistingApplication={() => setCurrentStep(2)}
+          />
+        </>
+      )}
+      {currentStep == 1 && (
+        <>
+          <Progress step={currentStep - 1} />
+          <Form />
+        </>
+      )}
+      {currentStep == 2 && (
+        <>
+          <Progress step={currentStep - 1} />
+          <Question />
+        </>
+      )}
+
       {/* <div
         style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}
       >
