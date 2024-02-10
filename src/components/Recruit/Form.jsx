@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputField from './InputField';
 
 const Form = () => {
+  const [name, setName] = useState('');
+  const [studentId, setStudentId] = useState('');
+  const [email, setEmail] = useState('');
+  const [field, setField] = useState('');
   const handleNameChange = (event) => {
-    console.log('Name:', event.target.value);
+    setName(event.target.value);
+    // console.log('Name:', event.target.value);
   };
 
   const handleStudentIdChange = (event) => {
-    console.log('Student ID:', event.target.value);
+    setStudentId(event.target.value);
+    // console.log('Student ID:', event.target.value);
   };
 
   const handleEmailChange = (event) => {
-    console.log('Email:', event.target.value);
+    setEmail(event.target.value);
+    // console.log('Email:', event.target.value);
   };
 
   const handleFieldChange = (event) => {
-    console.log('Field:', event.target.value);
+    setField(event.target.value);
+    // console.log('Field:', event.target.value);
+  };
+
+  const handleSubmit = () => {
+    console.log('Name:', name);
+    console.log('Student ID:', studentId);
+    console.log('Email:', email);
+    console.log('Field:', field);
   };
   return (
     <div>
@@ -41,16 +56,19 @@ const Form = () => {
       <InputField
         label="지원분야"
         type="select"
-        placeholder="지원 분야를 선택해주세요."
         options={[
-          { label: 'Front-End', value: 'front' },
-          { label: 'Back-End', value: 'back' },
+          {
+            label: '지원 분야를 선택해주세요.',
+            value: '',
+          },
+          { label: 'Front-End', value: 'Front' },
+          { label: 'Back-End', value: 'Back' },
         ]}
         onChange={handleFieldChange}
       />
 
       <div>
-        <Button>
+        <Button onClick={handleSubmit}>
           <ButtonText>입력한 이메일로 고유 번호 전송</ButtonText>
         </Button>
       </div>

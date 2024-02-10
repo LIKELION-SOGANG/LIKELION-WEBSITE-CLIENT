@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const InputField = ({ label, type, placeholder, options, onChange }) => {
+const InputField = ({ label, type, placeholder, options, onChange, value }) => {
   return (
     <FieldContainer>
       <Label>{label}</Label>
       {type === 'select' ? (
-        <Select onChange={onChange}>
+        <Select onChange={onChange} value={value}>
           {options.map((option, index) => (
             <option key={index} value={option.value}>
               {option.label}
@@ -18,7 +18,7 @@ const InputField = ({ label, type, placeholder, options, onChange }) => {
           type={type}
           placeholder={placeholder}
           style={{ fontSize: '1.67rem' }}
-          onChange={onchange}
+          onChange={onChange}
         />
       )}
     </FieldContainer>
