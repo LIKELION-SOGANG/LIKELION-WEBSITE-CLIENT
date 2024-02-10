@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { useMousePosition } from '../../util/MouseContextProvider';
 // 헤더 배경 검은색 , 헤더 로고 보일지 여부 props 전달받기 (기본값 true)
 function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
+  const { textEnter, textLeave } = useMousePosition();
+
   const { pathname } = useLocation();
   const [activate, setActivate] = useState({
     about: false,
@@ -31,6 +35,8 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
           <MenuItem
             $isActive={activate?.about}
             $isBackGroundBlack={isBackGroundBlack}
+            onMouseEnter={textEnter}
+            onMouseLeave={textLeave}
           >
             About
           </MenuItem>
@@ -39,6 +45,8 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
           <MenuItem
             $isActive={activate?.people}
             $isBackGroundBlack={isBackGroundBlack}
+            onMouseEnter={textEnter}
+            onMouseLeave={textLeave}
           >
             People
           </MenuItem>
@@ -47,6 +55,8 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
           <MenuItem
             $isActive={activate?.projects}
             $isBackGroundBlack={isBackGroundBlack}
+            onMouseEnter={textEnter}
+            onMouseLeave={textLeave}
           >
             Projects
           </MenuItem>
@@ -55,6 +65,8 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
           <MenuItem
             $isActive={activate?.recruit}
             $isBackGroundBlack={isBackGroundBlack}
+            onMouseEnter={textEnter}
+            onMouseLeave={textLeave}
           >
             Recruit
           </MenuItem>
@@ -63,6 +75,8 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
           <MenuItem
             $isActive={activate?.contact}
             $isBackGroundBlack={isBackGroundBlack}
+            onMouseEnter={textEnter}
+            onMouseLeave={textLeave}
           >
             Contact
           </MenuItem>
@@ -98,7 +112,7 @@ const LogoItem = styled.div`
     font-style: italic;
   }
 `;
-const MenuItem = styled.div`
+const MenuItem = styled(motion.div)`
   font-size: 2rem;
   display: inline-block;
   color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
