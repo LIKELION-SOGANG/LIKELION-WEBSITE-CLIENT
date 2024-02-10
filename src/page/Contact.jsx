@@ -6,7 +6,7 @@ import SecondSection from '../components/contact/SecondSection';
 function Contact() {
   return (
     <>
-      <Header />
+      <Header isBackGroundBlack={false} />
       <FirstSection />
       <SecondSection />
     </>

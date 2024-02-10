@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Footer from '../common/Footer';
 
 const contacts = [
   {
@@ -31,18 +32,21 @@ const contacts = [
 
 function SecondSection() {
   return (
-    <SecondSectionWrapper>
-      <ContactsContainer>
-        {contacts.map(({ name, url, display }) => (
-          <ContactContainer key={name}>
-            <TopText>{name}</TopText>
-            <BottomText href={url} target="_blank">
-              {display}
-            </BottomText>
-          </ContactContainer>
-        ))}
-      </ContactsContainer>
-    </SecondSectionWrapper>
+    <>
+      <SecondSectionWrapper>
+        <ContactsContainer>
+          {contacts.map(({ name, url, display }) => (
+            <ContactContainer key={name}>
+              <TopText>{name}</TopText>
+              <BottomText href={url} target="_blank">
+                {display}
+              </BottomText>
+            </ContactContainer>
+          ))}
+        </ContactsContainer>
+        <Footer isBackgroundBlack={false} />
+      </SecondSectionWrapper>
+    </>
   );
 }
 
