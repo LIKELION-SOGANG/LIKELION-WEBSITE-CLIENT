@@ -9,7 +9,6 @@ import naver from '../../assets/icon/naver.png';
 import samsung from '../../assets/icon/samsung.png';
 import shinsegae from '../../assets/icon/shinsegae.png';
 import sk from '../../assets/icon/sk.png';
-import Footer from '../common/Footer';
 const imgList = [
   baemin,
   coupang,
@@ -28,9 +27,9 @@ const imgList = [
   shinsegae,
   sk,
 ];
-function FourthSection() {
+function FourthSection({ isHeaderBlack }) {
   return (
-    <FourthWholeSection>
+    <FourthWholeSection $isHeaderBlack={isHeaderBlack}>
       <Space height={'30vh'} />
       <h1 className="likelion">
         From Like<span>lion</span> So<span>gangs</span>
@@ -83,7 +82,7 @@ const loopAnimation = keyframes`
 `;
 const FourthWholeSection = styled.section`
   margin-top: 2.7rem;
-  background-color: white;
+  transition: 1s;
   h1.likelion {
     font-family: PP-Editorial;
     text-align: center;

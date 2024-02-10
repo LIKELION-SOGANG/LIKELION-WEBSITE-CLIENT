@@ -6,7 +6,6 @@ import { useScrollCount } from '../../hooks/useScrollCount';
 
 function ThirdSection() {
   const [number, setNumber] = useState(0);
-  const handleUpdate = () => {};
   const firstAnimatedNum = useScrollCount(9, 1, 0, 1000);
   const secondAnimatedNum = useScrollCount(100, 1, 0, 100);
   const thirdAnimatedNum = useScrollCount(300, 1, 0, 1000);
