@@ -9,6 +9,7 @@ import naver from '../../assets/icon/naver.png';
 import samsung from '../../assets/icon/samsung.png';
 import shinsegae from '../../assets/icon/shinsegae.png';
 import sk from '../../assets/icon/sk.png';
+import Footer from '../common/Footer';
 const imgList = [
   baemin,
   coupang,

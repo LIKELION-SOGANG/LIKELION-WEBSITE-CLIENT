@@ -7,12 +7,12 @@ function Footer({ isBackgroundBlack = true }) {
       <div className="inner">
         <div className="total-today">
           <div className="total">
-            <Tag>total</Tag>
-            <TagNum color={isBackgroundBlack}>300</TagNum>
+            <Tag isBackgroundBlack={isBackgroundBlack}>total</Tag>
+            <TagNum isBackgroundBlack={isBackgroundBlack}>300</TagNum>
           </div>
           <div className="today">
-            <Tag>today</Tag>
-            <TagNum color={isBackgroundBlack}>23</TagNum>
+            <Tag isBackgroundBlack={isBackgroundBlack}>today</Tag>
+            <TagNum isBackgroundBlack={isBackgroundBlack}>23</TagNum>
           </div>
         </div>
         <div className="instagram">
@@ -58,6 +58,8 @@ function Footer({ isBackgroundBlack = true }) {
 const FooterWrapper = styled.footer`
   width: 100%;
   background-color: ${(props) => (props.isBackgroundBlack ? 'black' : 'white')};
+  color: ${(props) => (props.isBackgroundBlack ? 'white' : 'black')};
+  font-family: 'PP-Editorial';
   .inner {
     width: 90%;
     margin: 0 auto;
@@ -83,12 +85,10 @@ const FooterWrapper = styled.footer`
   }
   .instagram,
   .email {
-    color: white;
     line-height: 120%;
     font-size: 1.5rem;
   }
   .credits {
-    color: white;
     flex: 1;
     line-height: 120%;
     font-size: 1.5rem;
@@ -125,13 +125,14 @@ const Tag = styled.div`
   padding: 0.3rem 0.6rem;
   border-radius: 0.5rem;
   font-size: 1.5rem;
-  background-color: ${(props) => (props.color ? 'black' : 'white')};
+  background-color: ${(props) => (props.isBackgroundBlack ? 'white' : 'black')};
+  color: ${(props) => (props.isBackgroundBlack ? 'black' : 'white')};
 `;
 
 const TagNum = styled.div`
   font-family: 'PP-Editorial';
   font-size: 1.5rem;
-  color: ${(props) => (props.color ? 'white' : 'black')};
+  sbackgroundblack: ${(props) => (props.isBackgroundBlack ? 'white' : 'black')};
 `;
 
 export default Footer;
