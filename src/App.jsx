@@ -3,15 +3,20 @@ import Router from './Router';
 import styled from 'styled-components';
 import { GlobalStyles } from './style/GlobalStyles';
 import { BrowserRouter } from 'react-router-dom';
-import Recruit from './page/Recruit';
+import Cursor from './util/Cursor';
+import { MouseContextProvider } from './util/MouseContextProvider';
+
 function App() {
   return (
-    <BrowserRouter>
-      <GlobalStyles />
-      <AppContainer>
-        <Router />
-      </AppContainer>
-    </BrowserRouter>
+    <MouseContextProvider>
+      <BrowserRouter>
+        <GlobalStyles />
+        <Cursor />
+        <AppContainer>
+          <Router />
+        </AppContainer>
+      </BrowserRouter>
+    </MouseContextProvider>
   );
 }
 
