@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const ExistingApplication = () => {
+const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
   const [isValid, setIsValid] = useState(false);
 
   const handleInputChange = (event) => {
     const inputlength = event.target.value.length;
-    console.log(isValid);
-    console.log(inputlength);
+    // console.log(isValid);
+    // console.log(inputlength);
     setIsValid(inputlength === 6);
+  };
+  const handleButtonClick = () => {
+    if (isValid) {
+      onExistingApplication();
+      onGoNext();
+    }
   };
   return (
     <div>
@@ -19,7 +25,7 @@ const ExistingApplication = () => {
         style={{ fontSize: '1.5rem' }}
         onChange={handleInputChange}
       />
-      <Button isValid={isValid}>
+      <Button isValid={isValid} onClick={handleButtonClick}>
         <ButtonText>지원서 수정하기</ButtonText>
       </Button>
     </div>

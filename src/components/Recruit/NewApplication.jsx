@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const NewApplication = () => {
+const NewApplication = ({ onNewApplication }) => {
   return (
     <div>
       <Text>처음 지원서를 작성하신다면,</Text>
-      <Button>
+      <Button onClick={onNewApplication}>
         <ButtonText>지원서 생성하기</ButtonText>
       </Button>
     </div>
