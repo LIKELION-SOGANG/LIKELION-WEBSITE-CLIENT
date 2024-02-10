@@ -1,33 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Autoplay } from 'swiper/modules';
 import styled from 'styled-components';
 import DividerWithText from './DividerWithText';
-
-const ContentsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  width: 100%;
-  margin-top: 6rem;
-  margin-bottom: 20rem;
-  position: relative;
-`;
 
 const Member = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-right: 8rem;
-
-  &:last-child {
-    margin-right: 0;
+  width: 16vw;
+  height: auto;
+  @media (max-width: 768px) {
+    width: 35vw;
   }
 `;
 
 const Emoji = styled.img`
-  width: 12rem;
-  height: 12rem;
+  width: 20rem;
+  height: auto;
   margin-bottom: 2rem;
+  display: block;
 `;
 
 const Name = styled.div`
@@ -45,12 +39,21 @@ const Info = styled.div`
   font-weight: 500;
 `;
 
+const BabyLionContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  margin: 4rem 2rem;
+  flex-wrap: wrap;
+`;
+
 const BabyLion = styled.div`
   font-family: 'Pretendard';
   font-size: 1.75rem;
   font-style: normal;
   font-weight: 500;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 `;
 
 const TabContents = ({ data }) => {
@@ -58,30 +61,76 @@ const TabContents = ({ data }) => {
 
   const { adult_lion, baby_lion } = data;
 
+  const slidesPerView = useSlidesPerView();
+
   return (
     <>
       <DividerWithText text="운영진" />
-      <ContentsContainer>
+      <Swiper
+        modules={[Autoplay]}
+        loop={true}
+        autoplay={{
+          delay: 1500,
+          disableOnInteraction: false,
+        }}
+        speed={1500}
+        // spaceBetween={50}
+        slidesPerView={slidesPerView}
+        style={{
+          marginLeft: '2rem',
+          marginRight: '2rem',
+          marginTop: '4rem',
+          marginBottom: '12rem',
+        }}
+      >
         {adult_lion?.map((member) => (
-          <Member key={member.id}>
-            <Emoji src={member.emoji} alt={member.name} />
-            <Name>{member.name}</Name>
-            <Info>
-              {member.generation_id}th / {member.part}
-            </Info>
-          </Member>
+          <SwiperSlide key={member.id}>
+            <Member>
+              <Emoji src={member.emoji} alt={member.name} />
+              <Name>{member.name}</Name>
+              <Info>
+                {member.generation_id}th / {member.part}
+              </Info>
+            </Member>
+          </SwiperSlide>
         ))}
-      </ContentsContainer>
+      </Swiper>
       <DividerWithText text="아기사자" />
-      <ContentsContainer>
-        {baby_lion?.map((lion) => (
-          <Member key={lion.id}>
-            <BabyLion>{lion.name}</BabyLion>
-          </Member>
+      <BabyLionContainer>
+        {baby_lion?.map((lion, index) => (
+          <BabyLion key={lion.id}>{lion.name}</BabyLion>
         ))}
-      </ContentsContainer>
+      </BabyLionContainer>
     </>
   );
+};
+
+const useSlidesPerView = () => {
+  const [slidesPerView, setSlidesPerView] = useState(1);
+
+  useEffect(() => {
+    const updateSlidesPerView = () => {
+      const width = window.innerWidth;
+      if (width > 1600) {
+        setSlidesPerView(6);
+      } else if (width > 1200) {
+        setSlidesPerView(5);
+      } else if (width > 900) {
+        setSlidesPerView(4);
+      } else if (width > 700) {
+        setSlidesPerView(3);
+      } else {
+        setSlidesPerView(2);
+      }
+    };
+
+    updateSlidesPerView();
+    window.addEventListener('resize', updateSlidesPerView);
+
+    return () => window.removeEventListener('resize', updateSlidesPerView);
+  }, []);
+
+  return slidesPerView;
 };
 
 export default TabContents;
