@@ -132,7 +132,6 @@ const Tag = styled.div`
 const TagNum = styled.div`
   font-family: 'PP-Editorial';
   font-size: 1.5rem;
-  sbackgroundblack: ${(props) => (props.isBackgroundBlack ? 'white' : 'black')};
 `;
 
 export default Footer;
