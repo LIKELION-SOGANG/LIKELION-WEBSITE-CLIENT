@@ -59,7 +59,7 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
             Recruit
           </MenuItem>
         </Link>
-        <Link to="contact">
+        <Link to="/contact">
           <MenuItem
             $isActive={activate?.contact}
             $isBackGroundBlack={isBackGroundBlack}
