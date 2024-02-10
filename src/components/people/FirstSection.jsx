@@ -4,7 +4,7 @@ import styled from 'styled-components';
 function FirstSection() {
   return (
     <FirstSectionWrapper>
-      <Text>People</Text>
+      <Text>Our People</Text>
     </FirstSectionWrapper>
   );
 }
@@ -20,8 +20,11 @@ const Text = styled.h1`
   font-family: 'PP-Editorial';
   font-weight: 400;
   font-style: italic;
-  font-size: 6rem;
+  font-size: 4vw;
   text-transform: capitalize;
   margin: auto;
+  @media (max-width: 768px) {
+    font-size: 10vw;
+  }
 `;
 export default FirstSection;
