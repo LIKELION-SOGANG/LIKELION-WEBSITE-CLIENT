@@ -15,8 +15,6 @@ function App() {
   );
 }
 
-const AppContainer = styled.div`
-  overflow: hidden;
-`;
+const AppContainer = styled.div``;
 
 export default App;
