@@ -46,5 +46,30 @@
   font-weight: 400;
   src: url('../assets/font/Pretendard-Regular.woff');
 }
+@font-face {
+  font-family: Figtree;
+  font-weight: 800;
+  src: url('../assets//font/Figtree-Black.ttf');
+}
 
+@font-face {
+  font-family: Figtree;
+  font-weight: 700;
+  src: url('../assets//font/Figtree-ExtraBold.ttf');
+}
 
+@font-face {
+  font-family: Figtree;
+  font-weight: 600;
+  src: url('../assets//font/Figtree-Bold.ttf');
+}
+@font-face {
+  font-family: Figtree;
+  font-weight: 500;
+  src: url('../assets//font/Figtree-Medium.ttf');
+}
+@font-face {
+  font-family: Figtree;
+  font-weight: 400;
+  src: url('../assets//font/Figtree-Regular.ttf');
+}

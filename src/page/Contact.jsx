@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
+import Header from '../components/common/Header';
+import FirstSection from '../components/contact/FirstSection';
+import SecondSection from '../components/contact/SecondSection';
 
 function Contact() {
   return (
-    <div>Contact</div>
-  )
+    <>
+      <Header isBackGroundBlack={false} />
+      <FirstSection />
+      <SecondSection />
+    </>
+  );
 }
 
-export default Contact
+export default Contact;
