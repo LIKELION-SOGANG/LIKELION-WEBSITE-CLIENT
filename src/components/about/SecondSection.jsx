@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Space from '../../util/Space';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-function SecondSection({ isHeaderBlack }) {
+function SecondSection() {
   const newLettersRef = useRef();
   const [text, setText] = useState('THEN WHAT ABOUT');
   useEffect(() => {
@@ -29,7 +29,7 @@ function SecondSection({ isHeaderBlack }) {
     AOS.init();
   }, []);
   return (
-    <SeondWholeSection $isHeaderBlack={isHeaderBlack}>
+    <SeondWholeSection>
       <Space height={'40rem'} />
       <p data-aos="fade-up" data-aos-duration="1000">
         멋쟁이사자처럼 대학은 국내외 <span>121개 </span>대학이 참여하는{' '}
@@ -77,7 +77,7 @@ function SecondSection({ isHeaderBlack }) {
 }
 
 const SeondWholeSection = styled.section`
-  background-color: ${(props) => (props.$isHeaderBlack ? 'black' : 'white')};
+  background-color: white;
   transition: 1s;
   .sticky {
     height: 150vh;
