@@ -57,7 +57,7 @@ const Faq = () => {
           <Question onClick={() => handleToggle(index)}>
             {item.title}
             <FontAwesomeIcon
-              icon={openIndex.includes(index) ? faChevronDown : faChevronUp}
+              icon={openIndex.includes(index) ? faChevronUp : faChevronDown}
               style={{ cursor: 'pointer' }}
             />
           </Question>
