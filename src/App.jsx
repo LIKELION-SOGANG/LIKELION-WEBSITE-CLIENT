@@ -12,10 +12,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, []);
-
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
