@@ -48,10 +48,6 @@ function About() {
     }
   }, []);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, []);
-
   return (
     <>
       <Header

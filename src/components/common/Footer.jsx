@@ -26,6 +26,7 @@ function Footer({ isBackgroundBlack = true }) {
               target="_blank"
               title="새 탭에서 멋사 인스타그램 열기"
               rel="noreferrer"
+              isBackgroundBlack={isBackgroundBlack}
             >
               @likelion_sg
             </Link>
@@ -37,6 +38,7 @@ function Footer({ isBackgroundBlack = true }) {
             <Link
               href="mailto:likelion_sg@gmail.com"
               title="멋사 서강대로 메일 보내기"
+              isBackgroundBlack={isBackgroundBlack}
             >
               likelion_sg@gmail.com
             </Link>

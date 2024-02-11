@@ -12,7 +12,9 @@ function SecondSection({ isHeaderBlack }) {
         if (entries[0].isIntersecting) {
           const showTextEls = document.querySelectorAll('.show-text');
           showTextEls.forEach((item) => item.classList.add('hidden'));
-          setText('WE ARE');
+          setTimeout(() => {
+            setText('WE ARE');
+          }, 400);
         }
       },
       {
