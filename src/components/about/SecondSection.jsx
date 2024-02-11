@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Space from '../../util/Space';
-import gsap from 'gsap';
-import { TextPlugin } from 'gsap/all';
-gsap.registerPlugin(TextPlugin);
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 function SecondSection({ isHeaderBlack }) {
   const newLettersRef = useRef();
   const [text, setText] = useState('THEN WHAT ABOUT');
@@ -15,8 +14,6 @@ function SecondSection({ isHeaderBlack }) {
           showTextEls.forEach((item) => item.classList.add('hidden'));
           setText('WE ARE');
         }
-
-        // showTextEls.classList.add('.visible');
       },
       {
         threshold: 0.8,
@@ -24,15 +21,24 @@ function SecondSection({ isHeaderBlack }) {
     );
     observer.observe(newLettersRef.current);
   }, []);
+
+  useEffect(() => {
+    // 스크롤 애니메이션-> AOS 라이브러리 사용
+    AOS.init();
+  }, []);
   return (
     <SeondWholeSection $isHeaderBlack={isHeaderBlack}>
       <Space height={'40rem'} />
-      <p>
+      <p data-aos="fade-up" data-aos-duration="1000">
         멋쟁이사자처럼 대학은 국내외 <span>121개 </span>대학이 참여하는{' '}
         <span>국내 최대 규모의 IT 창업 동아리</span>입니다.
       </p>
       <Space height={'50vh'} />
-      <p>
+      <p
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-cubic"
+      >
         <span>“내 아이디어를 내 손으로 실현한다”</span>는 모토로,
         <br /> 누구든지 자신이 원하는 IT 서비스를 구현할 수 있도록 <br />
         각종 스터디와 네트워킹, 행사를 지원하고 있습니다.
@@ -79,7 +85,7 @@ const SeondWholeSection = styled.section`
   }
   section.change-text {
     position: sticky;
-    top: 40vh;
+    top: 30vh;
   }
   .small-text {
     color: var(--Main, #000);
