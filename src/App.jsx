@@ -7,6 +7,7 @@ import Cursor from './util/Cursor';
 import { MouseContextProvider } from './util/MouseContextProvider';
 import Loading from './page/Loading';
 import { AnimatePresence } from 'framer-motion';
+import { instance } from './api/axios';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +26,7 @@ function App() {
       return () => clearTimeout(timer); // 컴포넌트가 unmount될 때 타이머 제거
     } else if (loadingProgress === 100) {
       setTimeout(() => setIsLoading(false), 1000);
+      instance.post('visit/');
     }
   }, [isLoading, loadingProgress]);
 
