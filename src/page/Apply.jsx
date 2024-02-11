@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TopBanner from '../components/Recruit/TopBanner';
 import NewApplication from '../components/Recruit/NewApplication';
@@ -11,11 +11,14 @@ import Finish from '../components/Recruit/Finish';
 import useStore from '../components/Recruit/Store';
 const Apply = () => {
   const { currentStep, setCurrentStep, goNext } = useStore();
-
+  // currentStep 바뀔 때마다 스크롤 맨위로
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [currentStep]);
   return (
     <ApplyContainer>
       <TopBanner />
-      {currentStep === 0 && (
+      {currentStep === 0 ? (
         <>
           <div style={{ marginBottom: '19rem' }} />
           <NewApplication onNewApplication={() => setCurrentStep(1)} />
@@ -25,22 +28,21 @@ const Apply = () => {
             onExistingApplication={() => setCurrentStep(1)}
           />
         </>
+      ) : (
+        <Progress step={currentStep - 1} />
       )}
       {currentStep == 1 && (
         <>
-          <Progress step={currentStep - 1} />
           <Form />
         </>
       )}
       {currentStep == 2 && (
         <>
-          <Progress step={currentStep - 1} />
           <Question />
         </>
       )}
       {currentStep == 3 && (
         <>
-          <Progress step={currentStep - 1} />
           <Finish />
         </>
       )}
