@@ -22,6 +22,7 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
     } else {
       setActivate({ ...activate, [pathname.slice(1)]: true });
     }
+    window.scrollTo({ top: 0 });
   }, [pathname]);
   return (
     <HeaderWrapper $isBackGroundBlack={isBackGroundBlack}>
