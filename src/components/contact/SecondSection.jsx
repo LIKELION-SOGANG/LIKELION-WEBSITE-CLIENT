@@ -83,7 +83,7 @@ const ContactContainer = styled.div`
 `;
 
 const TopText = styled.div`
-  font-family: 'PP Editorial New';
+  font-family: 'PP-Editorial';
   font-size: 1.5vw;
   font-weight: 400;
   color: black;
@@ -94,7 +94,7 @@ const TopText = styled.div`
 `;
 
 const BottomText = styled(motion.a)`
-  font-family: 'PP Editorial New';
+  font-family: 'PP-Editorial';
   font-size: 3.5vw;
   font-weight: 400;
   color: black;

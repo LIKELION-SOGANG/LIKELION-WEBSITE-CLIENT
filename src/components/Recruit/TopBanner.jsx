@@ -20,7 +20,7 @@ const Banner = styled.div`
 
 const BannerText = styled.div`
   color: var(--Main, #000);
-  font-family: 'PP Editorial New';
+  font-family: 'PP-Editorial';
   font-size: 2rem;
   font-style: normal;
   font-weight: 400;
