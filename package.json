@@ -18,6 +18,7 @@
     "styled-components": "^6.1.8",
     "styled-reset": "^4.5.2",
     "swiper": "^11.0.6",
+    "three": "^0.161.0",
     "vercel": "^33.4.1",
     "web-vitals": "^2.1.4",
     "zustand": "^4.5.0"
