@@ -10,7 +10,7 @@ const TabContainer = styled.div`
 `;
 
 const TabElement = styled.div`
-  font-family: 'PP Editorial New';
+  font-family: 'PP-Editorial';
   font-size: ${(props) => (props.isSelected ? '6rem' : '2.25rem')};
   font-style: italic;
   font-weight: 400;
