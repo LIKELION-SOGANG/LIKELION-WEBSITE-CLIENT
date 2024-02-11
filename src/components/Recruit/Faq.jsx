@@ -18,7 +18,7 @@ const faqData = [
   {
     title: '어떤 것을 배우나요??',
     content:
-      '아기 사자는 웹 프로그래밍을 공부하고 자신의 아이디어를 담은 웹사이트를 직접 제작하고 배포합니다.\n자세한 사항은 홈페이지     About 탭을 참고해 주세요.',
+      '아기 사자는 웹 프로그래밍을 공부하고 자신의 아이디어를 담은 웹사이트를 직접 제작하고 배포합니다.\n자세한 사항은 홈페이지 About 탭을 참고해 주세요.',
   },
   {
     title: '프로그래밍과 개발을 잘 모르는데 괜찮나요?',
@@ -69,7 +69,8 @@ const Faq = () => {
 };
 
 const FaqContainer = styled.div`
-  width: 97rem;
+  max-width: 97rem;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -79,7 +80,7 @@ const Topic = styled.div`
   text-align: center;
   font-size: 3.2rem;
   color: var(--Main, #000);
-  font-family: 'PP Editorial New';
+  font-family: 'PP-Editorial';
   font-style: italic;
   font-weight: 400;
   line-height: normal;
@@ -109,7 +110,7 @@ const TextBase = styled.div`
 
 const Question = styled(TextBase)`
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,7 +118,7 @@ const Question = styled(TextBase)`
 const Answer = styled(TextBase)`
   margin-top: 1.4rem;
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 200%;
 `;
 export default Faq;
