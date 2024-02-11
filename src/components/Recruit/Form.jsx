@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputField from './InputField';
-import useStore from './Store';
-const Form = () => {
-  const {
-    setName,
-    setStudentId,
-    setEmail,
-    setField,
-    currentStep,
-    setCurrentStep,
-  } = useStore();
 
+const Form = () => {
+  const [name, setName] = useState('');
+  const [studentId, setStudentId] = useState('');
+  const [email, setEmail] = useState('');
+  const [field, setField] = useState('');
   const handleNameChange = (event) => {
     setName(event.target.value);
     // console.log('Name:', event.target.value);
@@ -33,11 +28,10 @@ const Form = () => {
   };
 
   const handleSubmit = () => {
-    // console.log('Name:', name);
-    // console.log('Student ID:', studentId);
-    // console.log('Email:', email);
-    // console.log('Field:', field);
-    setCurrentStep(currentStep + 1);
+    console.log('Name:', name);
+    console.log('Student ID:', studentId);
+    console.log('Email:', email);
+    console.log('Field:', field);
   };
   return (
     <div>
