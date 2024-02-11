@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import TopBanner from '../components/Recruit/TopBanner';
 import NewApplication from '../components/Recruit/NewApplication';
@@ -7,43 +7,35 @@ import Progress from '../components/Recruit/Progress';
 import InputField from '../components/Recruit/InputField';
 import Form from '../components/Recruit/Form';
 import Question from '../components/Recruit/Question';
-import Finish from '../components/Recruit/Finish';
-import useStore from '../components/Recruit/Store';
 const Apply = () => {
-  const { currentStep, setCurrentStep, goNext } = useStore();
-  // currentStep 바뀔 때마다 스크롤 맨위로
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, [currentStep]);
+  const [currentStep, setCurrentStep] = useState(0);
+  const goNext = () => {
+    setCurrentStep((prevStep) => (prevStep < 2 ? prevStep + 1 : prevStep));
+  };
   return (
     <ApplyContainer>
       <TopBanner />
-      {currentStep === 0 ? (
+      {currentStep === 0 && (
         <>
           <div style={{ marginBottom: '19rem' }} />
           <NewApplication onNewApplication={() => setCurrentStep(1)} />
           <div style={{ marginBottom: '7rem' }} />
           <ExistingApplication
             onGoNext={goNext}
-            onExistingApplication={() => setCurrentStep(1)}
+            onExistingApplication={() => setCurrentStep(2)}
           />
         </>
-      ) : (
-        <Progress step={currentStep - 1} />
       )}
       {currentStep == 1 && (
         <>
+          <Progress step={currentStep - 1} />
           <Form />
         </>
       )}
       {currentStep == 2 && (
         <>
+          <Progress step={currentStep - 1} />
           <Question />
-        </>
-      )}
-      {currentStep == 3 && (
-        <>
-          <Finish />
         </>
       )}
 
