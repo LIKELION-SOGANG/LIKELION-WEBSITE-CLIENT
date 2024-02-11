@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TopBanner from '../components/Recruit/TopBanner';
 import NewApplication from '../components/Recruit/NewApplication';
@@ -11,7 +11,9 @@ import Finish from '../components/Recruit/Finish';
 import useStore from '../components/Recruit/Store';
 const Apply = () => {
   const { currentStep, setCurrentStep, goNext } = useStore();
-
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [currentStep]);
   return (
     <ApplyContainer>
       <TopBanner />
