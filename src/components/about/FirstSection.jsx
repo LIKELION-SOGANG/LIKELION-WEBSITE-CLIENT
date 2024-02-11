@@ -88,7 +88,7 @@ const LogoCaption = React.memo(styled.div`
 
 const PossibiltyCaption = React.memo(styled.img`
   position: absolute;
-  top: calc(100vh - 17rem + 29rem * ${(props) => props?.$process} / 100);
+  top: calc(100vh - 17rem + 34rem * ${(props) => props?.$process} / 100);
   right: calc(10rem + (100vw - 50rem) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1.5 / 100);
   -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
