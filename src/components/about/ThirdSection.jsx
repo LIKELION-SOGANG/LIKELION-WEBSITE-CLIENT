@@ -58,7 +58,7 @@ function ThirdSection() {
           <h1>Awards</h1>
           <li>
             <a
-              href="https://platum.kr/archives/212513
+              href="
             "
             >
               <span>2023.08 |</span> 멋쟁이사자처럼 전국 연합 해커톤 3위

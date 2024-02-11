@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import useStore from './Store';
 const Question = () => {
-  const { currentStep, goNext, setSubmitTime } = useStore();
   const questions = [
     {
       prompt: '멋쟁이사자처럼 서강대에 지원하게 된 동기에 대해 기술해주십시오.',
@@ -29,24 +27,10 @@ const Question = () => {
     },
   ];
   const [answers, setAnswers] = useState(questions.map(() => ''));
-
   const handleInputChange = (index, event) => {
     const newAnswers = [...answers];
     newAnswers[index] = event.target.value;
     setAnswers(newAnswers);
-  };
-
-  const handleSave = () => {
-    const today = new Date();
-    const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
-    let hours = today.getHours();
-    let minutes = today.getMinutes();
-
-    const submitTime = `${formattedDate} ${hours}시 ${minutes}분`;
-    console.log('이전 ', currentStep);
-    goNext();
-    console.log('다음 ', currentStep);
-    setSubmitTime(submitTime);
   };
   return (
     <>
@@ -74,7 +58,7 @@ const Question = () => {
           ))}
         </>
         <div style={{ marginBottom: '2.6rem' }} />
-        <Button onClick={handleSave}>
+        <Button>
           <ButtonText>지원서 저장하기</ButtonText>
         </Button>
         <div style={{ marginBottom: '1rem' }} />
@@ -105,7 +89,6 @@ const TextArea = styled.textarea`
   border: 1px solid #b7b7b7;
   padding: 1.4rem;
   line-height: 160%;
-  resize: none;
 `;
 
 const CharCount = styled.div`
