@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Section from './Section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import Header from '../common/Header';
 
 const Schedule = () => {
   const scheduleData = [
@@ -43,7 +44,7 @@ const Schedule = () => {
         data={areaData}
         renderItem={(item) => (
           <>
-            <Title>{item.title}</Title>
+            <Title area={true}>{item.title}</Title>
             <Date>{item.content}</Date>
             <MoreInfo>
               <a href={item.link} target="_blank" rel="noreferrer">
@@ -70,13 +71,18 @@ const TextBase = styled.div`
 
 const Title = styled(TextBase)`
   font-size: 1.6rem;
-  font-weight: 600;
+  font-family: ${(props) => (props.area ? 'PP-Editorial' : 'Pretendard')};
+  font-style: ${(props) => (props.area ? 'italic' : 'normal')};
+  font-weight: ${(props) => (props.area ? '400' : '600')};
 `;
 
 const Date = styled(TextBase)`
   margin-top: 1.4rem;
   font-size: 1.2rem;
   font-weight: 500;
+  @media (max-width: 768px) {
+    white-space: nowrap;
+  }
 `;
 
 const MoreInfo = styled.div`
