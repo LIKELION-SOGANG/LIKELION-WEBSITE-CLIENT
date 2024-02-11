@@ -77,7 +77,7 @@ const LogoCaption = React.memo(styled.div`
       calc(100vh - 58rem - ${(props) => props.$process} * (100vh - 60rem) / 100)
     )
     translateX(2.5rem);
-  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -91,7 +91,7 @@ const PossibiltyCaption = React.memo(styled.img`
   top: calc(100vh - 17rem + 34rem * ${(props) => props?.$process} / 100);
   right: calc(10rem + (100vw - 50rem) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1.5 / 100);
-  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
 `);
 const textLoop = keyframes`
 from { transform: translateX(0); }

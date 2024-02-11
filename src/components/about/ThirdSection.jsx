@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import awards from '../../assets/icon/awards.png';
 import Space from '../../util/Space';
+import { useScrollCount } from '../../hooks/useScrollCount';
 
 function ThirdSection() {
+  const [number, setNumber] = useState(0);
+  const firstAnimatedNum = useScrollCount(9, 1, 0, 1000);
+  const secondAnimatedNum = useScrollCount(100, 1, 0, 100);
+  const thirdAnimatedNum = useScrollCount(300, 1, 0, 1000);
   return (
     <ThirdWholeSection>
       <Space height={'50vh'} />
@@ -15,7 +20,7 @@ function ThirdSection() {
       <Space height={'30vh'} />
       <div className="big-num">
         <div className="num">
-          <span>9</span>년
+          <span ref={firstAnimatedNum.ref}>0</span>년
         </div>
         <div className="title">운영기간</div>
         <div className="content">
@@ -25,7 +30,8 @@ function ThirdSection() {
       <div className="big-num">
         <div className="num">
           <span>
-            <div className="plus">+</div>100
+            <div className="plus">+</div>
+            <span ref={secondAnimatedNum.ref}>0</span>
           </span>
         </div>
         <div className="title">프로젝트 수 </div>
@@ -37,7 +43,8 @@ function ThirdSection() {
       <div className="big-num">
         <div className="num">
           <span>
-            <div className="plus">+</div>120
+            <div className="plus">+</div>
+            <span ref={thirdAnimatedNum.ref}>0</span>
           </span>
         </div>
         <div className="title">가입 회원 수 </div>

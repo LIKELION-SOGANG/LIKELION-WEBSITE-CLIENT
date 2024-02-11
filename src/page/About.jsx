@@ -11,6 +11,8 @@ function About() {
   const observationRef1 = useRef(null);
   const observationRef2 = useRef(null);
   const observationRef3 = useRef(null);
+  const observationRef4 = useRef(null);
+  const observationRef5 = useRef(null);
   const [isVisibleHeaderLogo, setIsVisibleHeaderLogo] = useState(false);
   const [isHeaderBlack, setIsHeaderBlack] = useState(true);
   const scrollHeight = useThrottleScroll(10, 0, 400);
@@ -25,6 +27,11 @@ function About() {
             setIsHeaderBlack(entries[0]?.isIntersecting);
           } else if (entries[0].target.className === 'third-section') {
             setIsHeaderBlack(entries[0]?.isIntersecting);
+          } else if (entries[0].target.className === 'fourth-section') {
+            console.log('!');
+            setIsHeaderBlack(!entries[0]?.isIntersecting);
+          } else if (entries[0].target.className === 'fifth-section') {
+            setIsHeaderBlack(!entries[0]?.isIntersecting);
           }
         }
       },
@@ -36,7 +43,13 @@ function About() {
       observer.observe(observationRef1.current);
       observer.observe(observationRef2.current);
       observer.observe(observationRef3.current);
+      observer.observe(observationRef4.current);
+      observer.observe(observationRef5.current);
     }
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
   }, []);
 
   return (
@@ -54,17 +67,17 @@ function About() {
       </div>
       {/* about3~6 */}
       <div className="second-section" ref={observationRef2}>
-        <SecondSection />
+        <SecondSection isHeaderBlack={isHeaderBlack} />
       </div>
       {/* about7~10 */}
       <div className="third-section" ref={observationRef3}>
         <ThirdSection />
       </div>
       {/* about9 */}
-      <div className="fourth-section">
-        <FourthSection />
+      <div className="fourth-section" ref={observationRef4}>
+        <FourthSection isBackGroundBlack={isHeaderBlack} />
       </div>
-      <div className="fifth-section">
+      <div className="fifth-section" ref={observationRef5}>
         <FifthSection />
       </div>
     </>
