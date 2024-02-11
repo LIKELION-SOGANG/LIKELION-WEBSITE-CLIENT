@@ -6,7 +6,6 @@ const TabContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-top: 2rem;
 `;
 
 const TabElement = styled.div`
@@ -15,7 +14,6 @@ const TabElement = styled.div`
   font-style: italic;
   font-weight: 400;
   color: ${(props) => (props.isSelected ? 'black' : '#B7B7B7')};
-  /* height: 6rem; */
   margin-bottom: ${(props) => (props.isSelected ? '-0.75rem' : '0rem')};
   cursor: pointer;
   padding: 1rem;
