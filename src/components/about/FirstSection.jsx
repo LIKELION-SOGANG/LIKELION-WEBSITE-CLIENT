@@ -5,10 +5,32 @@ import object2 from '../../assets/icon/object-2.png';
 import object3 from '../../assets/icon/object-3.png';
 import caption1 from '../../assets/caption/about-caption.svg';
 import Space from '../../util/Space';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { render } from '@testing-library/react';
 
 function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
+  useEffect(() => {
+    let scene = new THREE.Scene();
+    let renderer = new THREE.WebGLRenderer({
+      canvas: document.querySelector('#canvas'),
+    });
+    let camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000,
+    );
+    camera.position.set(0, 0, 5); // 카메라 위치 조정
+    let loader = new GLTFLoader();
+    loader.load('../../assets/3d/logo3d.gltf', function (gltf) {
+      scene.add(gltf.scene);
+      renderer.render(scene, camera);
+    });
+  }, []);
   return (
     <FirstSectionWrapper>
+      <canvas id="canvas" width={"500"} height={"500"}></canvas>
       <Object1 src={object1} alt="3d 오브젝트1" />
       <Object2 src={object2} alt="3d 오브젝트2" />
       <Object3 src={object3} alt="3d 오브젝트3" />
@@ -44,6 +66,12 @@ const FirstSectionWrapper = React.memo(styled.div`
   position: relative;
   background-color: black;
   overflow: hidden;
+  canvas {
+    position: absolute;
+    top: 1rem;
+    z-index: 9999;
+    left: 0rem;
+  }
 `);
 
 const Object1 = React.memo(styled.img`
