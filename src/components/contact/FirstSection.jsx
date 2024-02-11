@@ -17,7 +17,7 @@ const FirstSectionWrapper = styled.div`
   text-align: center;
 `;
 const Text = styled.h1`
-  font-family: 'PP Editorial New';
+  font-family: 'PP-Editorial';
   font-size: 4vw;
   font-style: italic;
   font-weight: 200;
