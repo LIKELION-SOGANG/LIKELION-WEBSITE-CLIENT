@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Footer({ isBackgroundBlack = true }) {
+  const navigate = useNavigate();
   return (
     <FooterWrapper isBackgroundBlack={isBackgroundBlack}>
       <div className="inner">
@@ -43,9 +45,7 @@ function Footer({ isBackgroundBlack = true }) {
         <div className="credits">
           <p className="content2">
             <u>
-              <a href="/credits" title="처음 만든 사람들">
-                ↖︎ Credits{' '}
-              </a>
+              <a href="/credits">↖︎ Credits </a>
             </u>
             <br />© Likelion Sogang. All Rights Reserved.
           </p>
