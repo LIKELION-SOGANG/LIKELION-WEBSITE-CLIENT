@@ -1,9 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useMousePosition } from '../../util/MouseContextProvider';
 
 function Footer({ isBackgroundBlack = true }) {
-  const navigate = useNavigate();
+  const { textEnter, textLeave } = useMousePosition();
   return (
     <FooterWrapper isBackgroundBlack={isBackgroundBlack}>
       <div className="inner">
@@ -27,6 +28,8 @@ function Footer({ isBackgroundBlack = true }) {
               title="새 탭에서 멋사 인스타그램 열기"
               rel="noreferrer"
               isBackgroundBlack={isBackgroundBlack}
+              onMouseEnter={textEnter}
+              onMouseLeave={textLeave}
             >
               @likelion_sg
             </Link>
@@ -39,6 +42,8 @@ function Footer({ isBackgroundBlack = true }) {
               href="mailto:likelion_sg@gmail.com"
               title="멋사 서강대로 메일 보내기"
               isBackgroundBlack={isBackgroundBlack}
+              onMouseEnter={textEnter}
+              onMouseLeave={textLeave}
             >
               likelion_sg@gmail.com
             </Link>
@@ -47,7 +52,13 @@ function Footer({ isBackgroundBlack = true }) {
         <div className="credits">
           <p className="content2">
             <u>
-              <a href="/credits">↖︎ Credits </a>
+              <a
+                href="/credits"
+                onMouseEnter={textEnter}
+                onMouseLeave={textLeave}
+              >
+                ↖︎ Credits{' '}
+              </a>
             </u>
             <br />© Likelion Sogang. All Rights Reserved.
           </p>

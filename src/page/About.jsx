@@ -63,7 +63,7 @@ function About() {
       </div>
       {/* about3~6 */}
       <div className="second-section" ref={observationRef2}>
-        <SecondSection isHeaderBlack={isHeaderBlack} />
+        <SecondSection />
       </div>
       {/* about7~10 */}
       <div className="third-section" ref={observationRef3}>

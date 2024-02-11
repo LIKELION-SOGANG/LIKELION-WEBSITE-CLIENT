@@ -119,7 +119,7 @@ const ProjectContainer = styled.div`
   gap: 2.5rem;
 
   & > div {
-    width: 360px;
+    width: 20%;
     margin-bottom: 7.8rem;
   }
 
