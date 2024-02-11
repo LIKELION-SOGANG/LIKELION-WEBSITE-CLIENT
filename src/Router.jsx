@@ -9,12 +9,11 @@ import Recruit from './page/Recruit';
 import Apply from './page/Apply';
 
 function Router() {
-
   return (
     <Routes>
       <Route path="/" element={<About />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/credit" element={<Credit />} />
+      <Route path="/credits" element={<Credit />} />
       <Route path="/people" element={<People />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/recruit" element={<Recruit />} />
