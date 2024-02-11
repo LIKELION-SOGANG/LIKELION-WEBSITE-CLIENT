@@ -7,11 +7,11 @@ import Progress from '../components/Recruit/Progress';
 import InputField from '../components/Recruit/InputField';
 import Form from '../components/Recruit/Form';
 import Question from '../components/Recruit/Question';
+import Finish from '../components/Recruit/Finish';
+import useStore from '../components/Recruit/Store';
 const Apply = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const goNext = () => {
-    setCurrentStep((prevStep) => (prevStep < 2 ? prevStep + 1 : prevStep));
-  };
+  const { currentStep, setCurrentStep, goNext } = useStore();
+
   return (
     <ApplyContainer>
       <TopBanner />
@@ -22,7 +22,7 @@ const Apply = () => {
           <div style={{ marginBottom: '7rem' }} />
           <ExistingApplication
             onGoNext={goNext}
-            onExistingApplication={() => setCurrentStep(2)}
+            onExistingApplication={() => setCurrentStep(1)}
           />
         </>
       )}
@@ -36,6 +36,12 @@ const Apply = () => {
         <>
           <Progress step={currentStep - 1} />
           <Question />
+        </>
+      )}
+      {currentStep == 3 && (
+        <>
+          <Progress step={currentStep - 1} />
+          <Finish />
         </>
       )}
 
