@@ -10,7 +10,6 @@ function SecondSection() {
   );
 }
 const SecondSectionWrapper = styled.div`
-  height: 100vh;
   background-color: white;
 `;
 

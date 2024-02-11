@@ -44,8 +44,9 @@ const BabyLionContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 3rem;
-  margin: 4rem 2rem;
+  padding: 4rem 2rem;
   flex-wrap: wrap;
+  padding-bottom: 40rem;
 `;
 
 const BabyLion = styled.div`
@@ -53,7 +54,6 @@ const BabyLion = styled.div`
   font-size: 1.75rem;
   font-style: normal;
   font-weight: 500;
-  margin-bottom: 0.5rem;
 `;
 
 const TabContents = ({ data }) => {
@@ -70,11 +70,10 @@ const TabContents = ({ data }) => {
         modules={[Autoplay]}
         loop={true}
         autoplay={{
-          delay: 1500,
+          delay: 1000,
           disableOnInteraction: false,
         }}
         speed={1500}
-        // spaceBetween={50}
         slidesPerView={slidesPerView}
         style={{
           marginLeft: '2rem',
