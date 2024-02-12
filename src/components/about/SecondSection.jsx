@@ -79,6 +79,8 @@ function SecondSection() {
 const SeondWholeSection = styled.section`
   background-color: white;
   transition: 1s;
+  position: relative;
+  z-index: -2;
   .sticky {
     height: 150vh;
   }
