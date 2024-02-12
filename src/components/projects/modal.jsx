@@ -1,18 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Space from './../../util/Space';
-import CloseIcon from '../../assets/icon/closeIcon.svg';
-const ProjectModal = ({ project, onClose }) => {
-  const {
-    title,
-    generation_id,
-    year,
-    team_name,
-    member_list,
-    project_image,
-    content,
-    url,
-  } = project;
+import CloseIcon from './../../assets/icon/closeIcon.svg';
+const ProjectModal = ({ project, onClose, generation }) => {
+  const { title, year, team_name, member_list, project_image, content, url } =
+    project;
 
   return (
     <ModalWrapper>
@@ -25,7 +17,7 @@ const ProjectModal = ({ project, onClose }) => {
           <Space height={'9.5rem'} />
           <ProjectTitle>{title}</ProjectTitle>
           <Space height={'0.9rem'} />
-          <ProjectDetails>{`${generation_id} | ${year} `}</ProjectDetails>
+          <ProjectDetails>{`${generation} | ${year} `}</ProjectDetails>
           <Space height={'1.2rem'} />
           <Team>
             {' '}
@@ -54,9 +46,8 @@ const ModalOverlay = styled.div`
   top: 60px;
   left: 456px;
   width: 60rem;
-  max-height: 86.2rem;
+  max-height: 110vh;
   padding-bottom: 10rem;
-
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -92,6 +83,10 @@ const CloseButton = styled.div`
   width: 3rem;
   height: 3rem;
   pointer-events: auto;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const ProjectTitle = styled.h2`
