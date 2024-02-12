@@ -1,10 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { GlobalStyles } from '../../style/GlobalStyles';
 
 const TopBanner = () => {
+  const navigate = useNavigate();
   return (
-    <Banner>
+    <Banner onClick={() => navigate('/')}>
       <BannerText>likelion Sogang 12th Recruitment</BannerText>
       <HomeButton>홈으로 돌아가기</HomeButton>
     </Banner>
