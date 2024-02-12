@@ -30,7 +30,7 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
   const tabs = ['6th', '7th', '8th', '9th', '10th', '11th'];
   const [selectedTab, setSelectedTab] = useState('11th');
   const [selectedProjects, setSelectedProjects] = useState([]);
-  const { isLoading, loadingProgress } = useLoading();
+  const { isLoading, loadingProgress } = useLoading(4);
   return (
     <HeaderWrapper $isBackGroundBlack={isBackGroundBlack}>
       <AnimatePresence>

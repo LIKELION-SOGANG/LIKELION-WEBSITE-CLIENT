@@ -151,10 +151,12 @@ const ThirdWholeSection = styled.section`
     font-size: 3rem;
   }
   span .plus {
+    font-weight: 100;
     font-size: 10rem;
     position: absolute;
     top: -8rem;
-    right: -02rem;
+    font-family: Pretendard;
+    right: -6rem;
   }
   .num span {
     position: relative;
