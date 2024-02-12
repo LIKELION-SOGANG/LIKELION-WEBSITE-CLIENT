@@ -1,20 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { instance } from '../../api/axios';
+import useStore from './Store';
 
 const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
   const [isValid, setIsValid] = useState(false);
+  const {
+    name,
+    email,
+    field,
+    student_number,
+    setAnswer,
+    setName,
+    setStudentId,
+    setEmail,
+    setField,
+    password,
+    setPassword,
+  } = useStore();
 
   const handleInputChange = (event) => {
     const inputlength = event.target.value.length;
     // console.log(isValid);
     // console.log(inputlength);
-    setIsValid(inputlength === 6);
+    setPassword(event.target.value);
+    setIsValid(inputlength === 36);
   };
+
   const handleButtonClick = () => {
     if (isValid) {
       onExistingApplication();
       onGoNext();
+      handleSubmit();
     }
+  };
+
+  const handleSubmit = () => {
+    instance
+      .get(`application/${password}`)
+      .then((response) => {
+        const responsedata = response.data;
+        setName(responsedata.name);
+        setStudentId(responsedata.student_number);
+        setEmail(responsedata.email);
+        setField(responsedata.field);
+        setAnswer(0, responsedata.app1);
+        setAnswer(1, responsedata.app2);
+
+        console.log('지원서 불러오기 성공!', response.data);
+      })
+      .catch((error) => console.log('지원서 불러오기 실패!', error));
   };
   return (
     <div>
@@ -69,6 +104,7 @@ const Button = styled.button`
   justify-content: center;
   border-radius: 1rem;
   background: ${({ isValid }) => (isValid ? 'black' : '#d9d9d9')};
+  cursor: ${({ isValid }) => (isValid ? 'pointer' : 'none')};
   margin-bottom: 1.2rem;
 `;
 
