@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Space from '../../util/Space';
 import ProjectModal from './modal';
-function ProjectInfo({ selectedProjects }) {
+function ProjectInfo({ selectedProjects, generation }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -17,13 +17,17 @@ function ProjectInfo({ selectedProjects }) {
   return selectedProjects ? (
     <ProjectInfoWrapper onClick={openModal}>
       {isModalOpen && (
-        <ProjectModal project={selectedProjects} onClose={closeModal} />
+        <ProjectModal
+          project={selectedProjects}
+          onClose={closeModal}
+          generation={generation}
+        />
       )}
       <ProjectTitle>{selectedProjects.title}</ProjectTitle>
       <Space height={'8px'} />
       <ProjectDetails>
         <div>
-          {`${selectedProjects.generation_id}`} | {`${selectedProjects.year}`}
+          {`${generation}`} | {`${selectedProjects.year}`}
         </div>
       </ProjectDetails>
       <Space height={'17px'} />
@@ -49,6 +53,10 @@ const ProjectTitle = styled.h2`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 30rem;
 `;
 
 const ProjectDetails = styled.div`
