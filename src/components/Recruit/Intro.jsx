@@ -31,11 +31,16 @@ const Intro = () => {
 const Background = styled.div`
   background-color: black;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // height: 100vh;
+  width: 100%;
 `;
 
 const Image = styled.img`
   position: relative;
-  width: 95%;
+  width: 100%;
   margin-left: 3rem;
   z-index: 50;
   height: auto;
@@ -43,8 +48,8 @@ const Image = styled.img`
 
 const Text = styled.div`
   position: absolute;
-  top: 15%;
-  left: 50%;
+  top: calc(100vh - 45rem);
+  // left: 50%;
   color: #fff;
   leading-trim: both;
   text-edge: cap;
@@ -54,21 +59,23 @@ const Text = styled.div`
   font-weight: 400;
   line-height: normal;
   z-index: 100;
-  transform: translateX(-50%);
+  // transform: translateX(-50%);
   @media (max-width: 768px) {
     font-size: 4.8rem;
     white-space: pre-wrap;
     text-align: center;
+    top: 30%;
   }
 `;
 
 const AnimationContainer = styled.div`
   position: absolute;
-  top: 40%;
+  top: calc(100vh - 10rem);
   left: 50%;
-  transform: translateX(-50%);
+  z-index: 400;
+  transform: translateX(0%);
   @media (max-width: 768px) {
-    top: 60%;
+    top: 90%;
     left: 50%;
   }
 `;
