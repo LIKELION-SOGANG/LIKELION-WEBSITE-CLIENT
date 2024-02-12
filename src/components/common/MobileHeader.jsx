@@ -100,6 +100,7 @@ function MobileHeader({
 const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
+  transition: 1s;
   background-color: ${(props) =>
     props.$isBackGroundBlack ? 'black' : 'white'};
   .inner {
