@@ -12,27 +12,26 @@ import useLoading from '../../hooks/useLoading';
 
 function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
   const { isLoading, loadingProgress } = useLoading();
-  useEffect(() => {
-    let scene = new THREE.Scene();
-    let renderer = new THREE.WebGLRenderer({
-      canvas: document.querySelector('#canvas'),
-    });
-    let camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000,
-    );
-    camera.position.set(0, 0, 5); // 카메라 위치 조정
-    let loader = new GLTFLoader();
-    loader.load('../../assets/3d/logo3d.gltf', function (gltf) {
-      scene.add(gltf.scene);
-      renderer.render(scene, camera);
-    });
-  }, []);
+  // useEffect(() => {
+  //   let scene = new THREE.Scene();
+  //   let renderer = new THREE.WebGLRenderer({
+  //     canvas: document.querySelector('#canvas'),
+  //   });
+  //   let camera = new THREE.PerspectiveCamera(
+  //     75,
+  //     window.innerWidth / window.innerHeight,
+  //     0.1,
+  //     1000,
+  //   );
+  //   camera.position.set(0, 0, 5); // 카메라 위치 조정
+  //   let loader = new GLTFLoader();
+  //   loader.load('../../assets/3d/logo3d.gltf', function (gltf) {
+  //     scene.add(gltf.scene);
+  //     renderer.render(scene, camera);
+  //   });
+  // }, []);
   return (
     <FirstSectionWrapper>
-      <canvas id="canvas" width={'500'} height={'500'}></canvas>
       <Object1 src={object1} alt="3d 오브젝트1" />
       <Object2 src={object2} alt="3d 오브젝트2" />
       <Object3 src={object3} alt="3d 오브젝트3" />
@@ -66,6 +65,7 @@ function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
 const FirstSectionWrapper = React.memo(styled.div`
   height: calc(176vh + 30rem);
   position: relative;
+  width: 100%;
   background-color: black;
   overflow: hidden;
   canvas {
