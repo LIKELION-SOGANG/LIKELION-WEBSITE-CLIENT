@@ -6,6 +6,8 @@ import { useMousePosition } from '../../util/MouseContextProvider';
 import { AnimatePresence } from 'framer-motion';
 import useLoading from '../../hooks/useLoading';
 import Loading from '../../page/Loading';
+import Caption from '../../assets/caption/about-caption.svg';
+import WhiteCaption from '../../assets/caption/about-caption-white.svg';
 import xiconblack from '../../assets/icon/x-icon-black.svg';
 import xiconwhite from '../../assets/icon/x-icon-white.svg';
 import menuBlack from '../../assets/icon/menu-icon-black.svg';
@@ -92,6 +94,7 @@ function MobileHeader({
         <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/contact">
           Contact
         </SlideItem>
+        <PossibleCaption src={isBackGroundBlack ? Caption : WhiteCaption} />
       </SlideMenu>
     </HeaderWrapper>
   );
@@ -178,6 +181,12 @@ const Span = styled.span`
     top: 0.2rem;
     transform: ${(props) => (props.$isSpreadMenu ? 'rotate(-45deg)' : '')};
   }
+`;
+
+const PossibleCaption = styled.img`
+  position: absolute;
+  bottom: 3.3rem;
+  right: 2.6rem;
 `;
 
 const MenuIcon = styled.img`
