@@ -22,7 +22,7 @@ const BannerText = styled.div`
   color: var(--Main, #000);
   font-family: 'PP-Editorial';
   font-size: 2rem;
-  font-style: normal;
+  font-style: italic;
   font-weight: 400;
   line-height: normal;
   text-transform: capitalize;

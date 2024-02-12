@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputField from './InputField';
 import useStore from './Store';
+import axios from 'axios';
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
 const Form = () => {
   const {
+    name,
+    student_number,
+    email,
+    field,
     setName,
     setStudentId,
     setEmail,
@@ -14,31 +20,37 @@ const Form = () => {
 
   const handleNameChange = (event) => {
     setName(event.target.value);
-    // console.log('Name:', event.target.value);
   };
 
   const handleStudentIdChange = (event) => {
     setStudentId(event.target.value);
-    // console.log('Student ID:', event.target.value);
   };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
-    // console.log('Email:', event.target.value);
   };
 
   const handleFieldChange = (event) => {
     setField(event.target.value);
-    // console.log('Field:', event.target.value);
   };
 
   const handleSubmit = () => {
-    // console.log('Name:', name);
-    // console.log('Student ID:', studentId);
-    // console.log('Email:', email);
-    // console.log('Field:', field);
     setCurrentStep(currentStep + 1);
+    axios
+      .post(`${BASE_URL}/application/`, {
+        name: name,
+        student_number: student_number,
+        email: email,
+        field: field,
+      })
+      .then((response) => {
+        console.log('성공 ? ', response.data);
+      })
+      .catch((error) => {
+        console.log('실패 ?', error);
+      });
   };
+
   return (
     <div>
       <InputField
@@ -67,8 +79,8 @@ const Form = () => {
             label: '지원 분야를 선택해주세요.',
             value: '',
           },
-          { label: 'Front-End', value: 'Front' },
-          { label: 'Back-End', value: 'Back' },
+          { label: 'Front-End', value: 'FRONTEND' },
+          { label: 'Back-End', value: 'BACEKEND' },
         ]}
         onChange={handleFieldChange}
       />
