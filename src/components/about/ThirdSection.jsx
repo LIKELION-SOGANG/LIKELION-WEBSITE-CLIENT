@@ -90,6 +90,8 @@ const ThirdWholeSection = styled.section`
   background-color: black;
   font-family: 'PP-Editorial';
   color: white;
+  position: relative;
+  z-index: -2;
   section.awards {
     display: flex;
     align-items: flex-end;

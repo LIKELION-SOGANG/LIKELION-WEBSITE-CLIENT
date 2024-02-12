@@ -63,6 +63,8 @@ function FifthSection() {
 }
 const FifthWholeSection = styled.section`
   background-color: black;
+  position: relative;
+  z-index: -2;
   text-align: center;
   font-family: 'PP-Editorial';
   font-size: 4rem;

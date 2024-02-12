@@ -10,6 +10,7 @@ import xiconblack from '../../assets/icon/x-icon-black.svg';
 import xiconwhite from '../../assets/icon/x-icon-white.svg';
 import menuBlack from '../../assets/icon/menu-icon-black.svg';
 import menuWhite from '../../assets/icon/menu-icon-white.svg';
+import Space from '../../util/Space';
 // 헤더 배경 검은색 , 헤더 로고 보일지 여부 props 전달받기 (기본값 true)
 function MobileHeader({
   isBackGroundBlack = true,
@@ -35,23 +36,23 @@ function MobileHeader({
   }, [pathname]);
   const { isLoading, loadingProgress } = useLoading(4);
   const [isSpreadMenu, setIsSpreadMenu] = useState(false);
-  console.log(isSpreadMenu);
   return (
     <HeaderWrapper $isBackGroundBlack={isBackGroundBlack}>
-      <AnimatePresence>
-        {isLoading && <Loading progress={loadingProgress} />}
-      </AnimatePresence>
-      <MenuList>
-        <LogoItem
-          $isBackGroundBlack={isBackGroundBlack}
-          $isVisibleHeaderLogo={isVisibleHeaderLogo}
-          onClick={() => {
-            navigate('/');
-          }}
-        >
-          Like<span>lion</span> So<span>gang</span>
-        </LogoItem>
-        {/* {spreadMenu ? (
+      <div className="inner">
+        <AnimatePresence>
+          {isLoading && <Loading progress={loadingProgress} />}
+        </AnimatePresence>
+        <MenuList>
+          <LogoItem
+            $isBackGroundBlack={isBackGroundBlack}
+            $isVisibleHeaderLogo={isVisibleHeaderLogo}
+            onClick={() => {
+              navigate('/');
+            }}
+          >
+            Like<span>lion</span> So<span>gang</span>
+          </LogoItem>
+          {/* {spreadMenu ? (
           <XIcon
             src={isBackGroundBlack ? xiconwhite : xiconblack}
             alt="X아이콘"
@@ -59,18 +60,39 @@ function MobileHeader({
         ) : (
           <MenuIcon src={isBackGroundBlack ? menuWhite : menuBlack} />
         )} */}
-
-        <ToggleMenu
-          onClick={() => {
-            setIsSpreadMenu(!isSpreadMenu);
-          }}
-        >
-          <Span
-            $isBackGroundBlack={isBackGroundBlack}
-            $isSpreadMenu={isSpreadMenu}
-          ></Span>
-        </ToggleMenu>
-      </MenuList>
+          <ToggleMenu
+            onClick={() => {
+              setIsSpreadMenu(!isSpreadMenu);
+            }}
+          >
+            <Span
+              $isBackGroundBlack={isBackGroundBlack}
+              $isSpreadMenu={isSpreadMenu}
+            ></Span>
+          </ToggleMenu>
+        </MenuList>
+      </div>
+      <SlideMenu
+        $isSpreadMenu={isSpreadMenu}
+        $isBackGroundBlack={isBackGroundBlack}
+      >
+        <Space height={'10rem'} />
+        <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/">
+          About
+        </SlideItem>
+        <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/people">
+          People
+        </SlideItem>
+        <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/projects">
+          Projects
+        </SlideItem>
+        <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/recruit">
+          Recruit
+        </SlideItem>
+        <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/contact">
+          Contact
+        </SlideItem>
+      </SlideMenu>
     </HeaderWrapper>
   );
 }
@@ -78,10 +100,14 @@ function MobileHeader({
 const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
-  z-index: 7000;
-  padding: 2.5rem;
-  width: 100vw;
-  display: flex;
+  background-color: ${(props) =>
+    props.$isBackGroundBlack ? 'black' : 'white'};
+  .inner {
+    z-index: 7000;
+    padding: 2.5rem;
+    width: 100vw;
+    display: flex;
+  }
 `;
 const MenuList = styled.ul`
   display: flex;
@@ -94,6 +120,33 @@ const ToggleMenu = styled.div`
   position: relative;
   width: 2rem;
   height: 2rem;
+`;
+const SlideMenu = styled.ul`
+  width: 100vw;
+  height: calc(100vh - 7.2rem);
+  position: fixed;
+  bottom: 0;
+  transition: 0.5s;
+  transform: ${(props) =>
+    !props.$isSpreadMenu && 'translateY(calc(100vh - 7.2rem))'};
+  background-color: ${(props) =>
+    props.$isBackGroundBlack ? 'black' : 'white'};
+  color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
+  border-bottom: 1px solid white;
+  z-index: 5000;
+`;
+
+const SlideItem = styled.a`
+  display: block;
+  font-family: 'PP-Editorial';
+  font-size: 3.2rem;
+  border-bottom: ${(props) =>
+    props.$isBackGroundBlack ? '1px solid white' : '1px solid black'};
+  font-style: normal;
+  font-weight: 200;
+  padding: 1.1rem 3rem;
+  line-height: normal;
+  text-transform: capitalize;
 `;
 
 const Span = styled.span`

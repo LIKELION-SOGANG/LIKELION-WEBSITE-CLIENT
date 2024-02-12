@@ -82,6 +82,8 @@ const loopAnimation = keyframes`
 `;
 const FourthWholeSection = styled.section`
   margin-top: 2.7rem;
+  position: relative;
+  z-index: -2;
   transition: 1s;
   h1.likelion {
     font-family: PP-Editorial;

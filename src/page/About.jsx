@@ -51,17 +51,16 @@ function About() {
       observer.observe(observationRef5.current);
     }
   }, []);
-  console.log(isMobileScreen);
 
   return (
     <>
       {isMobileScreen ? (
-        <Header
+        <MobileHeader
           isBackGroundBlack={isHeaderBlack}
           isVisibleHeaderLogo={isVisibleHeaderLogo}
         />
       ) : (
-        <MobileHeader
+        <Header
           isBackGroundBlack={isHeaderBlack}
           isVisibleHeaderLogo={isVisibleHeaderLogo}
         />
