@@ -8,8 +8,10 @@ import Space from '../../util/Space';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { render } from '@testing-library/react';
+import useLoading from '../../hooks/useLoading';
 
 function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
+  const { isLoading, loadingProgress } = useLoading();
   useEffect(() => {
     let scene = new THREE.Scene();
     let renderer = new THREE.WebGLRenderer({

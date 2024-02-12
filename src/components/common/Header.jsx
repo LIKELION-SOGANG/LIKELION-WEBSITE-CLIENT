@@ -3,6 +3,9 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useMousePosition } from '../../util/MouseContextProvider';
+import { AnimatePresence } from 'framer-motion';
+import useLoading from '../../hooks/useLoading';
+import Loading from '../../page/Loading';
 // 헤더 배경 검은색 , 헤더 로고 보일지 여부 props 전달받기 (기본값 true)
 function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
   const { textEnter, textLeave } = useMousePosition();
@@ -27,9 +30,12 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
   const tabs = ['6th', '7th', '8th', '9th', '10th', '11th'];
   const [selectedTab, setSelectedTab] = useState('11th');
   const [selectedProjects, setSelectedProjects] = useState([]);
-
+  const { isLoading, loadingProgress } = useLoading();
   return (
     <HeaderWrapper $isBackGroundBlack={isBackGroundBlack}>
+      <AnimatePresence>
+        {isLoading && <Loading progress={loadingProgress} />}
+      </AnimatePresence>
       <MenuList>
         <LogoItem
           $isBackGroundBlack={isBackGroundBlack}
