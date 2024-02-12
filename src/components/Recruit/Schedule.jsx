@@ -97,6 +97,7 @@ const Morelink = styled.div`
   font-size: 1.1rem;
   margin-left: 0.5rem;
   color: #b7b7b7;
+  text-decoration: underline;
 `;
 
 export default Schedule;

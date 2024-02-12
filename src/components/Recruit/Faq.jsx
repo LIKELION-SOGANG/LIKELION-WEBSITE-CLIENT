@@ -31,11 +31,15 @@ const faqData = [
   },
   {
     title: '개인 노트북이 꼭 있어야 하나요?',
-    content: '',
+    content: '세션의 원활한 진행을 위해서 개인 노트북은 꼭 필요합니다.',
   },
   {
     title: '1년 내내 참가해야 하나요?',
     content: '',
+  },
+  {
+    title: '모바일로도 서류 지원이 가능한가요?',
+    content: '모바일은 지원하고 있지 않습니다.  ',
   },
 ];
 const Faq = () => {
@@ -117,7 +121,7 @@ const Question = styled(TextBase)`
 `;
 const Answer = styled(TextBase)`
   margin-top: 1.4rem;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 400;
   line-height: 200%;
 `;

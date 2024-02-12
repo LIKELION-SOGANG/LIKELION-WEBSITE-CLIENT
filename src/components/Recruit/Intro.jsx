@@ -64,7 +64,7 @@ const Text = styled.div`
 
 const AnimationContainer = styled.div`
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 50%;
   transform: translateX(-50%);
   @media (max-width: 768px) {
