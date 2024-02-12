@@ -65,6 +65,7 @@ function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
 const FirstSectionWrapper = React.memo(styled.div`
   height: calc(176vh + 30rem);
   position: relative;
+  z-index: 1;
   width: 100%;
   background-color: black;
   overflow: hidden;
