@@ -5,10 +5,19 @@ const useStore = create((set) => ({
   student_number: '',
   email: '',
   field: '',
+  password: '',
+  answer: [],
+  setAnswer: (index, answer) =>
+    set((state) => {
+      const newAnswer = [...state.answer];
+      newAnswer[index] = answer;
+      return { ...state, answer: newAnswer };
+    }),
   setName: (name) => set(() => ({ name })),
   setStudentId: (student_number) => set(() => ({ student_number })),
   setEmail: (email) => set(() => ({ email })),
   setField: (field) => set(() => ({ field })),
+  setPassword: (password) => set(() => ({ password })),
 
   currentStep: 0,
   setCurrentStep: (step) => set({ currentStep: step }),

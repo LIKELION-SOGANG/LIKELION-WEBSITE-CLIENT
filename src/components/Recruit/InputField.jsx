@@ -6,7 +6,11 @@ const InputField = ({ label, type, placeholder, options, onChange, value }) => {
     <FieldContainer>
       <Label>{label}</Label>
       {type === 'select' ? (
-        <Select onChange={onChange} value={value}>
+        <Select
+          onChange={onChange}
+          value={value}
+          style={{ fontSize: '1.67rem' }}
+        >
           {options.map((option, index) => (
             <option key={index} value={option.value}>
               {option.label}
@@ -48,7 +52,11 @@ const Select = styled.select`
   height: 5rem;
   border-radius: 1rem;
   border: 1px solid #b7b7b7;
-  padding: 1.6rem;
+  padding: 1.5rem;
+  &:focus {
+    border-color: black;
+    outline: none;
+  }
 `;
 
 const Input = styled.input`
