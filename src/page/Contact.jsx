@@ -4,8 +4,12 @@ import FirstSection from '../components/contact/FirstSection';
 import SecondSection from '../components/contact/SecondSection';
 import { motion } from 'framer-motion';
 import { instance } from '../api/axios';
+import useMediaQuery from '../hooks/useMediaQuery';
+import MobileFooter from '../components/common/MobileFooter';
+import Footer from '../components/common/Footer';
 
 function Contact() {
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
   useEffect(() => {
     instance.get('application');
   }, []);
@@ -19,6 +23,11 @@ function Contact() {
       <Header isBackGroundBlack={false} />
       <FirstSection />
       <SecondSection />
+      {isMobileScreen ? (
+        <MobileFooter isBackgroundBlack={false} />
+      ) : (
+        <Footer isBackgroundBlack={false} />
+      )}
     </motion.div>
   );
 }

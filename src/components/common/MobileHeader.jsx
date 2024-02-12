@@ -54,13 +54,13 @@ function MobileHeader({
           >
             Like<span>lion</span> So<span>gang</span>
           </LogoItem>
-          {/* {spreadMenu ? (
+         {/* {spreadMenu ? (
           <XIcon
             src={isBackGroundBlack ? xiconwhite : xiconblack}
             alt="X아이콘"
           />
         ) : (
-          <MenuIcon src={isBackGroundBlack ? menuWhite : menuBlack} />
+          <MenuIcon src={isBack GroundBlack ? menuWhite : menuBlack} />
         )} */}
           <ToggleMenu
             onClick={() => {
@@ -103,6 +103,7 @@ function MobileHeader({
 const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
+  z-index: 9;
   transition: 1s;
   background-color: ${(props) =>
     props.$isBackGroundBlack ? 'black' : 'white'};

@@ -16,7 +16,7 @@ function MobileFooter({ isBackgroundBlack = true }) {
     fetchData();
   }, []);
   return (
-    <FooterWrapper isBackgroundBlack={isBackgroundBlack}>
+    <FooterWrapper $isBackgroundBlack={isBackgroundBlack}>
       <div className="inner">
         <div className="flex1">
           <div className="flex-item left">
@@ -54,8 +54,8 @@ function MobileFooter({ isBackgroundBlack = true }) {
 
 const FooterWrapper = styled.footer`
   width: 100%;
-  background-color: ${(props) => (props.isBackgroundBlack ? 'black' : 'white')};
-  color: ${(props) => (props.isBackgroundBlack ? 'white' : 'black')};
+  background-color: ${(props) => (props.$isBackgroundBlack ? 'black' : 'white')};
+  color: ${(props) => (props.$isBackgroundBlack ? 'white' : 'black')};
   font-family: 'PP-Editorial';
   .inner {
     width: calc(100% - 5rem);
@@ -63,7 +63,7 @@ const FooterWrapper = styled.footer`
     gap: 2.5rem;
   }
   .credit {
-    color: #fff;
+    color: ${(props) => (props.$isBackgroundBlack ? 'white' : 'black')};
     text-align: right;
     font-size: 2.6rem;
     font-weight: 400;

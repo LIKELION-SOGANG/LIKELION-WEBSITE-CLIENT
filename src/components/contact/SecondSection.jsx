@@ -53,7 +53,6 @@ function SecondSection() {
             </ContactContainer>
           ))}
         </ContactsContainer>
-        <Footer isBackgroundBlack={false} />
       </SecondSectionWrapper>
     </>
   );

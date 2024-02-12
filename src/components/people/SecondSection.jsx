@@ -11,6 +11,8 @@ function SecondSection() {
 }
 const SecondSectionWrapper = styled.div`
   background-color: white;
+  position: relative;
+  z-index: 2;
 `;
 
 export default SecondSection;
