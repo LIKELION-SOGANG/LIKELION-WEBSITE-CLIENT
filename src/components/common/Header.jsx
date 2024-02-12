@@ -24,6 +24,10 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
     }
     window.scrollTo({ top: 0 });
   }, [pathname]);
+  const tabs = ['6th', '7th', '8th', '9th', '10th', '11th'];
+  const [selectedTab, setSelectedTab] = useState('11th');
+  const [selectedProjects, setSelectedProjects] = useState([]);
+
   return (
     <HeaderWrapper $isBackGroundBlack={isBackGroundBlack}>
       <MenuList>
