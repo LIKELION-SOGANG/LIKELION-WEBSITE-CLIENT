@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronUp,
+  faChevronDown,
+  faUpRightFromSquare,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const faqData = [
   {
@@ -18,7 +22,7 @@ const faqData = [
   {
     title: '어떤 것을 배우나요??',
     content:
-      '아기 사자는 웹 프로그래밍을 공부하고 자신의 아이디어를 담은 웹사이트를 직접 제작하고 배포합니다.\n자세한 사항은 홈페이지 About 탭을 참고해 주세요.',
+      '아기 사자는 웹 프로그래밍을 공부하고 자신의 아이디어를 담은 웹사이트를 직접 제작하고 배포합니다.\n자세한 사항은 홈페이지 ',
   },
   {
     title: '프로그래밍과 개발을 잘 모르는데 괜찮나요?',
@@ -44,6 +48,7 @@ const faqData = [
 ];
 const Faq = () => {
   const [openIndex, setOpenIndex] = useState([]);
+  const navigate = useNavigate();
 
   const handleToggle = (index) => {
     const isOpened = openIndex.includes(index);
@@ -65,9 +70,33 @@ const Faq = () => {
               style={{ cursor: 'pointer' }}
             />
           </Question>
-          {openIndex.includes(index) && <Answer>{item.content}</Answer>}
+          {openIndex.includes(index) && (
+            <Answer>
+              {item.content.includes('홈페이지') ? (
+                <>
+                  {item.content.replace('About 탭을 참고해 주세요.', '')}
+                  <a href="/">
+                    <FontAwesomeIcon
+                      icon={faUpRightFromSquare}
+                      className="about-link-icon"
+                    />
+                    About 탭
+                  </a>
+                  을 참고해주세요.
+                </>
+              ) : (
+                item.content
+              )}
+            </Answer>
+          )}
         </Item>
       ))}
+      {/* <Button
+        onClick={() => {
+          navigate('/recruit/apply');
+        }}
+      /> */}
+      <Button onClick={() => alert('아직 지원기간이 아닙니다.')} />
     </FaqContainer>
   );
 };
@@ -124,5 +153,46 @@ const Answer = styled(TextBase)`
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 200%;
+  a {
+    color: #b7b7b7;
+    text-decoration: underline;
+    // display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const Button = styled.div`
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+  width: 15rem;
+  height: 4.28rem;
+  display: inline-flex;
+  padding: 0.3rem 0.3rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  border-radius: 5rem;
+  background: #000;
+  color: #fff;
+  font-family: Figtree;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  // z-index: 500;
+  &::before {
+    content: 'Apply Now';
+    display: block;
+  }
+
+  // 호버 상태에서의 텍스트 변경
+  &:hover::before {
+    content: '12기 지원하기';
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 export default Faq;
