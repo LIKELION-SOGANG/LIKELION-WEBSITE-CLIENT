@@ -108,7 +108,7 @@ const CurriculumImage = styled.img`
 `;
 
 const OverflowContainer = styled.div`
-  width: 83vw;
+  width: calc(60vw);
   margin: 2rem auto;
   overflow: hidden;
   padding-top: 2rem;
@@ -118,22 +118,24 @@ const OverflowContainer = styled.div`
 const ScrollContainer = styled.div`
   display: flex;
   width: fit-content;
+  margin: 0 auto;
 `;
 
 const StackItem = styled.div`
-  width: 13vw;
-  height: 13vw;
+  width: 8vw;
+  height: 8vw;
   margin-right: 1vw;
   background-color: white;
   border-radius: 100%;
   display: flex;
   justify-content: center;
+  overflow: hidden;
   align-items: center;
 `;
 
 const StackImg = styled.img`
   display: block;
-  width: calc(100% - 7rem);
+  width: 95%;
 `;
 
 export default FifthSection;

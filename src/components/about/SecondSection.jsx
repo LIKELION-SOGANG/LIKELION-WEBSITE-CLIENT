@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Space from '../../util/Space';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-function SecondSection({ isHeaderBlack }) {
+function SecondSection() {
   const newLettersRef = useRef();
   const [text, setText] = useState('THEN WHAT ABOUT');
   useEffect(() => {
@@ -12,7 +12,9 @@ function SecondSection({ isHeaderBlack }) {
         if (entries[0].isIntersecting) {
           const showTextEls = document.querySelectorAll('.show-text');
           showTextEls.forEach((item) => item.classList.add('hidden'));
-          setText('WE ARE');
+          setTimeout(() => {
+            setText('WE ARE');
+          }, 400);
         }
       },
       {
@@ -27,23 +29,23 @@ function SecondSection({ isHeaderBlack }) {
     AOS.init();
   }, []);
   return (
-    <SeondWholeSection $isHeaderBlack={isHeaderBlack}>
+    <SeondWholeSection>
       <Space height={'40rem'} />
-      <p data-aos="fade-up" data-aos-duration="1000">
+      <p data-aos="fade-up" data-aos-duration="600">
         멋쟁이사자처럼 대학은 국내외 <span>121개 </span>대학이 참여하는{' '}
         <span>국내 최대 규모의 IT 창업 동아리</span>입니다.
       </p>
       <Space height={'50vh'} />
       <p
         data-aos="fade-up"
-        data-aos-duration="1000"
+        data-aos-duration="600"
         data-aos-easing="ease-in-cubic"
       >
         <span>“내 아이디어를 내 손으로 실현한다”</span>는 모토로,
         <br /> 누구든지 자신이 원하는 IT 서비스를 구현할 수 있도록 <br />
         각종 스터디와 네트워킹, 행사를 지원하고 있습니다.
       </p>
-      <Space height={'50vh'} />
+      <Space height={'80vh'} />
       <div className="sticky final-sticky">
         <section className="change-text">
           <div className="small-text">{text}</div>
@@ -75,7 +77,7 @@ function SecondSection({ isHeaderBlack }) {
 }
 
 const SeondWholeSection = styled.section`
-  background-color: ${(props) => (props.$isHeaderBlack ? 'black' : 'white')};
+  background-color: white;
   transition: 1s;
   .sticky {
     height: 150vh;
@@ -93,7 +95,7 @@ const SeondWholeSection = styled.section`
     font-family: Figtree;
     font-size: 2rem;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: normal;
     text-transform: uppercase;
   }
@@ -109,7 +111,7 @@ const SeondWholeSection = styled.section`
       font-weight: 600;
     }
     opacity: 0;
-    transition: opacity 3s ease-in-out;
+    transition: opacity 1s ease-in-out;
   }
   .sticky-space {
     // position: sticky;
