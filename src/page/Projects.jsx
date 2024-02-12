@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Title from '../components/projects/title';
 import Content from '../components/projects/content';
 import Header from '../components/common/Header';
 import styled from 'styled-components';
 import backgroundBG from '../assets/icon/projectsBG.png';
 import Footer from '../components/common/Footer';
+import { instance } from '../api/axios';
 
 function Projects() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await instance.get('project/3');
+      console.log(res);
+    };
+    fetchData();
+  }, []);
   return (
     <ProjectsWrapper>
       <Header />

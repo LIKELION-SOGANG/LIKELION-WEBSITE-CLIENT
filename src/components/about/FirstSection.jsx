@@ -5,10 +5,34 @@ import object2 from '../../assets/icon/object-2.png';
 import object3 from '../../assets/icon/object-3.png';
 import caption1 from '../../assets/caption/about-caption.svg';
 import Space from '../../util/Space';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { render } from '@testing-library/react';
+import useLoading from '../../hooks/useLoading';
 
 function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
+  const { isLoading, loadingProgress } = useLoading();
+  useEffect(() => {
+    let scene = new THREE.Scene();
+    let renderer = new THREE.WebGLRenderer({
+      canvas: document.querySelector('#canvas'),
+    });
+    let camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000,
+    );
+    camera.position.set(0, 0, 5); // 카메라 위치 조정
+    let loader = new GLTFLoader();
+    loader.load('../../assets/3d/logo3d.gltf', function (gltf) {
+      scene.add(gltf.scene);
+      renderer.render(scene, camera);
+    });
+  }, []);
   return (
     <FirstSectionWrapper>
+      <canvas id="canvas" width={'500'} height={'500'}></canvas>
       <Object1 src={object1} alt="3d 오브젝트1" />
       <Object2 src={object2} alt="3d 오브젝트2" />
       <Object3 src={object3} alt="3d 오브젝트3" />
@@ -35,15 +59,21 @@ function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
           </LoopText>
         </div>
       </TriangleLoop>
-      <Space height={'100rem'} />
+      <Space height={'150rem'} />
     </FirstSectionWrapper>
   );
 }
 const FirstSectionWrapper = React.memo(styled.div`
-  height: 176vh;
+  height: calc(176vh + 30rem);
   position: relative;
   background-color: black;
   overflow: hidden;
+  canvas {
+    position: absolute;
+    top: 1rem;
+    z-index: 9999;
+    left: 0rem;
+  }
 `);
 
 const Object1 = React.memo(styled.img`
@@ -51,6 +81,7 @@ const Object1 = React.memo(styled.img`
   top: 0;
   left: 0;
   width: 40%;
+  filter: blur(0.5rem);
 `);
 const Object2 = React.memo(styled.img`
   position: absolute;
@@ -71,7 +102,7 @@ const LogoCaption = React.memo(styled.div`
   white-space: nowrap;
   color: #fff;
   leading-trim: both;
-  font-size: calc(40rem - ${(props) => props.$process} * (38rem) / 100);
+  font-size: calc(28vw - ${(props) => props.$process} * (28vw - 2rem) / 100);
   visibility: ${(props) => (props.$isVisibleHeaderLogo ? 'hidden' : 'visible')};
   transform: translateY(
       calc(100vh - 58rem - ${(props) => props.$process} * (100vh - 60rem) / 100)
@@ -88,7 +119,7 @@ const LogoCaption = React.memo(styled.div`
 
 const PossibiltyCaption = React.memo(styled.img`
   position: absolute;
-  top: calc(100vh - 17rem + 29rem * ${(props) => props?.$process} / 100);
+  top: calc(100vh - 8rem + 29rem * ${(props) => props?.$process} / 100);
   right: calc(10rem + (100vw - 50rem) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1.5 / 100);
   -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);

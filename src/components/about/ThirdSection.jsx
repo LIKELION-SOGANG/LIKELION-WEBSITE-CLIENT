@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import awards from '../../assets/icon/awards.png';
 import Space from '../../util/Space';
 import { useScrollCount } from '../../hooks/useScrollCount';
+import { useMousePosition } from '../../util/MouseContextProvider';
 
 function ThirdSection() {
-  const [number, setNumber] = useState(0);
   const firstAnimatedNum = useScrollCount(9, 1, 0, 1000);
   const secondAnimatedNum = useScrollCount(100, 1, 0, 100);
   const thirdAnimatedNum = useScrollCount(300, 1, 0, 1000);
+  const { textEnter, textLeave } = useMousePosition();
   return (
     <ThirdWholeSection>
       <Space height={'50vh'} />
@@ -56,22 +57,23 @@ function ThirdSection() {
         <img src={awards} alt="awards-image" />
         <ul>
           <h1>Awards</h1>
-          <li>
+          <li onMouseEnter={textEnter} onMouseLeave={textLeave}>
             <a
               href="https://platum.kr/archives/212513
+
             "
             >
               <span>2023.08 |</span> 멋쟁이사자처럼 전국 연합 해커톤 3위
               (효자동개발자 팀) ↘
             </a>
           </li>
-          <li>
+          <li onMouseEnter={textEnter} onMouseLeave={textLeave}>
             <a>
               <span>2021.08 |</span> 멋쟁이사자처럼 전국 연합 해커톤 1위 (URL
               repo 팀) ↘
             </a>
           </li>
-          <li>
+          <li onMouseEnter={textEnter} onMouseLeave={textLeave}>
             <a>
               <span>2021.07 |</span> 멋쟁이사자처럼 전국 연합 아이디어톤 1위
               (URL repo 팀) ↘
@@ -149,10 +151,12 @@ const ThirdWholeSection = styled.section`
     font-size: 3rem;
   }
   span .plus {
+    font-weight: 100;
     font-size: 10rem;
     position: absolute;
     top: -8rem;
-    right: -02rem;
+    font-family: Pretendard;
+    right: -6rem;
   }
   .num span {
     position: relative;
