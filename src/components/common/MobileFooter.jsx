@@ -54,7 +54,8 @@ function MobileFooter({ isBackgroundBlack = true }) {
 
 const FooterWrapper = styled.footer`
   width: 100%;
-  background-color: ${(props) => (props.$isBackgroundBlack ? 'black' : 'white')};
+  background-color: ${(props) =>
+    props.$isBackgroundBlack ? 'black' : 'white'};
   color: ${(props) => (props.$isBackgroundBlack ? 'white' : 'black')};
   font-family: 'PP-Editorial';
   .inner {

@@ -47,6 +47,11 @@ const BabyLionContainer = styled.div`
   padding: 4rem 2rem;
   flex-wrap: wrap;
   padding-bottom: 40rem;
+  max-width: 70%;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    max-width: 90%;
+  }
 `;
 
 const BabyLion = styled.div`
@@ -54,6 +59,17 @@ const BabyLion = styled.div`
   font-size: 1.75rem;
   font-style: normal;
   font-weight: 500;
+`;
+
+const NoData = styled.div`
+  font-family: 'PP-Editorial';
+  font-size: 2.5rem;
+  font-weight: 400;
+  font-style: italic;
+  color: grey;
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 
 const TabContents = ({ data }) => {
@@ -96,9 +112,13 @@ const TabContents = ({ data }) => {
       </Swiper>
       <DividerWithText text="아기사자" />
       <BabyLionContainer>
-        {baby_lion?.map((lion, index) => (
-          <BabyLion key={lion.id}>{lion.name}</BabyLion>
-        ))}
+        {baby_lion?.length > 0 ? (
+          baby_lion.map((lion, index) => (
+            <BabyLion key={lion.id}>{lion.name}</BabyLion>
+          ))
+        ) : (
+          <NoData>You are the next!</NoData>
+        )}
       </BabyLionContainer>
     </>
   );
