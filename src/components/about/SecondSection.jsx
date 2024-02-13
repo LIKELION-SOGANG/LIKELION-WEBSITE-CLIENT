@@ -88,7 +88,7 @@ const SeondWholeSection = styled.section`
     height: 150vh;
   }
   .final-sticky {
-    height: 200vh;
+    height: 120vh;
     @media (max-width: 768px) {
       height: 80vh;
     }

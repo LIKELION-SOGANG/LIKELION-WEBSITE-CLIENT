@@ -160,7 +160,7 @@ const ThirdWholeSection = styled.section`
   color: white;
   position: relative;
   overflow: hidden;
-  z-index: -2;
+  z-index: 1;
   section.awards {
     display: flex;
     align-items: flex-end;
@@ -175,6 +175,8 @@ const ThirdWholeSection = styled.section`
     font-family: Pretendard;
   }
   section.awards li a {
+    position: relative;
+    z-index: 100;
     font-size: 1.6rem;
     display: block;
     margin-top: 1rem;
