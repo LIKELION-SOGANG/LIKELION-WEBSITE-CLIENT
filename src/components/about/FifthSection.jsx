@@ -12,11 +12,25 @@ import react from '../../assets/icon/react.png';
 import django from '../../assets/icon/django.png';
 import python from '../../assets/icon/python.png';
 import aws from '../../assets/icon/aws.png';
+import styledComponent from '../../assets/icon/styled-component.png';
+import spring from '../../assets/icon/spring.png';
+import figma from '../../assets/icon/figma.png';
+import githubAction from '../../assets/icon/github-action.png';
 import Footer from '../common/Footer';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import MobileFooter from '../common/MobileFooter';
 const frontIconList = [html, css, js, react, github, git];
 const backIconList = [html, python, django, aws, github, git];
+const mobileRow1List = [html, css, js, python, github, git];
+const mobileRow2List = [
+  react,
+  django,
+  aws,
+  styledComponent,
+  spring,
+  figma,
+  githubAction,
+];
 function FifthSection() {
   const isMobileScreen = useMediaQuery('(max-width: 768px)');
   return (
@@ -24,7 +38,8 @@ function FifthSection() {
       <H1>Timeline</H1>
       <Space height={'2.7rem'} />
       <H2>
-        멋쟁이사자처럼 서강대학교는 3월부터 11월까지 다양한 활동을 함께 합니다.
+        {!isMobileScreen &&
+          '멋쟁이사자처럼 서강대학교는 3월부터 11월까지 다양한 활동을 함께 합니다.'}
       </H2>
       <Space height={'3.8rem'} />
       <ImageBox>
@@ -41,32 +56,84 @@ function FifthSection() {
         다양한 기술 스택을 배우고 있습니다.
       </H2>
       <Space height={'6.2rem'} />
-      <H3>Front-end</H3>
-      <OverflowContainer>
-        <ScrollContainer>
-          {frontIconList.map((item, index) => (
-            <StackItem key={index}>
-              <StackImg src={item} />
-            </StackItem>
-          ))}
-        </ScrollContainer>
-      </OverflowContainer>
-      <Space height={'10rem'} />
-      <H3>Back-end</H3>
-      <OverflowContainer>
-        <ScrollContainer>
-          {backIconList.map((item, index) => (
-            <StackItem key={index}>
-              <StackImg src={item} />
-            </StackItem>
-          ))}
-        </ScrollContainer>
-      </OverflowContainer>
-      <Space height={'25rem'} />
+      {isMobileScreen ? (
+        <>
+          <OverflowMobileContainer>
+            <ScrollMobileContainer>
+              {mobileRow1List.map((item) => (
+                <StackMobileItem key={item} $url={item}></StackMobileItem>
+              ))}
+            </ScrollMobileContainer>
+          </OverflowMobileContainer>
+          <Space height={'2rem'} />
+          <OverflowMobileContainer>
+            <ScrollMobileContainer>
+              {mobileRow2List.map((item) => (
+                <StackMobileItem key={item} $url={item}></StackMobileItem>
+              ))}
+            </ScrollMobileContainer>
+          </OverflowMobileContainer>
+          <Space height={'30rem'} />
+        </>
+      ) : (
+        <>
+          <H3>Front-end</H3>
+          <OverflowContainer>
+            <ScrollContainer>
+              {frontIconList.map((item, index) => (
+                <StackItem key={index}>
+                  <StackImg src={item} />
+                </StackItem>
+              ))}
+            </ScrollContainer>
+          </OverflowContainer>
+          <Space height={'10rem'} />
+          <H3>Back-end</H3>
+          <OverflowContainer>
+            <ScrollContainer>
+              {backIconList.map((item, index) => (
+                <StackItem key={index}>
+                  <StackImg src={item} />
+                </StackItem>
+              ))}
+            </ScrollContainer>
+          </OverflowContainer>
+          <Space height={'25rem'} />
+        </>
+      )}
+
       {isMobileScreen ? <MobileFooter /> : <Footer isBackgroundBlack={true} />}
     </FifthWholeSection>
   );
 }
+
+const OverflowMobileContainer = styled.div`
+  width: 100%;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
+`;
+
+const ScrollMobileContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin: 0 auto;
+  width: fit-content;
+`;
+
+const StackMobileItem = styled.div`
+  width: 6rem;
+  height: 6rem;
+  border-radius: 100%;
+  background-color: white;
+  object-fit: cover;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(${(props) => props.$url});
+`;
+
 const FifthWholeSection = styled.section`
   position: relative;
   z-index: 1;
@@ -82,6 +149,9 @@ const H1 = styled.h1`
   color: white;
   font-style: normal;
   font-weight: 400;
+  @media (min-width: 768px) {
+    font-size: 3.2rem;
+  }
 `;
 
 const H2 = styled.div`
@@ -92,6 +162,7 @@ const H2 = styled.div`
   font-weight: 500;
   @media (max-width: 768px) {
     font-size: 1.3rem;
+    font-weight: 400;
     line-height: 1.3;
   }
 `;
@@ -117,7 +188,7 @@ const CurriculumImage = styled.img`
   width: 50vw;
   display: block;
   @media (max-width: 768px) {
-    width: calc(100% - 6rem);
+    width: 80%;
   }
 `;
 
@@ -149,7 +220,7 @@ const StackItem = styled.div`
 
 const StackImg = styled.img`
   display: block;
-  width: 70%;
+  object-fit: cover;
 `;
 
 export default FifthSection;
