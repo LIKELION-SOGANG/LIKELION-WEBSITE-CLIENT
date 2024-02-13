@@ -4,7 +4,10 @@ import InputField from './InputField';
 import useStore from './Store';
 import axios from 'axios';
 import { instance } from '../../api/axios';
+import { motion } from 'framer-motion';
+import { useMousePosition } from '../../util/MouseContextProvider';
 const Form = () => {
+  const { textLeave } = useMousePosition();
   const {
     name,
     student_number,
@@ -64,7 +67,7 @@ const Form = () => {
   };
 
   return (
-    <div>
+    <motion.div onMouseEnter={textLeave}>
       <InputField
         label="이름"
         type="text"
@@ -102,7 +105,7 @@ const Form = () => {
           <ButtonText>입력한 이메일로 고유 번호 전송</ButtonText>
         </Button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -118,7 +121,6 @@ const Button = styled.button`
   border: 1px solid var(--Main, #000);
   background: var(--Main, #000);
   margin-bottom: 1rem;
-  
 `;
 
 const ButtonText = styled.div`

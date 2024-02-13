@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { instance } from '../../api/axios';
 import useStore from './Store';
+import { useMousePosition } from '../../util/MouseContextProvider';
+import { motion } from 'framer-motion';
 
 const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
+  const { textEnter, textLeave } = useMousePosition();
+
   const [isValid, setIsValid] = useState(false);
   const {
     name,
@@ -61,7 +65,9 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
         onChange={handleInputChange}
       />
       <Button isValid={isValid} onClick={handleButtonClick}>
-        <ButtonText>지원서 수정하기</ButtonText>
+        <ButtonText onMouseEnter={textEnter} onMouseLeave={textLeave}>
+          지원서 수정하기
+        </ButtonText>
       </Button>
     </div>
   );
@@ -94,7 +100,7 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
+const Button = styled(motion.button)`
   width: 56.2rem;
   height: 5rem;
   flex-shrink: 0;

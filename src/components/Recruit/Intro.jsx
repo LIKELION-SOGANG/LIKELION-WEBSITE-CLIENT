@@ -1,10 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import intro from '../../assets/icon/intro.png';
-import Header from '../common/Header';
 import ScrollDownAnimation from './ScrollDown';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { useMousePosition } from '../../util/MouseContextProvider';
+
 const Intro = () => {
+  const { textEnter, textLeave } = useMousePosition();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const navigate = useNavigate();
+
+  const handleApplyClick = () => {
+    const today = new Date();
+    const deadline = new Date('2024-02-19');
+
+    if (today < deadline) {
+      alert('지원 기간이 아닙니다.');
+    } else {
+      navigate('/recruit/apply');
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -18,6 +34,13 @@ const Intro = () => {
       <Background>
         <Back />
         <Text>{isMobile ? 'Want To\nJoin Us?' : 'Want To Join Us?'}</Text>
+        <ApplyButton
+          onMouseEnter={textEnter}
+          onMouseLeave={textLeave}
+          onClick={handleApplyClick}
+        >
+          <ApplyButtonText />
+        </ApplyButton>
         <AnimationContainer>
           <ScrollDownAnimation />
         </AnimationContainer>
@@ -34,6 +57,8 @@ const Background = styled.div`
   align-items: center;
   // height: 100vh;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Image = styled.img`
@@ -53,13 +78,11 @@ const Back = styled.div`
 
 const Text = styled.div`
   position: absolute;
-  top: calc(100vh - 45rem);
+  top: calc(100vh - 55rem);
   // left: 50%;
   color: #fff;
-  leading-trim: both;
-  text-edge: cap;
   font-family: 'PP-Editorial';
-  font-size: 9.6rem;
+  font-size: 9rem;
   font-style: italic;
   font-weight: 400;
   line-height: normal;
@@ -73,15 +96,48 @@ const Text = styled.div`
   }
 `;
 
-const AnimationContainer = styled.div`
+const ApplyButton = styled(motion.div)`
   position: absolute;
-  top: calc(100vh - 10rem);
-  left: 50%;
-  z-index: 400;
-  transform: translateX(0%);
+  top: calc(100vh - 40rem);
+  z-index: 100;
+  border-radius: 3rem;
+  background-color: white;
+  cursor: pointer;
+  width: 18rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   @media (max-width: 768px) {
-    top: 90%;
-    left: 50%;
+    display: none;
   }
 `;
+
+const ApplyButtonText = styled.div`
+  font-family: Figtree;
+  font-size: 2rem;
+  color: black;
+  padding: 1.5rem 3rem;
+  &::before {
+    content: 'APPLY NOW';
+  }
+
+  &:hover::before {
+    font-family: 'Pretendard';
+    content: '12기 지원하기';
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const AnimationContainer = styled.div`
+  position: absolute;
+  top: calc(100vh - 15rem);
+  z-index: 400;
+  transform: translateX(0%);
+`;
+
 export default Intro;
