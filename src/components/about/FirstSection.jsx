@@ -7,18 +7,21 @@ import caption1 from '../../assets/caption/about-caption.svg';
 import Space from '../../util/Space';
 import useLoading from '../../hooks/useLoading';
 import caption from '../../assets/caption/caption-possible.svg';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 function FirstSection({
   isVisibleHeaderLogo,
   scrollHeight,
   isBackGroundBlack,
 }) {
-  const { isLoading, loadingProgress } = useLoading();
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
+
   return (
     <FirstSectionWrapper>
       <Object1 src={object1} alt="3d 오브젝트1" />
-      <Object2 src={object2} alt="3d 오브젝트2" />
-      <Object3 src={object3} alt="3d 오브젝트3" />
+      {isBackGroundBlack && <Object2 src={object2} alt="3d 오브젝트2" />}
+      {isBackGroundBlack && <Object3 src={object3} alt="3d 오브젝트3" />}
+
       {/*  process: 0~100 */}
       <LogoCaption
         $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
@@ -26,10 +29,22 @@ function FirstSection({
       >
         Like<span>lion</span> So<span>gang</span>
       </LogoCaption>
-      <PossibiltyCaption
-        src={caption}
-        $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
-      />
+      {isMobileScreen ? (
+        <MobilePossibleCaption
+          $isBackGroundBlack={isBackGroundBlack}
+          $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
+        >
+          <Possibility>Possibility</Possibility>
+          <To>To</To>
+          <Reality>Reality</Reality>
+        </MobilePossibleCaption>
+      ) : (
+        <PossibiltyCaption
+          src={caption}
+          $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
+        />
+      )}
+
       <TriangleLoop $isBackGroundBlack={isBackGroundBlack}>
         <div className="track">
           <LoopText>
@@ -64,6 +79,46 @@ function FirstSection({
     </FirstSectionWrapper>
   );
 }
+
+const MobilePossibleCaption = styled.div`
+  position: absolute;
+  right: 4rem;
+  font-family: 'PP-Editorial';
+  color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
+  top: calc(100vh - 8rem - 10rem * ${(props) => props?.$process} / 100);
+  right: calc(10rem + (22vw) * ${(props) => props?.$process} / 100);
+  scale: calc(1 + ${(props) => props.$process} * 1 / 100);
+  -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+`;
+
+const Possibility = styled.div`
+  leading-trim: both;
+  text-edge: cap;
+  font-size: 3.2rem;
+  font-style: italic;
+  font-weight: 200;
+  line-height: normal;
+  text-transform: capitalize;
+`;
+const To = styled.div`
+  font-size: 2rem;
+  position: absolute;
+  top: 3.6rem;
+  left: 3.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: lowercase;
+`;
+const Reality = styled.div`
+  font-size: 3.2rem;
+  position: absolute;
+  top: 3.9rem;
+  left: 5.7rem;
+  font-style: italic;
+  font-weight: 200;
+`;
+
 const FirstSectionWrapper = React.memo(styled.div`
   height: calc(150vh);
   position: relative;
@@ -162,6 +217,8 @@ const TriangleLoop = styled.div`
     animation: ${textLoop} 40s linear infinite;
   }
 `;
+
+const FirstText = styled.div``;
 
 const LoopText = styled.p`
   leading-trim: both;
