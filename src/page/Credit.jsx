@@ -19,7 +19,7 @@ function Credit() {
         <label>Design</label>
         <div className="people">
           <p>Sunmyoung Lee</p>
-          <p>Koeun Jung</p>
+          <p>Koeun Jeong</p>
         </div>
       </section>
       <section className="frontend">
@@ -27,7 +27,7 @@ function Credit() {
         <div className="people">
           <p>Inyoung Chung</p>
           <p>Sunmyoung Lee</p>
-          <p>Koeun Jung</p>
+          <p>Koeun Jeong</p>
           <p>Sehwan Jang</p>
         </div>
       </section>
