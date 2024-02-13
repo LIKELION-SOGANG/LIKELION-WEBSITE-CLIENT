@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputField from './InputField';
 import useStore from './Store';
+import axios from 'axios';
+import { instance } from '../../api/axios';
 const Form = () => {
   const {
+    name,
+    student_number,
+    email,
+    field,
+    setPassword,
     setName,
     setStudentId,
     setEmail,
@@ -14,31 +21,48 @@ const Form = () => {
 
   const handleNameChange = (event) => {
     setName(event.target.value);
-    // console.log('Name:', event.target.value);
   };
 
   const handleStudentIdChange = (event) => {
     setStudentId(event.target.value);
-    // console.log('Student ID:', event.target.value);
   };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
-    // console.log('Email:', event.target.value);
   };
 
   const handleFieldChange = (event) => {
     setField(event.target.value);
-    // console.log('Field:', event.target.value);
   };
 
   const handleSubmit = () => {
-    // console.log('Name:', name);
-    // console.log('Student ID:', studentId);
-    // console.log('Email:', email);
-    // console.log('Field:', field);
-    setCurrentStep(currentStep + 1);
+    instance
+      .post(`application/`, {
+        name: name,
+        student_number: student_number,
+        email: email,
+        field: field,
+      })
+      .then((response) => {
+        setPassword(response.data.apply_id);
+        console.log('지원서 생성 성공! ', response.data);
+        setCurrentStep(currentStep + 1);
+      })
+      .catch((error) => {
+        console.log('지원서 생성 실패 !', error);
+        const errorMessage =
+          error.response && error.response.data
+            ? error.response.data.message
+            : '';
+        if (errorMessage === 'Duplicate application exists.') {
+          alert('이미 가입된 이메일입니다!');
+          setCurrentStep(currentStep + 1);
+        } else {
+          alert('지원서 생성 중 오류가 발생했습니다. 다시 시도해주세요.');
+        }
+      });
   };
+
   return (
     <div>
       <InputField
@@ -67,8 +91,8 @@ const Form = () => {
             label: '지원 분야를 선택해주세요.',
             value: '',
           },
-          { label: 'Front-End', value: 'Front' },
-          { label: 'Back-End', value: 'Back' },
+          { label: 'Front-End', value: 'FRONTEND' },
+          { label: 'Back-End', value: 'BACEKEND' },
         ]}
         onChange={handleFieldChange}
       />
@@ -93,6 +117,8 @@ const Button = styled.button`
   border-radius: 10px;
   border: 1px solid var(--Main, #000);
   background: var(--Main, #000);
+  margin-bottom: 1rem;
+  
 `;
 
 const ButtonText = styled.div`

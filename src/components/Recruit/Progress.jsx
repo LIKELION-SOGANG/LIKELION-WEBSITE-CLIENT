@@ -45,7 +45,7 @@ const Circle = styled.div`
   font-size: 1.2rem;
   border: ${({ active }) => (active ? '1px solid black' : '1px solid #d9d9d9')};
   background-color: ${({ active }) => (active ? 'black' : 'white')};
-  color: ${({ active }) => (active ? 'white' : '#424242')};
+  color: ${({ active }) => (active ? 'white' : '#D9D9D9')};
   transition:
     background 1.3s ease-in-out,
     border 1.3s ease-in-out;

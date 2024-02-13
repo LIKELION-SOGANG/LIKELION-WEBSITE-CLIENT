@@ -4,7 +4,6 @@ import Space from '../../util/Space';
 import ProjectModal from './modal';
 const ProjectInfo = ({ selectedProjects, generation }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const openModal = () => {
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';

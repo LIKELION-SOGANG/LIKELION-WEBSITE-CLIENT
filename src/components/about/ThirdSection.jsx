@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import awards from '../../assets/icon/awards.png';
 import Space from '../../util/Space';
 import { useScrollCount } from '../../hooks/useScrollCount';
+import { useMousePosition } from '../../util/MouseContextProvider';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 function ThirdSection() {
-  const [number, setNumber] = useState(0);
   const firstAnimatedNum = useScrollCount(9, 1, 0, 1000);
   const secondAnimatedNum = useScrollCount(100, 1, 0, 100);
   const thirdAnimatedNum = useScrollCount(300, 1, 0, 1000);
+  const { textEnter, textLeave } = useMousePosition();
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
+
   return (
     <ThirdWholeSection>
       <Space height={'50vh'} />
@@ -52,42 +56,111 @@ function ThirdSection() {
           매년 새로운 아기사자들이 멋쟁이사자처럼과 함께 하고 있습니다.
         </div>
       </div>
-      <section className="awards">
-        <img src={awards} alt="awards-image" />
-        <ul>
-          <h1>Awards</h1>
-          <li>
-            <a
-              href="https://platum.kr/archives/212513
+      {isMobileScreen ? (
+        <>
+          <AwardBackImge>
+            <Awards>Awards</Awards>
+          </AwardBackImge>
+          <Space height={'2.4rem'} />
+          <AwardsItem>
+            <div className="plan">2023.08</div>
+            <div className="contentss">
+              멋쟁이사자처럼 전국 연합 해커톤 3위 (효자동개발자 팀) ↘
+            </div>
+          </AwardsItem>
+          <AwardsItem>
+            <div className="plan">2021.08</div>
+            <div className="contentss">
+              멋쟁이사자처럼 전국 연합 해커톤 1위 (URL repo 팀) ↘
+            </div>
+          </AwardsItem>
+          <AwardsItem>
+            <div className="plan">2021.07</div>
+            <div className="contentss">
+              멋쟁이사자처럼 전국 연합 아이디어톤 1위 (URL repo 팀) ↘
+            </div>
+          </AwardsItem>
+        </>
+      ) : (
+        <section className="awards">
+          <img src={awards} alt="awards-image" />
+          <ul>
+            <h1>Awards</h1>
+            <li onMouseEnter={textEnter} onMouseLeave={textLeave}>
+              <a
+                href="https://platum.kr/archives/212513
+
             "
-            >
-              <span>2023.08 |</span> 멋쟁이사자처럼 전국 연합 해커톤 3위
-              (효자동개발자 팀) ↘
-            </a>
-          </li>
-          <li>
-            <a>
-              <span>2021.08 |</span> 멋쟁이사자처럼 전국 연합 해커톤 1위 (URL
-              repo 팀) ↘
-            </a>
-          </li>
-          <li>
-            <a>
-              <span>2021.07 |</span> 멋쟁이사자처럼 전국 연합 아이디어톤 1위
-              (URL repo 팀) ↘
-            </a>
-          </li>
-        </ul>
-      </section>
+              >
+                <span>2023.08 |</span> 멋쟁이사자처럼 전국 연합 해커톤 3위
+                (효자동개발자 팀) ↘
+              </a>
+            </li>
+            <li onMouseEnter={textEnter} onMouseLeave={textLeave}>
+              <a>
+                <span>2021.08 |</span> 멋쟁이사자처럼 전국 연합 해커톤 1위 (URL
+                repo 팀) ↘
+              </a>
+            </li>
+            <li onMouseEnter={textEnter} onMouseLeave={textLeave}>
+              <a>
+                <span>2021.07 |</span> 멋쟁이사자처럼 전국 연합 아이디어톤 1위
+                (URL repo 팀) ↘
+              </a>
+            </li>
+          </ul>
+        </section>
+      )}
+
       <Space height={'20vh'} />
     </ThirdWholeSection>
   );
 }
 
+const AwardBackImge = styled.div`
+  background-image: url(${awards});
+  width: 100%;
+  height: 40rem;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+`;
+
+const Awards = styled.div`
+  position: absolute;
+  bottom: 2.1rem;
+  left: 3rem;
+  font-size: 4rem;
+`;
+
+const AwardsItem = styled.div`
+  width: calc(100% - 4rem);
+  margin: 0 auto 1.5rem;
+  .plan {
+    color: #fff;
+    font-family: Pretendard;
+    font-size: 1.3rem;
+    line-height: 200%;
+    font-style: normal;
+    font-weight: 700;
+  }
+  .contentss {
+    color: #fff;
+    font-family: Pretendard;
+    font-size: 1.3rem;
+    text-align: left;
+    font-style: normal;
+    font-weight: 400;
+  }
+`;
+
 const ThirdWholeSection = styled.section`
   background-color: black;
   font-family: 'PP-Editorial';
   color: white;
+  position: relative;
+  overflow: hidden;
+  z-index: -2;
   section.awards {
     display: flex;
     align-items: flex-end;
@@ -128,6 +201,9 @@ const ThirdWholeSection = styled.section`
   .logo {
     font-size: 6.4rem;
     text-align: center;
+    @media (max-width: 768px) {
+      font-size: 3.6rem;
+    }
   }
   .logo span {
     font-style: italic;
@@ -141,6 +217,9 @@ const ThirdWholeSection = styled.section`
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
+    }
   }
   .big-num {
   }
@@ -149,10 +228,17 @@ const ThirdWholeSection = styled.section`
     font-size: 3rem;
   }
   span .plus {
+    font-weight: 100;
     font-size: 10rem;
     position: absolute;
     top: -8rem;
-    right: -02rem;
+    font-family: Pretendard;
+    right: -6rem;
+    @media (max-width: 768px) {
+      font-size: 4rem;
+      top: -3rem;
+      right: -1.4rem;
+    }
   }
   .num span {
     position: relative;
@@ -165,12 +251,18 @@ const ThirdWholeSection = styled.section`
     font-weight: 400;
     line-height: normal;
     text-transform: capitalize;
+    @media (max-width: 768px) {
+      font-weight: 100;
+    }
   }
   .title {
     margin-top: 5rem;
     text-align: center;
     font-size: 2.5rem;
     font-weight: 600;
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+    }
   }
   .content {
     color: #fff;
@@ -185,6 +277,9 @@ const ThirdWholeSection = styled.section`
     text-transform: capitalize;
     margin-top: 1.5rem;
     margin-bottom: 20rem;
+    @media (max-width: 768px) {
+      font-size: 1.3rem;
+    }
   }
 `;
 

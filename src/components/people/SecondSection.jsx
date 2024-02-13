@@ -10,8 +10,9 @@ function SecondSection() {
   );
 }
 const SecondSectionWrapper = styled.div`
-  height: 100vh;
   background-color: white;
+  position: relative;
+  z-index: 2;
 `;
 
 export default SecondSection;

@@ -1,18 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useMousePosition } from '../../util/MouseContextProvider';
+import { instance } from '../../api/axios';
 
 function Footer({ isBackgroundBlack = true }) {
+  const { textEnter, textLeave } = useMousePosition();
+  const [visitNum, setVisitNum] = useState({ total_visit: 0, today_visit: 0 });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await instance.get('visit');
+      setVisitNum(res?.data?.data);
+    };
+    fetchData();
+  }, []);
   return (
     <FooterWrapper isBackgroundBlack={isBackgroundBlack}>
       <div className="inner">
         <div className="total-today">
           <div className="total">
             <Tag isBackgroundBlack={isBackgroundBlack}>total</Tag>
-            <TagNum isBackgroundBlack={isBackgroundBlack}>300</TagNum>
+            <TagNum isBackgroundBlack={isBackgroundBlack}>
+              {visitNum.total_visit}
+            </TagNum>
           </div>
           <div className="today">
             <Tag isBackgroundBlack={isBackgroundBlack}>today</Tag>
-            <TagNum isBackgroundBlack={isBackgroundBlack}>23</TagNum>
+            <TagNum isBackgroundBlack={isBackgroundBlack}>
+              {visitNum.today_visit}
+            </TagNum>
           </div>
         </div>
         <div className="instagram">
@@ -24,6 +41,9 @@ function Footer({ isBackgroundBlack = true }) {
               target="_blank"
               title="새 탭에서 멋사 인스타그램 열기"
               rel="noreferrer"
+              isBackgroundBlack={isBackgroundBlack}
+              onMouseEnter={textEnter}
+              onMouseLeave={textLeave}
             >
               @likelion_sg
             </Link>
@@ -35,6 +55,9 @@ function Footer({ isBackgroundBlack = true }) {
             <Link
               href="mailto:likelion_sg@gmail.com"
               title="멋사 서강대로 메일 보내기"
+              isBackgroundBlack={isBackgroundBlack}
+              onMouseEnter={textEnter}
+              onMouseLeave={textLeave}
             >
               likelion_sg@gmail.com
             </Link>
@@ -43,7 +66,11 @@ function Footer({ isBackgroundBlack = true }) {
         <div className="credits">
           <p className="content2">
             <u>
-              <a href="/credits" title="처음 만든 사람들">
+              <a
+                href="/credits"
+                onMouseEnter={textEnter}
+                onMouseLeave={textLeave}
+              >
                 ↖︎ Credits{' '}
               </a>
             </u>
