@@ -7,6 +7,7 @@ import { instance } from '../api/axios';
 import useMediaQuery from '../hooks/useMediaQuery';
 import MobileFooter from '../components/common/MobileFooter';
 import Footer from '../components/common/Footer';
+import MobileHeader from '../components/common/MobileHeader';
 
 function Contact() {
   const isMobileScreen = useMediaQuery('(max-width: 768px)');
@@ -20,7 +21,12 @@ function Contact() {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >
-      <Header isBackGroundBlack={false} />
+      {isMobileScreen ? (
+        <MobileHeader isBackGroundBlack={false} />
+      ) : (
+        <Header isBackGroundBlack={false} />
+      )}
+
       <FirstSection />
       <SecondSection />
       {isMobileScreen ? (
