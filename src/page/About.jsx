@@ -32,7 +32,6 @@ function About() {
           } else if (entries[0].target.className === 'third-section') {
             setIsHeaderBlack(entries[0]?.isIntersecting);
           } else if (entries[0].target.className === 'fourth-section') {
-            console.log('!');
             setIsHeaderBlack(!entries[0]?.isIntersecting);
           } else if (entries[0].target.className === 'fifth-section') {
             setIsHeaderBlack(!entries[0]?.isIntersecting);
