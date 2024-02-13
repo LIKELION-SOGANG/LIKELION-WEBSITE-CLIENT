@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
-
+import arrow from '../../assets/icon/arrow.svg';
 const faqData = [
   {
     title: '전공자만 지원할 수 있나요?',
@@ -31,15 +31,18 @@ const faqData = [
   },
   {
     title: '면접은 어떤 방식으로 진행되나요?',
-    content: '',
+    content:
+      '서강대학교 내 강의실에서 대면 면접으로 진행됩니다. 면접 시간은 서류에 적어주신 면접 가능 시간을 토대로 배정됩니다.',
   },
   {
     title: '개인 노트북이 꼭 있어야 하나요?',
-    content: '세션의 원활한 진행을 위해서 개인 노트북은 꼭 필요합니다.',
+    content:
+      '교육 세션이 개인 노트북으로 실습하면서 진행되기 때문에, 개인 노트북이 없으면 참여 불가능합니다.',
   },
   {
     title: '1년 내내 참가해야 하나요?',
-    content: '',
+    content:
+      '교육 세션, 데모데이 등 필수 행사가 1년에 걸쳐 있기 때문에 1년 동안 참여 가능해야 지원하실 수 있습니다. \n다만, 시험 기간에는 세션이 진행되지 않으니 참고해주세요. ',
   },
   {
     title: '모바일로도 서류 지원이 가능한가요?',
@@ -75,13 +78,10 @@ const Faq = () => {
               {item.content.includes('홈페이지') ? (
                 <>
                   {item.content.replace('About 탭을 참고해 주세요.', '')}
-                  <a href="/">
-                    <FontAwesomeIcon
-                      icon={faUpRightFromSquare}
-                      className="about-link-icon"
-                    />
+                  <Move href="/">
+                    <img src={arrow} />
                     About 탭
-                  </a>
+                  </Move>
                   을 참고해주세요.
                 </>
               ) : (
@@ -152,8 +152,8 @@ const Answer = styled(TextBase)`
   margin-top: 1.4rem;
   font-size: 1.6rem;
   font-weight: 400;
+  // line-height: 200%;
   line-height: 2.3rem;
-
   a {
     color: #b7b7b7;
     text-decoration: underline;
@@ -163,6 +163,9 @@ const Answer = styled(TextBase)`
   }
 `;
 
+const Move = styled.a`
+  display: inline-flex;
+`;
 const Button = styled.div`
   position: fixed;
   right: 2%;
@@ -176,7 +179,7 @@ const Button = styled.div`
   gap: 1rem;
   cursor: pointer;
   border-radius: 5rem;
-  background: #000;
+  // background: #000;
   color: #fff;
   font-family: Figtree;
   font-size: 2rem;
