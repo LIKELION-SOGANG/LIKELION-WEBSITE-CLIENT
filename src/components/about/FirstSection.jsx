@@ -111,7 +111,7 @@ to { transform: translateX(-50%); }
 `;
 const TriangleLoop = styled.div`
   width: 130%;
-  height: 35.2rem;
+  height: 25.2rem;
   position: absolute;
   background-color: white;
   bottom: -13rem;

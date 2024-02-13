@@ -56,6 +56,12 @@ function Recruit() {
 
   return (
     <>
+      {' '}
+      {isMobileScreen ? (
+        <MobileHeader isBackGroundBlack={isBackGroundBlack} />
+      ) : (
+        <Header isBackGroundBlack={isBackGroundBlack} />
+      )}
       <div
         className="first-section"
         ref={observationRef}
@@ -70,12 +76,6 @@ function Recruit() {
             transition: 'background-color 1.5s ease',
           }}
         >
-          {isMobileScreen ? (
-            <MobileHeader isBackGroundBlack={isBackGroundBlack} />
-          ) : (
-            <Header isBackGroundBlack={isBackGroundBlack} />
-          )}
-
           <Schedule />
           <Faq />
         </RecruitContainer>
