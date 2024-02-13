@@ -58,9 +58,9 @@ function Mobile() {
     <MobileWrapper>
       <MobileHeader />
       <FirstSectionWrapper>
-        <Space height={'30rem'} />
         <Title>Our Projects</Title>
       </FirstSectionWrapper>
+
       <SecondSectionWrapper>
         <TabContainer>
           {tabs.map((tab) => (
@@ -93,6 +93,8 @@ function Mobile() {
           ))}
         </ProjectContainer>
       </SecondSectionWrapper>
+      <BackgroundImage src={backgroundBG} />
+
       <MobileFooter />
     </MobileWrapper>
   );
@@ -104,18 +106,27 @@ const FirstSectionWrapper = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
-  background-image: url (${backgroundBG});
+`;
+const BackgroundImage = styled.img`
+  filter: blur(80px);
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
+  position: absolute;
+  top: -80px;
+  left: 50px;
+  z-index: 1;
 `;
 const Title = styled.h1`
   font-family: 'PP-Editorial';
-  font-weight: 400;
+  font-size: 48px;
   font-style: italic;
-  font-size: 9.6rem;
+  font-weight: 400;
+  line-height: normal;
   color: white;
   text-transform: capitalize;
-  margin-top: 33.1rem;
-  margin-bottom: 40.7rem;
+  margin: 100% 6rem;
+  z-index: 2;
 `;
 
 const SecondSectionWrapper = styled.div`
