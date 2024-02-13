@@ -18,6 +18,11 @@ const TabElement = styled.div`
   margin-bottom: ${(props) => (props.isSelected ? '-0.75rem' : '0rem')};
   cursor: pointer;
   padding: 1rem;
+  @media (max-width: 768px) {
+    font-size: ${(props) => (props.isSelected ? '3.5rem' : '2rem')};
+    margin-bottom: ${(props) => (props.isSelected ? '-0.25rem' : '0rem')};
+    padding: 0.5rem;
+  }
 `;
 
 const Tabs = () => {
