@@ -8,8 +8,6 @@ import Footer from '../components/common/Footer';
 import { motion } from 'framer-motion';
 import useMediaQuery from '../hooks/useMediaQuery';
 import Mobile from '../components/projects/mobile';
-import MobileHeader from '../components/common/MobileHeader';
-import MobileFooter from '../components/common/MobileFooter';
 
 function Projects() {
   const isMobileScreen = useMediaQuery('(max-width: 768px)');

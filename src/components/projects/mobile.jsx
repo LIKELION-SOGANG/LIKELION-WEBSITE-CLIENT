@@ -104,15 +104,14 @@ const FirstSectionWrapper = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
-  background-image: url ${backgroundBG};
-  //   filter: blur(25px);
+  background-image: url (${backgroundBG});
   object-fit: cover;
 `;
 const Title = styled.h1`
   font-family: 'PP-Editorial';
   font-weight: 400;
   font-style: italic;
-  font-size: 96px;
+  font-size: 9.6rem;
   color: white;
   text-transform: capitalize;
   margin-top: 33.1rem;
@@ -127,6 +126,7 @@ const SecondSectionWrapper = styled.div`
 `;
 const TabContainer = styled.div`
   margin-right: 2rem;
+  margin: 0 10px;
 `;
 const TabElement = styled.div`
   color: white;
@@ -138,7 +138,7 @@ const TabElement = styled.div`
   font-weight: ${(props) => (props.isSelected ? '400' : '200;')}
   color: ${(props) => (props.isSelected ? 'white' : '#686868')};
   cursor: pointer;
-  margin: 1px;
+  margin: 0.1rem;
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
@@ -151,14 +151,16 @@ const Line = styled.div`
   background-color: #b7b7b7;
   margin-right: 2rem;
 `;
-const ProjectContainer = styled.div``;
+const ProjectContainer = styled.div`
+  margin-right: 1rem;
+`;
 const ProjectInfoWrapper = styled.div`
   margin-bottom: 6rem;
 `;
 const ProjectTitle = styled.h2`
   color: #fff;
   font-family: Figtree;
-  font-size: 20px;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -177,8 +179,8 @@ const ProjectDetails = styled.div`
 `;
 
 const ProjectImage = styled.img`
-  width: 360px;
-  height: 202px;
+  width: 36rem;
+  height: 20.2rem;
 `;
 
 export default Mobile;

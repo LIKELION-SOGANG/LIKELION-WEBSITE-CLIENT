@@ -64,13 +64,13 @@ const DetailWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 const ModalContent = styled.div`
   background: #fff;
   height: auto;
   box-sizing: border-box;
-  position: relative;
 `;
 
 const CloseButton = styled.div`
