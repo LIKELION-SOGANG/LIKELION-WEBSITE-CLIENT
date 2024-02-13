@@ -22,7 +22,6 @@ function Projects() {
   return (
     <ProjectsWrapper>
       {isMobileScreen ? <MobileHeader /> : <Header />}
-
       <ContentWrapper>
         <Title />
         <Content />
