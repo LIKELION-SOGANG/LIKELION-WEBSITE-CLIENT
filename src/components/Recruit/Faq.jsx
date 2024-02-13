@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronUp,
+  faChevronDown,
+  faUpRightFromSquare,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-
+import { useNavigate } from 'react-router-dom';
+import arrow from '../../assets/icon/arrow.svg';
 const faqData = [
   {
     title: '전공자만 지원할 수 있나요?',
@@ -18,7 +22,7 @@ const faqData = [
   {
     title: '어떤 것을 배우나요??',
     content:
-      '아기 사자는 웹 프로그래밍을 공부하고 자신의 아이디어를 담은 웹사이트를 직접 제작하고 배포합니다.\n자세한 사항은 홈페이지     About 탭을 참고해 주세요.',
+      '아기 사자는 웹 프로그래밍을 공부하고 자신의 아이디어를 담은 웹사이트를 직접 제작하고 배포합니다.\n자세한 사항은 홈페이지 ',
   },
   {
     title: '프로그래밍과 개발을 잘 모르는데 괜찮나요?',
@@ -27,19 +31,27 @@ const faqData = [
   },
   {
     title: '면접은 어떤 방식으로 진행되나요?',
-    content: '',
+    content:
+      '서강대학교 내 강의실에서 대면 면접으로 진행됩니다. 면접 시간은 서류에 적어주신 면접 가능 시간을 토대로 배정됩니다.',
   },
   {
     title: '개인 노트북이 꼭 있어야 하나요?',
-    content: '',
+    content:
+      '교육 세션이 개인 노트북으로 실습하면서 진행되기 때문에, 개인 노트북이 없으면 참여 불가능합니다.',
   },
   {
     title: '1년 내내 참가해야 하나요?',
-    content: '',
+    content:
+      '교육 세션, 데모데이 등 필수 행사가 1년에 걸쳐 있기 때문에 1년 동안 참여 가능해야 지원하실 수 있습니다. \n다만, 시험 기간에는 세션이 진행되지 않으니 참고해주세요. ',
+  },
+  {
+    title: '모바일로도 서류 지원이 가능한가요?',
+    content: '모바일은 지원하고 있지 않습니다.  ',
   },
 ];
 const Faq = () => {
   const [openIndex, setOpenIndex] = useState([]);
+  const navigate = useNavigate();
 
   const handleToggle = (index) => {
     const isOpened = openIndex.includes(index);
@@ -61,15 +73,37 @@ const Faq = () => {
               style={{ cursor: 'pointer' }}
             />
           </Question>
-          {openIndex.includes(index) && <Answer>{item.content}</Answer>}
+          {openIndex.includes(index) && (
+            <Answer>
+              {item.content.includes('홈페이지') ? (
+                <>
+                  {item.content.replace('About 탭을 참고해 주세요.', '')}
+                  <Move href="/">
+                    <img src={arrow} />
+                    About 탭
+                  </Move>
+                  을 참고해주세요.
+                </>
+              ) : (
+                item.content
+              )}
+            </Answer>
+          )}
         </Item>
       ))}
+      {/* <Button
+        onClick={() => {
+          navigate('/recruit/apply');
+        }}
+      /> */}
+      <Button onClick={() => alert('아직 지원기간이 아닙니다.')} />
     </FaqContainer>
   );
 };
 
 const FaqContainer = styled.div`
-  width: 97rem;
+  max-width: 97rem;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -79,7 +113,7 @@ const Topic = styled.div`
   text-align: center;
   font-size: 3.2rem;
   color: var(--Main, #000);
-  font-family: 'PP Editorial New';
+  font-family: 'PP-Editorial';
   font-style: italic;
   font-weight: 400;
   line-height: normal;
@@ -109,15 +143,60 @@ const TextBase = styled.div`
 
 const Question = styled(TextBase)`
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 const Answer = styled(TextBase)`
   margin-top: 1.4rem;
-  font-size: 1.2rem;
-  font-weight: 500;
-  line-height: 200%;
+  font-size: 1.6rem;
+  font-weight: 400;
+  // line-height: 200%;
+  line-height: 2.3rem;
+  a {
+    color: #b7b7b7;
+    text-decoration: underline;
+    // display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const Move = styled.a`
+  display: inline-flex;
+`;
+const Button = styled.div`
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+  width: 15rem;
+  height: 4.28rem;
+  display: inline-flex;
+  padding: 0.3rem 0.3rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  border-radius: 5rem;
+  // background: #000;
+  color: #fff;
+  font-family: Figtree;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  // z-index: 500;
+  &::before {
+    content: 'Apply Now';
+    display: block;
+  }
+
+  // 호버 상태에서의 텍스트 변경
+  &:hover::before {
+    content: '12기 지원하기';
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 export default Faq;

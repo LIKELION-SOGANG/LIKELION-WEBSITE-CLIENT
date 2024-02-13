@@ -5,8 +5,11 @@ import object2 from '../../assets/icon/object-2.png';
 import object3 from '../../assets/icon/object-3.png';
 import caption1 from '../../assets/caption/about-caption.svg';
 import Space from '../../util/Space';
+import useLoading from '../../hooks/useLoading';
+import caption from '../../assets/caption/caption-possible.svg';
 
 function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
+  const { isLoading, loadingProgress } = useLoading();
   return (
     <FirstSectionWrapper>
       <Object1 src={object1} alt="3d 오브젝트1" />
@@ -20,7 +23,7 @@ function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
         Like<span>lion</span> So<span>gang</span>
       </LogoCaption>
       <PossibiltyCaption
-        src={caption1}
+        src={caption}
         $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
       />
       <TriangleLoop>
@@ -35,15 +38,23 @@ function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
           </LoopText>
         </div>
       </TriangleLoop>
-      <Space height={'100rem'} />
+      <Space height={'150rem'} />
     </FirstSectionWrapper>
   );
 }
 const FirstSectionWrapper = React.memo(styled.div`
-  height: 176vh;
+  height: calc(176vh + 30rem);
   position: relative;
+  z-index: 1;
+  width: 100%;
   background-color: black;
   overflow: hidden;
+  canvas {
+    position: absolute;
+    top: 1rem;
+    z-index: 9999;
+    left: 0rem;
+  }
 `);
 
 const Object1 = React.memo(styled.img`
@@ -51,6 +62,7 @@ const Object1 = React.memo(styled.img`
   top: 0;
   left: 0;
   width: 40%;
+  filter: blur(0.5rem);
 `);
 const Object2 = React.memo(styled.img`
   position: absolute;
@@ -71,7 +83,7 @@ const LogoCaption = React.memo(styled.div`
   white-space: nowrap;
   color: #fff;
   leading-trim: both;
-  font-size: calc(40rem - ${(props) => props.$process} * (38rem) / 100);
+  font-size: calc(28vw - ${(props) => props.$process} * (28vw - 2rem) / 100);
   visibility: ${(props) => (props.$isVisibleHeaderLogo ? 'hidden' : 'visible')};
   transform: translateY(
       calc(100vh - 58rem - ${(props) => props.$process} * (100vh - 60rem) / 100)
@@ -88,7 +100,7 @@ const LogoCaption = React.memo(styled.div`
 
 const PossibiltyCaption = React.memo(styled.img`
   position: absolute;
-  top: calc(100vh - 17rem + 29rem * ${(props) => props?.$process} / 100);
+  top: calc(100vh - 8rem + 29rem * ${(props) => props?.$process} / 100);
   right: calc(10rem + (100vw - 50rem) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1.5 / 100);
   -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
@@ -99,7 +111,7 @@ to { transform: translateX(-50%); }
 `;
 const TriangleLoop = styled.div`
   width: 130%;
-  height: 35.2rem;
+  height: 25.2rem;
   position: absolute;
   background-color: white;
   bottom: -13rem;

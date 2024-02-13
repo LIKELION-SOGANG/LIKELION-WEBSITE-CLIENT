@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Title from '../components/projects/title';
 import Content from '../components/projects/content';
 import Header from '../components/common/Header';
@@ -8,6 +8,9 @@ import Footer from '../components/common/Footer';
 import { motion } from 'framer-motion';
 import useMediaQuery from '../hooks/useMediaQuery';
 import Mobile from '../components/projects/mobile';
+import MobileHeader from '../components/common/MobileHeader';
+import MobileFooter from '../components/common/MobileFooter';
+
 function Projects() {
   const isMobileScreen = useMediaQuery('(max-width: 768px)');
   return (
@@ -21,16 +24,21 @@ function Projects() {
         <Mobile />
       ) : (
         <ProjectsWrapper>
-          <Header />
+           {isMobileScreen ? <MobileHeader /> : <Header />}
           <ContentWrapper>
             <Title />
             <Content />
           </ContentWrapper>
           <BackgroundImage src={backgroundBG} />
-          <Footer />
+           {isMobileScreen ? <MobileFooter /> : <Footer />}
         </ProjectsWrapper>
       )}
     </motion.div>
+
+
+    
+
+     
   );
 }
 
@@ -42,6 +50,7 @@ const ProjectsWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  z-index: 10;
 `;
 
 const BackgroundImage = styled.img`
@@ -56,7 +65,9 @@ const BackgroundImage = styled.img`
 
 const ContentWrapper = styled.div`
   position: relative;
-  z-index: 900;
+
+  z-index: 2;
+
   height: auto;
 `;
 

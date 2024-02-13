@@ -89,7 +89,7 @@ const TabElement = styled.div`
   border: ${(props) =>
     props.isSelected ? '1px solid transparent' : '1px solid white'};
   border-radius: 1rem;
-  font-family: 'PP Editorial New';
+  font-family: 'PP-Editorial';
   font-size: 2.25rem;
   font-style: italic;
   font-weight: 400;
@@ -108,8 +108,10 @@ const ProjectContainer = styled.div`
   flex-wrap: wrap;
   gap: 2.5rem;
 
-  &>div: 1128px {
-    width: 360px;
+
+  & > div {
+    width: 20%;
+
     margin-bottom: 7.8rem;
   }
 

@@ -1,11 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { GlobalStyles } from '../../style/GlobalStyles';
 
 const TopBanner = () => {
+  const navigate = useNavigate();
   return (
-    <Banner>
-      <BannerText>likelion Sogang 12th Recruitment</BannerText>
+    <Banner onClick={() => navigate('/')}>
+      <BannerText>
+        Like <Styletext>lion</Styletext>&nbsp;So
+        <Styletext>gang&nbsp;</Styletext>
+        12
+        <Styletext>th&nbsp;</Styletext> Re
+        <Styletext>cruitment</Styletext>
+      </BannerText>
       <HomeButton>홈으로 돌아가기</HomeButton>
     </Banner>
   );
@@ -20,12 +27,15 @@ const Banner = styled.div`
 
 const BannerText = styled.div`
   color: var(--Main, #000);
-  font-family: 'PP Editorial New';
+  font-family: 'PP-Editorial';
   font-size: 2rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-transform: capitalize;
+  display: flex;
+`;
+const Styletext = styled.div`
+  font-style: italic;
 `;
 const HomeButton = styled.button`
   display: inline-flex;
