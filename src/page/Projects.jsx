@@ -5,19 +5,32 @@ import Header from '../components/common/Header';
 import styled from 'styled-components';
 import backgroundBG from '../assets/icon/projectsBG.png';
 import Footer from '../components/common/Footer';
-
+import { motion } from 'framer-motion';
+import useMediaQuery from '../hooks/useMediaQuery';
+import Mobile from '../components/projects/mobile';
 function Projects() {
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
   return (
-    <ProjectsWrapper>
-      <Header />
-      <ContentWrapper>
-        <Title />
-        <Content />
-      </ContentWrapper>
-      <BackgroundImage src={backgroundBG} />
-
-      <Footer />
-    </ProjectsWrapper>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
+      {isMobileScreen ? (
+        <Mobile />
+      ) : (
+        <ProjectsWrapper>
+          <Header />
+          <ContentWrapper>
+            <Title />
+            <Content />
+          </ContentWrapper>
+          <BackgroundImage src={backgroundBG} />
+          <Footer />
+        </ProjectsWrapper>
+      )}
+    </motion.div>
   );
 }
 
@@ -43,7 +56,7 @@ const BackgroundImage = styled.img`
 
 const ContentWrapper = styled.div`
   position: relative;
-  z-index: 999;
+  z-index: 900;
   height: auto;
 `;
 
