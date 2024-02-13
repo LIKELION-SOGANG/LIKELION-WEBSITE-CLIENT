@@ -9,11 +9,14 @@ import naver from '../../assets/icon/naver.png';
 import samsung from '../../assets/icon/samsung.png';
 import shinsegae from '../../assets/icon/shinsegae.png';
 import sk from '../../assets/icon/sk.png';
+import toss from '../../assets/icon/toss.png';
 const imgList = [
+  sk,
   baemin,
   coupang,
   kaist,
   lg,
+  toss,
   naver,
   samsung,
   shinsegae,
@@ -22,10 +25,30 @@ const imgList = [
   coupang,
   kaist,
   lg,
+  toss,
   naver,
   samsung,
   shinsegae,
+];
+const imgList2 = [
+  toss,
+  naver,
   sk,
+  coupang,
+  kaist,
+  baemin,
+  samsung,
+  lg,
+  shinsegae,
+  toss,
+  naver,
+  sk,
+  coupang,
+  kaist,
+  baemin,
+  samsung,
+  lg,
+  shinsegae,
 ];
 function FourthSection({ isHeaderBlack }) {
   return (
@@ -45,23 +68,19 @@ function FourthSection({ isHeaderBlack }) {
               <SlideItem key={index}>
                 <IconImage
                   src={item}
-                  style={{
-                    width: index === 7 || index === 15 ? '10rem' : '20rem',
-                  }}
+                  $isWidth={index === 0 || index === 9 ? true : false}
                 />
               </SlideItem>
             );
           })}
         </div>
         <div className="logo-scroll reverse">
-          {imgList.map((item, index) => {
+          {imgList2.map((item, index) => {
             return (
               <SlideItem key={index}>
                 <IconImage
                   src={item}
-                  style={{
-                    width: index === 7 || index === 15 ? '10rem' : '20rem',
-                  }}
+                  $isWidth={index === 2 || index === 11 ? true : false}
                 />
               </SlideItem>
             );
@@ -138,13 +157,14 @@ const FourthWholeSection = styled.section`
 
 const IconImage = styled.img`
   display: block;
+  width: ${(props) => (props.$isWidth ? '50%' : '70%')};
 `;
 
 const SlideItem = styled.div`
   width: 25rem;
   height: 20rem;
   @media (max-width: 768px) {
-    width: 12.5rem;
+    width: 15rem;
     height: 10rem;
   }
   display: flex;

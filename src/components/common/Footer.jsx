@@ -103,6 +103,7 @@ const FooterWrapper = styled.footer`
   .total {
     display: flex;
     gap: 0.5rem;
+    height: 2.4rem;
     align-items: center;
   }
   .today {
@@ -158,6 +159,7 @@ const Tag = styled.div`
 `;
 
 const TagNum = styled.div`
+  padding-top: 0.4rem;
   font-family: 'PP-Editorial';
   font-size: 1.5rem;
 `;
