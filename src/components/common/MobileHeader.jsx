@@ -36,7 +36,6 @@ function MobileHeader({
     }
     window.scrollTo({ top: 0 });
   }, [pathname]);
-  console.log(isVisibleHeaderLogo);
   const { isLoading, loadingProgress } = useLoading(4);
   const [isSpreadMenu, setIsSpreadMenu] = useState(false);
   return (
@@ -78,19 +77,44 @@ function MobileHeader({
           Like<span>lion</span> So<span>gang</span>
         </LogoCaption>
         <Space height={'10rem'} />
-        <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/">
+        <SlideItem
+          $isBackGroundBlack={isBackGroundBlack}
+          href="/"
+          onMouseEnter={textEnter}
+          onMouseLeave={textLeave}
+        >
           About
         </SlideItem>
-        <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/people">
+        <SlideItem
+          $isBackGroundBlack={isBackGroundBlack}
+          href="/people"
+          onMouseEnter={textEnter}
+          onMouseLeave={textLeave}
+        >
           People
         </SlideItem>
-        <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/projects">
+        <SlideItem
+          $isBackGroundBlack={isBackGroundBlack}
+          href="/projects"
+          onMouseEnter={textEnter}
+          onMouseLeave={textLeave}
+        >
           Projects
         </SlideItem>
-        <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/recruit">
+        <SlideItem
+          $isBackGroundBlack={isBackGroundBlack}
+          href="/recruit"
+          onMouseEnter={textEnter}
+          onMouseLeave={textLeave}
+        >
           Recruit
         </SlideItem>
-        <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/contact">
+        <SlideItem
+          $isBackGroundBlack={isBackGroundBlack}
+          href="/contact"
+          onMouseEnter={textEnter}
+          onMouseLeave={textLeave}
+        >
           Contact
         </SlideItem>
         <PossibleCaption src={isBackGroundBlack ? Caption : WhiteCaption} />
@@ -165,7 +189,7 @@ const SlideMenu = styled.ul`
   z-index: 5000;
 `;
 
-const SlideItem = styled.a`
+const SlideItem = styled(motion.a)`
   display: block;
   font-family: 'PP-Editorial';
   font-size: 3.2rem;

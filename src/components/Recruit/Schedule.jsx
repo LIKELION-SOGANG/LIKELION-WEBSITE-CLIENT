@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Section from './Section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import arrow from '../../assets/icon/arrow.svg';
 import Header from '../common/Header';
 
 const Schedule = () => {
@@ -48,10 +49,11 @@ const Schedule = () => {
             <Date>{item.content}</Date>
             <MoreInfo>
               <a href={item.link} target="_blank" rel="noreferrer">
-                <FontAwesomeIcon
+                {/* <FontAwesomeIcon
                   icon={faUpRightFromSquare}
                   color="rgba(183, 183, 183, 1)"
-                />
+                /> */}
+                <img src={arrow} />
                 <Morelink>{item.more}</Morelink>
               </a>
             </MoreInfo>
@@ -95,7 +97,7 @@ const MoreInfo = styled.div`
 
 const Morelink = styled.div`
   font-size: 1.1rem;
-  margin-left: 0.5rem;
+  margin-left: 0.2rem;
   color: #b7b7b7;
   text-decoration: underline;
 `;

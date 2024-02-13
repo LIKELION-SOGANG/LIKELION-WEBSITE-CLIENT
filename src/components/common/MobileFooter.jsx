@@ -10,7 +10,7 @@ function MobileFooter({ isBackgroundBlack = true }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await instance.get('visit');
+      const res = await instance.get('visit/');
       setVisitNum(res?.data?.data);
     };
     fetchData();
@@ -54,7 +54,8 @@ function MobileFooter({ isBackgroundBlack = true }) {
 
 const FooterWrapper = styled.footer`
   width: 100%;
-  background-color: ${(props) => (props.$isBackgroundBlack ? 'black' : 'white')};
+  background-color: ${(props) =>
+    props.$isBackgroundBlack ? 'black' : 'white'};
   color: ${(props) => (props.$isBackgroundBlack ? 'white' : 'black')};
   font-family: 'PP-Editorial';
   .inner {

@@ -1,18 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Space from './../../util/Space';
-import CloseIcon from './../../assets/icon/closeIcon.svg';
-const ProjectModal = ({ project, onClose, generation }) => {
+import CloseIcon from './../../assets/icon/ph_x-light.svg';
+const ProjectModal = ({ project, closeModal, generation }) => {
   const { title, year, team_name, member_list, project_image, content, url } =
     project;
 
   return (
     <ModalWrapper>
       <ModalOverlay>
-        <CloseButton onClick={onClose}>
-          <img src={CloseIcon} alt="Close" />
-        </CloseButton>
-
+        <CloseButton onClick={closeModal} />
         <ModalContent>
           <Space height={'9.5rem'} />
           <ProjectTitle>{title}</ProjectTitle>
@@ -20,13 +17,12 @@ const ProjectModal = ({ project, onClose, generation }) => {
           <ProjectDetails>{`${generation} | ${year} `}</ProjectDetails>
           <Space height={'1.2rem'} />
           <Team>
-            {' '}
             Team {`${team_name} `}
             <br />
             {`${member_list}`}
           </Team>
           <Space height={'3rem'} />
-          <ProjectImage src={project_image} alt={title} />
+          <ProjectImage src={project_image} />
           <Space height={'3rem'} />
 
           <Description>{`${content}`}</Description>
@@ -46,7 +42,7 @@ const ModalOverlay = styled.div`
   top: 60px;
   left: 456px;
   width: 60rem;
-  max-height: 110vh;
+  max-height: 862vh;
   padding-bottom: 10rem;
   overflow-y: auto;
   scrollbar-width: none;
@@ -74,11 +70,10 @@ const ModalContent = styled.div`
   flex-direction: column;
   align-items: flex-start;
 `;
-
 const CloseButton = styled.div`
   position: absolute;
-  margin-right: 1.8rem;
-  margin-top: 1.8rem;
+  top: 1.8rem;
+  right: 1.8rem;
   cursor: pointer;
   width: 3rem;
   height: 3rem;
@@ -87,8 +82,10 @@ const CloseButton = styled.div`
     width: 100%;
     height: 100%;
   }
+  background-image: url(${CloseIcon});
+  background-size: cover;
+  z-index: 999;
 `;
-
 const ProjectTitle = styled.h2`
   color: #000;
   font-family: Figtree;
@@ -96,6 +93,7 @@ const ProjectTitle = styled.h2`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  overflow-wrap: break-word;
 `;
 
 const ProjectDetails = styled.div`
