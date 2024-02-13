@@ -8,6 +8,9 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import arrow from '../../assets/icon/arrow.svg';
+import { useMousePosition } from '../../util/MouseContextProvider';
+import { motion } from 'framer-motion';
+
 const faqData = [
   {
     title: '전공자만 지원할 수 있나요?',
@@ -20,7 +23,7 @@ const faqData = [
       '주 2회 교육 세션과 해커톤, 데모데이 등 필수 행사에 참가가 가능한 서강대학교 학생이라면 나이와 학기, 전공에 상관 없이 자유롭게 지원 가능합니다.',
   },
   {
-    title: '어떤 것을 배우나요??',
+    title: '어떤 것을 배우나요?',
     content:
       '아기 사자는 웹 프로그래밍을 공부하고 자신의 아이디어를 담은 웹사이트를 직접 제작하고 배포합니다.\n자세한 사항은 홈페이지 ',
   },
@@ -52,6 +55,7 @@ const faqData = [
 const Faq = () => {
   const [openIndex, setOpenIndex] = useState([]);
   const navigate = useNavigate();
+  const { textEnter, textLeave } = useMousePosition();
 
   const handleToggle = (index) => {
     const isOpened = openIndex.includes(index);
@@ -68,17 +72,23 @@ const Faq = () => {
         <Item key={item.title}>
           <Question onClick={() => handleToggle(index)}>
             {item.title}
-            <FontAwesomeIcon
-              icon={openIndex.includes(index) ? faChevronUp : faChevronDown}
-              style={{ cursor: 'pointer' }}
-            />
+            <motion.div onMouseEnter={textEnter} onMouseLeave={textLeave}>
+              <FontAwesomeIcon
+                icon={openIndex.includes(index) ? faChevronUp : faChevronDown}
+                style={{ cursor: 'pointer', marginLeft: '2rem' }}
+              />
+            </motion.div>
           </Question>
           {openIndex.includes(index) && (
             <Answer>
               {item.content.includes('홈페이지') ? (
                 <>
                   {item.content.replace('About 탭을 참고해 주세요.', '')}
-                  <Move href="/">
+                  <Move
+                    href="/"
+                    onMouseEnter={textEnter}
+                    onMouseLeave={textLeave}
+                  >
                     <img src={arrow} />
                     About 탭
                   </Move>
@@ -91,12 +101,6 @@ const Faq = () => {
           )}
         </Item>
       ))}
-      {/* <Button
-        onClick={() => {
-          navigate('/recruit/apply');
-        }}
-      /> */}
-      <Button onClick={() => alert('아직 지원기간이 아닙니다.')} />
     </FaqContainer>
   );
 };
@@ -163,40 +167,8 @@ const Answer = styled(TextBase)`
   }
 `;
 
-const Move = styled.a`
+const Move = styled(motion.a)`
   display: inline-flex;
 `;
-const Button = styled.div`
-  position: fixed;
-  right: 2%;
-  bottom: 2%;
-  width: 15rem;
-  height: 4.28rem;
-  display: inline-flex;
-  padding: 0.3rem 0.3rem;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  cursor: pointer;
-  border-radius: 5rem;
-  // background: #000;
-  color: #fff;
-  font-family: Figtree;
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: 400;
-  // z-index: 500;
-  &::before {
-    content: 'Apply Now';
-    display: block;
-  }
 
-  // 호버 상태에서의 텍스트 변경
-  &:hover::before {
-    content: '12기 지원하기';
-  }
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
 export default Faq;

@@ -1,11 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useMousePosition } from '../../util/MouseContextProvider';
+import { motion } from 'framer-motion';
 
 const NewApplication = ({ onNewApplication }) => {
+  const { textEnter, textLeave } = useMousePosition();
+
   return (
     <div>
       <Text>처음 지원서를 작성하신다면,</Text>
-      <Button onClick={onNewApplication}>
+      <Button
+        onClick={onNewApplication}
+        onMouseEnter={textEnter}
+        onMouseLeave={textLeave}
+      >
         <ButtonText>지원서 생성하기</ButtonText>
       </Button>
     </div>
@@ -22,7 +30,7 @@ const Text = styled.div`
   margin-bottom: 1.2rem;
 `;
 
-const Button = styled.button`
+const Button = styled(motion.button)`
   width: 56.2rem;
   height: 5rem;
   flex-shrink: 0;
