@@ -15,11 +15,9 @@ const Intro = () => {
   }, []);
   return (
     <>
-      <Header isBackGroundBlack={true} />
       <Background>
         <Image src={intro} />
         <Text>{isMobile ? 'Want To\nJoin Us?' : 'Want To Join Us?'}</Text>
-
         <AnimationContainer>
           <ScrollDownAnimation />
         </AnimationContainer>

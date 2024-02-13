@@ -15,7 +15,6 @@ function Footer({ isBackgroundBlack = true }) {
     };
     fetchData();
   }, []);
-  console.log(visitNum);
   return (
     <FooterWrapper isBackgroundBlack={isBackgroundBlack}>
       <div className="inner">
