@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Space from '../../util/Space';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import useMediaQuery from '../../hooks/useMediaQuery';
 function SecondSection() {
   const newLettersRef = useRef();
   const [text, setText] = useState('THEN WHAT ABOUT');
@@ -28,6 +29,8 @@ function SecondSection() {
     // 스크롤 애니메이션-> AOS 라이브러리 사용
     AOS.init();
   }, []);
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
+
   return (
     <SeondWholeSection>
       <Space height={'40rem'} />
@@ -55,14 +58,13 @@ function SecondSection() {
           <Space height={'8.6rem'} />
           <div className="show-text">
             멋쟁이사자처럼 서강대학교는 대면 교육 세션, 데모데이 등 다채로운
-            활동을 통해
-            <br /> 매년 구성원들의 <span>폭발적인 성장</span>을 이끌어내고
-            있습니다.
+            활동을 통해 {!isMobileScreen && <br />}
+            매년 구성원들의 <span>폭발적인 성장</span>을 이끌어내고 있습니다.
           </div>
           <Space height={'1rem'} />
           <div className="show-text">
             그 성과로, 대학생 1500명이 참여한 작년 ‘멋쟁이사자처럼 전국 연합
-            해커톤’에서 <br />
+            해커톤’에서 {!isMobileScreen && <br />}
             <span>동상 수상 팀을 배출</span>했습니다.
           </div>
           <div className="sticky-space">
@@ -100,6 +102,9 @@ const SeondWholeSection = styled.section`
     font-weight: 400;
     line-height: normal;
     text-transform: uppercase;
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
+    }
   }
   .show-text {
     color: var(--Main, #000);
@@ -114,6 +119,12 @@ const SeondWholeSection = styled.section`
     }
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    @media (max-width: 768px) {
+      word-break: keep-all;
+      width: calc(100% - 1rem);
+      margin: 0 auto;
+      font-size: 1.6rem;
+    }
   }
   .sticky-space {
     // position: sticky;
@@ -129,6 +140,12 @@ const SeondWholeSection = styled.section`
     font-weight: 400;
     line-height: normal;
     text-transform: capitalize;
+    @media (max-width: 768px) {
+      word-break: keep-all;
+      width: calc(100% - 1rem);
+      margin: 0 auto;
+      font-size: 3.6rem;
+    }
   }
   .logo-text span {
     font-style: italic;
@@ -141,6 +158,12 @@ const SeondWholeSection = styled.section`
     font-style: normal;
     line-height: normal;
     font-weight: 500;
+    @media (max-width: 768px) {
+      word-break: keep-all;
+      width: calc(100% - 1rem);
+      margin: 0 auto;
+      font-size: 1.6rem;
+    }
     line-height: 140%;
     text-transform: capitalize;
     span {
