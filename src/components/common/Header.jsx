@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useMousePosition } from '../../util/MouseContextProvider';
@@ -18,7 +18,6 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
     recruit: false,
     contact: false,
   });
-  const navigate = useNavigate();
   useEffect(() => {
     if (pathname === '/') {
       setActivate({ ...activate, about: true });
@@ -41,7 +40,7 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
           $isBackGroundBlack={isBackGroundBlack}
           $isVisibleHeaderLogo={isVisibleHeaderLogo}
           onClick={() => {
-            navigate('/');
+            window.scrollTo({ top: 0 });
           }}
         >
           Like<span>lion</span> So<span>gang</span>

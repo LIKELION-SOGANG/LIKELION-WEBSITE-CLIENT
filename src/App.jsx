@@ -9,7 +9,6 @@ import Loading from './page/Loading';
 import { AnimatePresence } from 'framer-motion';
 import { instance } from './api/axios';
 import useLoading from './hooks/useLoading';
-
 function App() {
   const { isLoading, loadingProgress } = useLoading();
   return (
@@ -34,5 +33,4 @@ const AppContainer = styled.div`
     background-color: rgba(100, 100, 100, 0.5);
   }
 `;
-
 export default App;
