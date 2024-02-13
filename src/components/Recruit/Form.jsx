@@ -19,6 +19,11 @@ const Form = () => {
     setCurrentStep,
   } = useStore();
 
+const Form = () => {
+  const [name, setName] = useState('');
+  const [studentId, setStudentId] = useState('');
+  const [email, setEmail] = useState('');
+  const [field, setField] = useState('');
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
@@ -36,6 +41,7 @@ const Form = () => {
   };
 
   const handleSubmit = () => {
+<<<<<<< HEAD
     instance
       .post(`application/`, {
         name: name,
@@ -61,6 +67,12 @@ const Form = () => {
           alert('지원서 생성 중 오류가 발생했습니다. 다시 시도해주세요.');
         }
       });
+=======
+    console.log('Name:', name);
+    console.log('Student ID:', studentId);
+    console.log('Email:', email);
+    console.log('Field:', field);
+>>>>>>> 42fdab3c89d8a7f9c9b1fe71d0e92625fac3a3c1
   };
 
   return (

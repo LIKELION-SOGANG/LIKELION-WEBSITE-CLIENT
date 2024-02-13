@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Router from './Router';
 import styled from 'styled-components';
 import { GlobalStyles } from './style/GlobalStyles';
@@ -18,9 +18,6 @@ function App() {
         <GlobalStyles />
         <Cursor />
         <AppContainer>
-          <AnimatePresence>
-            {isLoading && <Loading progress={loadingProgress} />}
-          </AnimatePresence>
           <Router />
         </AppContainer>
       </BrowserRouter>
