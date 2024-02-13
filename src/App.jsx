@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Router from './Router';
 import styled from 'styled-components';
 import { GlobalStyles } from './style/GlobalStyles';
@@ -9,7 +9,6 @@ import Loading from './page/Loading';
 import { AnimatePresence } from 'framer-motion';
 import { instance } from './api/axios';
 import useLoading from './hooks/useLoading';
-
 function App() {
   const { isLoading, loadingProgress } = useLoading();
   return (
@@ -18,6 +17,9 @@ function App() {
         <GlobalStyles />
         <Cursor />
         <AppContainer>
+          <AnimatePresence>
+            {isLoading && <Loading progress={loadingProgress} />}
+          </AnimatePresence>
           <Router />
         </AppContainer>
       </BrowserRouter>
@@ -28,5 +30,4 @@ function App() {
 const AppContainer = styled.div`
   overflow: hidden;
 `;
-
 export default App;
