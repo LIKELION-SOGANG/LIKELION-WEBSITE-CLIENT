@@ -21,7 +21,6 @@ function FifthSection() {
   const isMobileScreen = useMediaQuery('(max-width: 768px)');
   return (
     <FifthWholeSection>
-      <Space height={'20vh'} />
       <H1>Timeline</H1>
       <Space height={'2.7rem'} />
       <H2>
@@ -69,7 +68,6 @@ function FifthSection() {
   );
 }
 const FifthWholeSection = styled.section`
-  background-color: black;
   position: relative;
   z-index: 1;
   text-align: center;
