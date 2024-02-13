@@ -10,7 +10,7 @@ import MobileFooter from '../components/common/MobileFooter';
 import Footer from '../components/common/Footer';
 
 function Recruit() {
-  const observationRef = useRef();
+  // const observationRef = useRef();
   const observationRef2 = useRef();
   const [backgroundColor, setBackgroundColor] = useState('black');
   const [isBackGroundBlack, setIsBackGroundBlack] = useState(true);
@@ -18,33 +18,41 @@ function Recruit() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        let firstSectionVisible = false;
+        // let firstSectionVisible = false;
         let secondSectionVisible = false;
 
         entries.forEach((entry) => {
-          if (entry.target.className === 'first-section') {
-            firstSectionVisible = entry.isIntersecting;
-          } else if (entry.target.className === 'second-section') {
+          // if (entry.target.className === 'first-section') {
+          //   firstSectionVisible = entry.isIntersecting;
+          // } else
+          if (entry.target.className === 'second-section') {
             secondSectionVisible = entry.isIntersecting;
           }
         });
-
-        if (firstSectionVisible && !secondSectionVisible) {
-          setBackgroundColor('black');
-          setIsBackGroundBlack(true);
-        } else if (!firstSectionVisible && secondSectionVisible) {
+        if (secondSectionVisible) {
           setBackgroundColor('white');
           setIsBackGroundBlack(false);
+        } else {
+          setBackgroundColor('black');
+          setIsBackGroundBlack(true);
         }
+
+        // if (firstSectionVisible && !secondSectionVisible) {
+        //   setBackgroundColor('black');
+        //   setIsBackGroundBlack(true);
+        // } else if (!firstSectionVisible && secondSectionVisible) {
+        //   setBackgroundColor('white');
+        //   setIsBackGroundBlack(false);
+        // }
       },
       {
-        threshold: [0.22, 1.0],
+        threshold: [0.05, 1],
       },
     );
 
-    if (observationRef.current) {
-      observer.observe(observationRef.current);
-    }
+    // if (observationRef.current) {
+    //   observer.observe(observationRef.current);
+    // }
     if (observationRef2.current) {
       observer.observe(observationRef2.current);
     }
@@ -53,28 +61,50 @@ function Recruit() {
       observer.disconnect();
     };
   }, []);
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       const isSecondVisible = entries.some(
+  //         (entry) =>
+  //           entry.target === observationRef2.current && entry.isIntersecting,
+  //       );
 
+  //       setBackgroundColor(isSecondVisible ? 'white' : 'black');
+  //     },
+  //     {
+  //       threshold: [0.1, 1.0],
+  //     },
+  //   );
+
+  //   if (observationRef.current) {
+  //     observer.observe(observationRef.current);
+  //   }
+
+  //   if (observationRef2.current) {
+  //     observer.observe(observationRef2.current);
+  //   }
+
+  //   return () => {
+  //     observer.disconnect();
+  //   };
+  // }, []);
   return (
-    <>
-      {' '}
-      {isMobileScreen ? (
-        <MobileHeader isBackGroundBlack={isBackGroundBlack} />
-      ) : (
-        <Header isBackGroundBlack={isBackGroundBlack} />
-      )}
-      <div
-        className="first-section"
-        ref={observationRef}
-        style={{ position: 'relative', 'z-index': '1' }}
-      >
-        <Intro />
+    <OverallContainer style={{ backgroundColor: backgroundColor }}>
+      <div className="first-section">
+        <Intro
+        // style={{
+        //   backgroundColor: backgroundColor,
+        //   transition: 'background-color 1.5s ease',
+        // }}
+        />
       </div>
       <div className="second-section" ref={observationRef2}>
+        <Header isBackGroundBlack={isBackGroundBlack} />
         <RecruitContainer
-          style={{
-            backgroundColor: backgroundColor,
-            transition: 'background-color 1.5s ease',
-          }}
+        // style={{
+        //   backgroundColor: backgroundColor,
+        //   transition: 'background-color 1.5s ease',
+        // }}
         >
           <Schedule />
           <Faq />
@@ -85,9 +115,12 @@ function Recruit() {
           <Footer isBackgroundBlack={isBackGroundBlack} />
         )}
       </div>
-    </>
+    </OverallContainer>
   );
 }
+const OverallContainer = styled.div`
+  transition: background-color 1.5s ease;
+`;
 const RecruitContainer = styled.div`
   display: flex;
   align-items: center;
