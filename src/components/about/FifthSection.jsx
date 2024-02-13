@@ -81,9 +81,7 @@ function FifthSection() {
           <OverflowContainer>
             <ScrollContainer>
               {frontIconList.map((item, index) => (
-                <StackItem key={index}>
-                  <StackImg src={item} />
-                </StackItem>
+                <StackItem key={index} $url={item}></StackItem>
               ))}
             </ScrollContainer>
           </OverflowContainer>
@@ -92,9 +90,7 @@ function FifthSection() {
           <OverflowContainer>
             <ScrollContainer>
               {backIconList.map((item, index) => (
-                <StackItem key={index}>
-                  <StackImg src={item} />
-                </StackItem>
+                <StackItem key={index} $url={item}></StackItem>
               ))}
             </ScrollContainer>
           </OverflowContainer>
@@ -212,10 +208,11 @@ const StackItem = styled.div`
   margin-right: 1vw;
   background-color: white;
   border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  align-items: center;
+  object-fit: cover;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(${(props) => props.$url});
 `;
 
 const StackImg = styled.img`
