@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import TopBanner from '../components/Recruit/TopBanner';
 import NewApplication from '../components/Recruit/NewApplication';
@@ -11,11 +11,10 @@ import Finish from '../components/Recruit/Finish';
 import useStore from '../components/Recruit/Store';
 import { motion } from 'framer-motion';
 const Apply = () => {
-  const { currentStep, setCurrentStep, goNext } = useStore();
-  // currentStep 바뀔 때마다 스크롤 맨위로
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, [currentStep]);
+  const [currentStep, setCurrentStep] = useState(0);
+  const goNext = () => {
+    setCurrentStep((prevStep) => (prevStep < 2 ? prevStep + 1 : prevStep));
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -53,6 +52,7 @@ const Apply = () => {
             <Finish />
           </>
         )}
+
 
         {/* <div
         style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}

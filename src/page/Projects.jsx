@@ -32,6 +32,7 @@ function Projects() {
         </ProjectsWrapper>
       )}
     </motion.div>
+
   );
 }
 
