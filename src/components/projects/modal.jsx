@@ -2,17 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Space from './../../util/Space';
 import CloseIcon from './../../assets/icon/ph_x-light.svg';
-import { useNavigate } from 'react-router-dom';
-const ProjectModal = ({ project, generation }) => {
+const ProjectModal = ({ project, closeModal, generation }) => {
   const { title, year, team_name, member_list, project_image, content, url } =
     project;
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const navigate = useNavigate();
 
   return (
     <ModalWrapper>
       <ModalOverlay>
-        <CloseButton onClick={() => navigate(-1)} />
+        <CloseButton onClick={closeModal} />
         <ModalContent>
           <Space height={'9.5rem'} />
           <ProjectTitle>{title}</ProjectTitle>
