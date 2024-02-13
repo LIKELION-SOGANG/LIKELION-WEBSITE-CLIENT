@@ -17,9 +17,8 @@ const Intro = () => {
     <>
       <Header isBackGroundBlack={true} />
       <Background>
-        <Image src={intro} />
+        <Back />
         <Text>{isMobile ? 'Want To\nJoin Us?' : 'Want To Join Us?'}</Text>
-
         <AnimationContainer>
           <ScrollDownAnimation />
         </AnimationContainer>
@@ -29,7 +28,7 @@ const Intro = () => {
 };
 
 const Background = styled.div`
-  background-color: black;
+  // background-color: black;
   position: relative;
   display: flex;
   justify-content: center;
@@ -43,7 +42,14 @@ const Image = styled.img`
   width: 100%;
   margin-left: 3rem;
   z-index: 50;
-  height: auto;
+  margin-bottom: 30rem;
+`;
+const Back = styled.div`
+  position: relative;
+  width: 190rem;
+  margin-left: 3rem;
+  z-index: 50;
+  height: 90.8rem;
 `;
 
 const Text = styled.div`
