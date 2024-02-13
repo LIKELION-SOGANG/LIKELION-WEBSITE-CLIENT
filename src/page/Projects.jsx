@@ -24,21 +24,16 @@ function Projects() {
         <Mobile />
       ) : (
         <ProjectsWrapper>
-           {isMobileScreen ? <MobileHeader /> : <Header />}
+          <Header />
           <ContentWrapper>
             <Title />
             <Content />
           </ContentWrapper>
           <BackgroundImage src={backgroundBG} />
-           {isMobileScreen ? <MobileFooter /> : <Footer />}
+          <Footer />{' '}
         </ProjectsWrapper>
       )}
     </motion.div>
-
-
-    
-
-     
   );
 }
 

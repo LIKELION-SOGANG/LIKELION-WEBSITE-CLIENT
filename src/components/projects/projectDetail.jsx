@@ -4,6 +4,8 @@ import Space from './../../util/Space';
 import CloseIcon from './../../assets/icon/ph_x-light.svg';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import linkIcon from './../../assets/icon/ion_link.svg';
+
 const ProjectDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -48,6 +50,8 @@ const ProjectDetail = () => {
         <Description>{`${content}`}</Description> <Space height={'15rem'} />
         {url && (
           <ProjectLink href={url} target="_blank" rel="noopener noreferrer">
+            <img src={linkIcon} />
+            <Space width={'0.8rem'} />
             Link
           </ProjectLink>
         )}
@@ -138,7 +142,8 @@ const Description = styled.div`
 const ProjectLink = styled.a`
   width: 333px;
   height: 53px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   padding: 1.2rem 13.4rem;
   background-color: #fff;
   color: #000;

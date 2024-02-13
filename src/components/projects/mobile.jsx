@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Space from '../../util/Space';
 import { projectList } from '../../api/projectList';
-import ProjectDetail from './projectDetail';
 import backgroundBG from './../../assets/icon/Cone_01 3.png';
 import { useNavigate } from 'react-router-dom';
+import MobileHeader from '../common/MobileHeader';
+import MobileFooter from '../common/MobileFooter';
 function Mobile() {
   const tabs = ['11th', '10th', '9th', '8th', '7th', '6th'];
   const [selectedTab, setSelectedTab] = useState('11th');
@@ -55,6 +56,7 @@ function Mobile() {
 
   return (
     <MobileWrapper>
+      <MobileHeader />
       <FirstSectionWrapper>
         <Space height={'30rem'} />
         <Title>Our Projects</Title>
@@ -91,6 +93,7 @@ function Mobile() {
           ))}
         </ProjectContainer>
       </SecondSectionWrapper>
+      <MobileFooter />
     </MobileWrapper>
   );
 }
@@ -144,7 +147,7 @@ const TabElement = styled.div`
 `;
 const Line = styled.div`
   width: 0.5px;
-  height: 730px;
+  height: auto;
   background-color: #b7b7b7;
   margin-right: 2rem;
 `;
