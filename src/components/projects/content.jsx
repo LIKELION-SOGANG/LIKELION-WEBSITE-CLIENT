@@ -108,7 +108,6 @@ const ProjectContainer = styled.div`
   flex-wrap: wrap;
   gap: 2.5rem;
 
-
   & > div {
     width: 20%;
 
