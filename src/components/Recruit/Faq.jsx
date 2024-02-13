@@ -153,6 +153,7 @@ const Answer = styled(TextBase)`
   font-size: 1.6rem;
   font-weight: 400;
   // line-height: 200%;
+  line-height: 2.3rem;
   a {
     color: #b7b7b7;
     text-decoration: underline;

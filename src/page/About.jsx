@@ -6,6 +6,8 @@ import useThrottleScroll from '../hooks/useThrottleScroll';
 import ThirdSection from '../components/about/ThirdSection';
 import FourthSection from '../components/about/FourthSection';
 import FifthSection from '../components/about/FifthSection';
+import useMediaQuery from '../hooks/useMediaQuery';
+import MobileHeader from '../components/common/MobileHeader';
 
 function About() {
   const observationRef1 = useRef(null);
@@ -16,6 +18,8 @@ function About() {
   const [isVisibleHeaderLogo, setIsVisibleHeaderLogo] = useState(false);
   const [isHeaderBlack, setIsHeaderBlack] = useState(true);
   const scrollHeight = useThrottleScroll(10, 0, 400);
+  // 모바일 화면여부
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -50,10 +54,17 @@ function About() {
 
   return (
     <>
-      <Header
-        isBackGroundBlack={isHeaderBlack}
-        isVisibleHeaderLogo={isVisibleHeaderLogo}
-      />
+      {isMobileScreen ? (
+        <MobileHeader
+          isBackGroundBlack={isHeaderBlack}
+          isVisibleHeaderLogo={isVisibleHeaderLogo}
+        />
+      ) : (
+        <Header
+          isBackGroundBlack={isHeaderBlack}
+          isVisibleHeaderLogo={isVisibleHeaderLogo}
+        />
+      )}
       {/* about1~2 */}
       <div className="first-section" ref={observationRef1}>
         <FirstSection
