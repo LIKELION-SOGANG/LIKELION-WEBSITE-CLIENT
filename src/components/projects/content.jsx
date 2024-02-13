@@ -106,11 +106,14 @@ const TabElement = styled.div`
 const ProjectContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 2.5rem;
+  gap: 2rem;
 
+  // & > div {
+  //   width: 360px;
+  //   margin-bottom: 7.8rem;
+  // }
   & > div {
-    width: 20%;
-
+    width: 25%;
     margin-bottom: 7.8rem;
   }
 

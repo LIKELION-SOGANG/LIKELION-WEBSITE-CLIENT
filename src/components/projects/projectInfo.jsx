@@ -8,16 +8,21 @@ const ProjectInfo = ({ selectedProjects, generation }) => {
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
   };
+  const closeModal = () => {
+    setIsModalOpen(false);
+    console.log('close');
+    document.body.style.overflow = 'auto';
+  };
 
   return selectedProjects ? (
     <ProjectInfoWrapper onClick={openModal}>
-      {isModalOpen && (
+      {isModalOpen ? (
         <ProjectModal
           project={selectedProjects}
-          // setIsModalOpen={setIsModalOpen}
+          closeModal={closeModal}
           generation={generation}
         />
-      )}
+      ) : null}
       <ProjectTitle>{selectedProjects.title}</ProjectTitle>
       <Space height={'8px'} />
       <ProjectDetails>
@@ -65,6 +70,7 @@ const ProjectDetails = styled.div`
 const ProjectImage = styled.img`
   width: 360px;
   height: 202px;
+  object-fit: cover;
 `;
 
 export default ProjectInfo;
