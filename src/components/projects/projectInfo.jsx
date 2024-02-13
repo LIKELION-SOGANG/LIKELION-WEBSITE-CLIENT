@@ -2,26 +2,27 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Space from '../../util/Space';
 import ProjectModal from './modal';
-function ProjectInfo({ selectedProjects, generation }) {
+const ProjectInfo = ({ selectedProjects, generation }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
+    console.log('close');
     document.body.style.overflow = 'auto';
   };
+
   return selectedProjects ? (
     <ProjectInfoWrapper onClick={openModal}>
-      {isModalOpen && (
+      {isModalOpen ? (
         <ProjectModal
           project={selectedProjects}
-          onClose={closeModal}
+          closeModal={closeModal}
           generation={generation}
         />
-      )}
+      ) : null}
       <ProjectTitle>{selectedProjects.title}</ProjectTitle>
       <Space height={'8px'} />
       <ProjectDetails>
@@ -36,7 +37,7 @@ function ProjectInfo({ selectedProjects, generation }) {
       />
     </ProjectInfoWrapper>
   ) : null;
-}
+};
 const ProjectInfoWrapper = styled.div`
   width: 360px;
   height: auto;
@@ -69,6 +70,7 @@ const ProjectDetails = styled.div`
 const ProjectImage = styled.img`
   width: 360px;
   height: 202px;
+  object-fit: cover;
 `;
 
 export default ProjectInfo;

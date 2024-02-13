@@ -54,6 +54,7 @@ const Body = styled.div`
   max-width: 97rem;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 2.8rem;
   position: relative;
@@ -65,14 +66,14 @@ const Body = styled.div`
 const Item = styled.div`
   // max-width: 42.9rem;
   width: 100%;
-
+  font-size: 1.6rem;
   height: 10rem;
   margin-top: 3.9rem;
-  padding: 1.7rem 2.1rem;
+  padding: 1.7rem;
   border-radius: 1rem;
   bottom: 0;
   align-items: flex-start;
-  gap: 1rem;
+  // gap: 1rem;
   flex: 1 0 0;
   align-self: stretch;
   background: #f4f4f4;

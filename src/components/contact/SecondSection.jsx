@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Footer from '../common/Footer';
 import { useMousePosition } from '../../util/MouseContextProvider';
 import { motion } from 'framer-motion';
 
@@ -19,11 +18,6 @@ const contacts = [
     name: '(email)',
     url: 'mailto:sogang@likelion.org',
     display: 'sogang@likelion.org ↘',
-  },
-  {
-    name: '(kakaotalk)',
-    url: 'mailto:sogang@likelion.org',
-    display: 'inyoungjeong ↘',
   },
   {
     name: '(likelion univ.)',
@@ -60,6 +54,7 @@ function SecondSection() {
 
 const SecondSectionWrapper = styled.div`
   background-color: white;
+  padding-bottom: 20rem;
 `;
 
 const ContactsContainer = styled.div`
@@ -67,7 +62,6 @@ const ContactsContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 20rem;
-  margin-bottom: 20rem;
   gap: 10vw;
   @media (max-width: 768px) {
     padding: 2rem;

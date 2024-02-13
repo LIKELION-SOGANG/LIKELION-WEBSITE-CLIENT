@@ -6,7 +6,13 @@ const TopBanner = () => {
   const navigate = useNavigate();
   return (
     <Banner onClick={() => navigate('/')}>
-      <BannerText>likelion Sogang 12th Recruitment</BannerText>
+      <BannerText>
+        Like <Styletext>lion</Styletext>&nbsp;So
+        <Styletext>gang&nbsp;</Styletext>
+        12
+        <Styletext>th&nbsp;</Styletext> Re
+        <Styletext>cruitment</Styletext>
+      </BannerText>
       <HomeButton>홈으로 돌아가기</HomeButton>
     </Banner>
   );
@@ -23,10 +29,13 @@ const BannerText = styled.div`
   color: var(--Main, #000);
   font-family: 'PP-Editorial';
   font-size: 2rem;
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-transform: capitalize;
+  display: flex;
+`;
+const Styletext = styled.div`
+  font-style: italic;
 `;
 const HomeButton = styled.button`
   display: inline-flex;

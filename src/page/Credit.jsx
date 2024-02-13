@@ -4,7 +4,10 @@ import Space from '../util/Space';
 import greyLogo from '../assets/icon/likelion-grey.png';
 import backButton from '../assets/icon/ctrlz.png';
 import { useNavigate } from 'react-router-dom';
+import { useMousePosition } from '../util/MouseContextProvider';
+import { motion } from 'framer-motion';
 function Credit() {
+  const { textEnter, textLeave } = useMousePosition();
   const navigate = useNavigate();
   const clickNavigate = () => {
     navigate('/');
@@ -13,13 +16,18 @@ function Credit() {
   return (
     <CreditWrapper>
       <Space height={'12rem'} />
-      <BackButton src={backButton} onClick={clickNavigate} />
+      <BackButton
+        onMouseEnter={textEnter}
+        onMouseLeave={textLeave}
+        src={backButton}
+        onClick={clickNavigate}
+      />
       <h1>CREDITS</h1>
       <section className="design">
         <label>Design</label>
         <div className="people">
           <p>Sunmyoung Lee</p>
-          <p>Koeun Jung</p>
+          <p>Koeun Jeong</p>
         </div>
       </section>
       <section className="frontend">
@@ -27,7 +35,7 @@ function Credit() {
         <div className="people">
           <p>Inyoung Chung</p>
           <p>Sunmyoung Lee</p>
-          <p>Koeun Jung</p>
+          <p>Koeun Jeong</p>
           <p>Sehwan Jang</p>
         </div>
       </section>
@@ -128,12 +136,12 @@ const CreditWrapper = styled.div`
   }
 `;
 
-const BackButton = styled.img`
+const BackButton = styled(motion.img)`
   position: fixed;
   width: 10rem;
   cursor: pointer;
-  top: 5rem;
-  right: 5rem;
+  top: 3rem;
+  right: 3vw;
 `;
 
 export default Credit;

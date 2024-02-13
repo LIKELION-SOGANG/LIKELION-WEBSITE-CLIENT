@@ -29,5 +29,8 @@ function App() {
 
 const AppContainer = styled.div`
   overflow: hidden;
+  ::selection {
+    background-color: rgba(100, 100, 100, 0.5);
+  }
 `;
 export default App;
