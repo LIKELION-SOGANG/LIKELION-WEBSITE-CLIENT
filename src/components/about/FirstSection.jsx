@@ -85,8 +85,8 @@ const MobilePossibleCaption = styled.div`
   right: 4rem;
   font-family: 'PP-Editorial';
   color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
-  top: calc(100vh - 8rem - 10rem * ${(props) => props?.$process} / 100);
-  right: calc(10rem + (22vw) * ${(props) => props?.$process} / 100);
+  top: calc(100vh - 22rem + 10rem * ${(props) => props?.$process} / 100);
+  right: calc(4rem + (22vw) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1 / 100);
   -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
 `;
@@ -155,8 +155,9 @@ const Object3 = React.memo(styled.img`
   left: 20rem;
   width: 30%;
   @media (max-width: 768px) {
-    top: calc(100vh - 20rem);
-    left: 0;
+    top: calc(100vh - 24rem);
+    width: 50%;
+    left: -6rem;
   }
 `);
 const LogoCaption = React.memo(styled.div`
@@ -166,7 +167,7 @@ const LogoCaption = React.memo(styled.div`
   white-space: nowrap;
   color: #fff;
   leading-trim: both;
-  font-size: calc(28vw - ${(props) => props.$process} * (28vw - 2rem) / 100);
+  font-size: calc(25vw - ${(props) => props.$process} * (2vw - 2rem) / 100);
   visibility: ${(props) => (props.$isVisibleHeaderLogo ? 'hidden' : 'visible')};
   transform: translateY(
       calc(100vh - 58rem - ${(props) => props.$process} * (100vh - 60rem) / 100)
@@ -181,7 +182,7 @@ const LogoCaption = React.memo(styled.div`
   }
   @media (max-width: 768px) {
     transform: translateY(
-        calc(50vh - ${(props) => props.$process} * (50vh - 2rem) / 100)
+        calc(30vh - ${(props) => props.$process} * (50vh - 2rem) / 100)
       )
       translateX(2.5rem);
   }
