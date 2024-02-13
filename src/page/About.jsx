@@ -65,7 +65,6 @@ function About() {
           isVisibleHeaderLogo={isVisibleHeaderLogo}
         />
       )}
-
       {/* about1~2 */}
       <div className="first-section" ref={observationRef1}>
         <FirstSection

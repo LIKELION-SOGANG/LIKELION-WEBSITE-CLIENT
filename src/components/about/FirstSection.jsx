@@ -5,31 +5,11 @@ import object2 from '../../assets/icon/object-2.png';
 import object3 from '../../assets/icon/object-3.png';
 import caption1 from '../../assets/caption/about-caption.svg';
 import Space from '../../util/Space';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { render } from '@testing-library/react';
 import useLoading from '../../hooks/useLoading';
+import caption from '../../assets/caption/caption-possible.svg';
 
 function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
   const { isLoading, loadingProgress } = useLoading();
-  // useEffect(() => {
-  //   let scene = new THREE.Scene();
-  //   let renderer = new THREE.WebGLRenderer({
-  //     canvas: document.querySelector('#canvas'),
-  //   });
-  //   let camera = new THREE.PerspectiveCamera(
-  //     75,
-  //     window.innerWidth / window.innerHeight,
-  //     0.1,
-  //     1000,
-  //   );
-  //   camera.position.set(0, 0, 5); // 카메라 위치 조정
-  //   let loader = new GLTFLoader();
-  //   loader.load('../../assets/3d/logo3d.gltf', function (gltf) {
-  //     scene.add(gltf.scene);
-  //     renderer.render(scene, camera);
-  //   });
-  // }, []);
   return (
     <FirstSectionWrapper>
       <Object1 src={object1} alt="3d 오브젝트1" />
@@ -43,7 +23,7 @@ function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
         Like<span>lion</span> So<span>gang</span>
       </LogoCaption>
       <PossibiltyCaption
-        src={caption1}
+        src={caption}
         $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
       />
       <TriangleLoop>

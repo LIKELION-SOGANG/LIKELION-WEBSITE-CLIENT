@@ -36,6 +36,7 @@ function MobileHeader({
     }
     window.scrollTo({ top: 0 });
   }, [pathname]);
+  console.log(isVisibleHeaderLogo);
   const { isLoading, loadingProgress } = useLoading(4);
   const [isSpreadMenu, setIsSpreadMenu] = useState(false);
   return (
@@ -47,21 +48,12 @@ function MobileHeader({
         <MenuList>
           <LogoItem
             $isBackGroundBlack={isBackGroundBlack}
-            $isVisibleHeaderLogo={isVisibleHeaderLogo}
             onClick={() => {
               navigate('/');
             }}
           >
             Like<span>lion</span> So<span>gang</span>
           </LogoItem>
-         {/* {spreadMenu ? (
-          <XIcon
-            src={isBackGroundBlack ? xiconwhite : xiconblack}
-            alt="X아이콘"
-          />
-        ) : (
-          <MenuIcon src={isBack GroundBlack ? menuWhite : menuBlack} />
-        )} */}
           <ToggleMenu
             onClick={() => {
               setIsSpreadMenu(!isSpreadMenu);
@@ -78,6 +70,9 @@ function MobileHeader({
         $isSpreadMenu={isSpreadMenu}
         $isBackGroundBlack={isBackGroundBlack}
       >
+        <LogoCaption $isBackGroundBlack={isBackGroundBlack}>
+          Like<span>lion</span> So<span>gang</span>
+        </LogoCaption>
         <Space height={'10rem'} />
         <SlideItem $isBackGroundBlack={isBackGroundBlack} href="/">
           About
@@ -106,7 +101,12 @@ const HeaderWrapper = styled.header`
   z-index: 9;
   transition: 1s;
   background-color: ${(props) =>
-    props.$isBackGroundBlack ? 'black' : 'white'};
+    !props.$isVisibleHeaderLogo
+      ? 'none'
+      : props.$isBackGroundBlack
+        ? 'black'
+        : 'white'};
+
   .inner {
     z-index: 7000;
     padding: 2.5rem;
@@ -119,21 +119,41 @@ const MenuList = styled.ul`
   width: 100%;
   gap: 2.5rem;
 `;
-
+const LogoCaption = styled.div`
+  font-family: 'PP-Editorial';
+  position: fixed;
+  z-index: 999;
+  white-space: nowrap;
+  color: #fff;
+  leading-trim: both;
+  font-size: 2rem;
+  -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: absolute;
+  top: 2.7rem;
+  left: 3rem;
+  color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'blac')};
+  span {
+    font-style: italic;
+  }
+`;
 const ToggleMenu = styled.div`
   display: block;
   position: relative;
+  z-index: 9998;
   width: 2rem;
   height: 2rem;
 `;
 const SlideMenu = styled.ul`
   width: 100vw;
-  height: calc(100vh - 7.2rem);
+  height: 100vh;
   position: fixed;
   bottom: 0;
   transition: 0.5s;
   transform: ${(props) =>
-    !props.$isSpreadMenu && 'translateY(calc(100vh - 7.2rem))'};
+    !props.$isSpreadMenu && 'translateY(calc(100vh))'};
   background-color: ${(props) =>
     props.$isBackGroundBlack ? 'black' : 'white'};
   color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
