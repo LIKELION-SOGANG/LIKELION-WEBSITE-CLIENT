@@ -4,12 +4,17 @@ import styled from 'styled-components';
 import Faq from '../components/Recruit/Faq';
 import Intro from '../components/Recruit/Intro';
 import Header from '../components/common/Header';
+import useMediaQuery from '../hooks/useMediaQuery';
+import MobileHeader from '../components/common/MobileHeader';
+import MobileFooter from '../components/common/MobileFooter';
+import Footer from '../components/common/Footer';
 
 function Recruit() {
   // const observationRef = useRef();
   const observationRef2 = useRef();
   const [backgroundColor, setBackgroundColor] = useState('black');
   const [isBackGroundBlack, setIsBackGroundBlack] = useState(true);
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -93,7 +98,6 @@ function Recruit() {
         // }}
         />
       </div>
-
       <div className="second-section" ref={observationRef2}>
         <Header isBackGroundBlack={isBackGroundBlack} />
         <RecruitContainer
@@ -105,6 +109,11 @@ function Recruit() {
           <Schedule />
           <Faq />
         </RecruitContainer>
+        {isMobileScreen ? (
+          <MobileFooter isBackgroundBlack={isBackGroundBlack} />
+        ) : (
+          <Footer isBackgroundBlack={isBackGroundBlack} />
+        )}
       </div>
     </OverallContainer>
   );
@@ -118,6 +127,8 @@ const RecruitContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 10rem;
+  position: relative;
+  z-index: 1;
 `;
 
 export default Recruit;

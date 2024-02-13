@@ -82,6 +82,8 @@ const loopAnimation = keyframes`
 `;
 const FourthWholeSection = styled.section`
   margin-top: 2.7rem;
+  position: relative;
+  z-index: -2;
   transition: 1s;
   h1.likelion {
     font-family: PP-Editorial;
@@ -98,6 +100,9 @@ const FourthWholeSection = styled.section`
     span {
       font-style: italic;
     }
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
   }
   p.description {
     color: var(--Main, #000);
@@ -108,6 +113,9 @@ const FourthWholeSection = styled.section`
     font-weight: 500;
     line-height: normal;
     text-transform: capitalize;
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
   }
   .logo-container {
     width: 100%;
@@ -135,6 +143,10 @@ const IconImage = styled.img`
 const SlideItem = styled.div`
   width: 25rem;
   height: 20rem;
+  @media (max-width: 768px) {
+    width: 12.5rem;
+    height: 10rem;
+  }
   display: flex;
   justify-content: center;
   align-items: center;

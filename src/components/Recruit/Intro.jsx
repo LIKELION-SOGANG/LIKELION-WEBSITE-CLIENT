@@ -15,7 +15,6 @@ const Intro = () => {
   }, []);
   return (
     <>
-      <Header isBackGroundBlack={true} />
       <Background>
         <Back />
         <Text>{isMobile ? 'Want To\nJoin Us?' : 'Want To Join Us?'}</Text>
