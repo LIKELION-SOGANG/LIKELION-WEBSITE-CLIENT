@@ -13,7 +13,7 @@ import MobileFooter from '../components/common/MobileFooter';
 function Projects() {
   useEffect(() => {
     const fetchData = async () => {
-      const res = await instance.get('project/3');
+      const res = await instance.get('project/3/');
       console.log(res);
     };
     fetchData();

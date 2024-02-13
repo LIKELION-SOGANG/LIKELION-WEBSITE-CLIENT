@@ -10,7 +10,7 @@ function MobileFooter({ isBackgroundBlack = true }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await instance.get('visit');
+      const res = await instance.get('visit/');
       setVisitNum(res?.data?.data);
     };
     fetchData();

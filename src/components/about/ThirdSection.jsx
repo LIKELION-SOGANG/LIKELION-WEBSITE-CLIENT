@@ -9,12 +9,15 @@ import useMediaQuery from '../../hooks/useMediaQuery';
 function ThirdSection() {
   const firstAnimatedNum = useScrollCount(9, 1, 0, 1000);
   const secondAnimatedNum = useScrollCount(100, 1, 0, 100);
-  const thirdAnimatedNum = useScrollCount(300, 1, 0, 1000);
+  const thirdAnimatedNum = useScrollCount(120, 1, 0, 1000);
   const { textEnter, textLeave } = useMousePosition();
   const isMobileScreen = useMediaQuery('(max-width: 768px)');
-
   return (
-    <ThirdWholeSection>
+    <ThirdWholeSection
+      $isFirst={firstAnimatedNum.ref?.current?.outerText === '9'}
+      $isSecond={secondAnimatedNum.ref?.current?.outerText === '100'}
+      $isThird={thirdAnimatedNum.ref?.current?.outerText === '120'}
+    >
       <Space height={'50vh'} />
       <div className="logo">
         Like<span>lion</span> So<span>gang</span>
@@ -23,7 +26,7 @@ function ThirdSection() {
       <div className="number">by the numbers</div>
       <Space height={'30vh'} />
       <div className="big-num">
-        <div className="num">
+        <div className="num duration">
           <span ref={firstAnimatedNum.ref}>0</span>년
         </div>
         <div className="title">운영기간</div>
@@ -31,7 +34,7 @@ function ThirdSection() {
           멋쟁이사자처럼 서강대는 2016년부터 끊임없이 달려왔습니다.
         </div>
       </div>
-      <div className="big-num">
+      <div className="big-num projects">
         <div className="num">
           <span>
             <div className="plus">+</div>
@@ -44,7 +47,7 @@ function ThirdSection() {
           100여개의 프로젝트를 진행했습니다.
         </div>
       </div>
-      <div className="big-num">
+      <div className="big-num members">
         <div className="num">
           <span>
             <div className="plus">+</div>
@@ -65,19 +68,37 @@ function ThirdSection() {
           <AwardsItem>
             <div className="plan">2023.08</div>
             <div className="contentss">
-              멋쟁이사자처럼 전국 연합 해커톤 3위 (효자동개발자 팀) ↘
+              <a
+                href="https://platum.kr/archives/212513"
+                target="_blank"
+                rel="noreferrer"
+              >
+                멋쟁이사자처럼 전국 연합 해커톤 3위 (효자동개발자 팀) ↘
+              </a>
             </div>
           </AwardsItem>
           <AwardsItem>
             <div className="plan">2021.08</div>
             <div className="contentss">
-              멋쟁이사자처럼 전국 연합 해커톤 1위 (URL repo 팀) ↘
+              <a
+                href="https://www.instagram.com/p/CTNGreslBDy/?img_index=1"
+                target="_blank"
+                rel="noreferrer"
+              >
+                멋쟁이사자처럼 전국 연합 해커톤 1위 (URL repo 팀) ↘
+              </a>
             </div>
           </AwardsItem>
           <AwardsItem>
             <div className="plan">2021.07</div>
             <div className="contentss">
-              멋쟁이사자처럼 전국 연합 아이디어톤 1위 (URL repo 팀) ↘
+              <a
+                href="https://www.instagram.com/p/CRbGH4rjBW2/?img_index=1"
+                target="_blank"
+                rel="noreferrer"
+              >
+                멋쟁이사자처럼 전국 연합 아이디어톤 1위 (URL repo 팀) ↘
+              </a>
             </div>
           </AwardsItem>
         </>
@@ -88,22 +109,30 @@ function ThirdSection() {
             <h1>Awards</h1>
             <li onMouseEnter={textEnter} onMouseLeave={textLeave}>
               <a
-                href="https://platum.kr/archives/212513
-
-            "
+                href="https://platum.kr/archives/212513"
+                target="_blank"
+                rel="noreferrer"
               >
                 <span>2023.08 |</span> 멋쟁이사자처럼 전국 연합 해커톤 3위
                 (효자동개발자 팀) ↘
               </a>
             </li>
             <li onMouseEnter={textEnter} onMouseLeave={textLeave}>
-              <a>
+              <a
+                href="https://www.instagram.com/p/CTNGreslBDy/?img_index=1"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span>2021.08 |</span> 멋쟁이사자처럼 전국 연합 해커톤 1위 (URL
                 repo 팀) ↘
               </a>
             </li>
             <li onMouseEnter={textEnter} onMouseLeave={textLeave}>
-              <a>
+              <a
+                href="https://www.instagram.com/p/CRbGH4rjBW2/?img_index=1"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span>2021.07 |</span> 멋쟁이사자처럼 전국 연합 아이디어톤 1위
                 (URL repo 팀) ↘
               </a>
@@ -111,8 +140,7 @@ function ThirdSection() {
           </ul>
         </section>
       )}
-
-      <Space height={'20vh'} />
+      <Space height={'40vh'} />
     </ThirdWholeSection>
   );
 }
@@ -150,12 +178,22 @@ const AwardsItem = styled.div`
     font-size: 1.3rem;
     text-align: left;
     font-style: normal;
+    position: relative;
+    z-index: 10000;
     font-weight: 400;
   }
 `;
 
 const ThirdWholeSection = styled.section`
-  background-color: black;
+  .duration .plus {
+    visibility: ${(props) => (props.$isFirst ? 'visible' : 'hidden')};
+  }
+  .projects .plus {
+    visibility: ${(props) => (props.$isSecond ? 'visible' : 'hidden')};
+  }
+  .members .plus {
+    visibility: ${(props) => (props.$isThird ? 'visible' : 'hidden')};
+  }
   font-family: 'PP-Editorial';
   color: white;
   position: relative;
@@ -234,6 +272,7 @@ const ThirdWholeSection = styled.section`
     font-size: 10rem;
     position: absolute;
     top: -8rem;
+    transition: 0.4s ease;
     font-family: Pretendard;
     right: -6rem;
     @media (max-width: 768px) {
@@ -246,6 +285,7 @@ const ThirdWholeSection = styled.section`
     position: relative;
     color: #fff;
     leading-trim: both;
+    width: 3rem;
     text-edge: cap;
     font-family: 'PP-Editorial';
     font-size: 20rem;

@@ -99,7 +99,12 @@ function Recruit() {
         />
       </div>
       <div className="second-section" ref={observationRef2}>
-        <Header isBackGroundBlack={isBackGroundBlack} />
+        {isMobileScreen ? (
+          <MobileHeader isBackGroundBlack={isBackGroundBlack} />
+        ) : (
+          <Header isBackGroundBlack={isBackGroundBlack} />
+        )}
+
         <RecruitContainer
         // style={{
         //   backgroundColor: backgroundColor,

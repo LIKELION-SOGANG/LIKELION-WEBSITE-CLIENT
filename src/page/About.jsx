@@ -27,14 +27,14 @@ function About() {
           if (entries[0].target.className === 'first-section') {
             setIsHeaderBlack(entries[0]?.isIntersecting);
             setIsVisibleHeaderLogo(!entries[0].isIntersecting);
-          } else if (entries[0].target.className === 'second-setion') {
-            setIsHeaderBlack(entries[0]?.isIntersecting);
+          } else if (entries[0].target.className === 'second-section') {
+            setIsHeaderBlack(!entries[0]?.isIntersecting);
           } else if (entries[0].target.className === 'third-section') {
             setIsHeaderBlack(entries[0]?.isIntersecting);
           } else if (entries[0].target.className === 'fourth-section') {
             setIsHeaderBlack(!entries[0]?.isIntersecting);
           } else if (entries[0].target.className === 'fifth-section') {
-            setIsHeaderBlack(!entries[0]?.isIntersecting);
+            setIsHeaderBlack(entries[0]?.isIntersecting);
           }
         }
       },
@@ -65,26 +65,34 @@ function About() {
         />
       )}
       {/* about1~2 */}
-      <div className="first-section" ref={observationRef1}>
-        <FirstSection
-          isVisibleHeaderLogo={isVisibleHeaderLogo}
-          scrollHeight={scrollHeight}
-        />
-      </div>
-      {/* about3~6 */}
-      <div className="second-section" ref={observationRef2}>
-        <SecondSection />
-      </div>
-      {/* about7~10 */}
-      <div className="third-section" ref={observationRef3}>
-        <ThirdSection />
-      </div>
-      {/* about9 */}
-      <div className="fourth-section" ref={observationRef4}>
-        <FourthSection isBackGroundBlack={isHeaderBlack} />
-      </div>
-      <div className="fifth-section" ref={observationRef5}>
-        <FifthSection />
+      <div
+        style={{
+          backgroundColor: `${isHeaderBlack ? 'black' : 'white'}`,
+          transition: `1s ease`,
+        }}
+      >
+        <div className="first-section" ref={observationRef1}>
+          <FirstSection
+            isBackGroundBlack={isHeaderBlack}
+            isVisibleHeaderLogo={isVisibleHeaderLogo}
+            scrollHeight={scrollHeight}
+          />
+        </div>
+        {/* about3~6 */}
+        <div className="second-section" ref={observationRef2}>
+          <SecondSection />
+        </div>
+        {/* about7~10 */}
+        <div className="third-section" ref={observationRef3}>
+          <ThirdSection />
+        </div>
+        {/* about9 */}
+        <div className="fourth-section" ref={observationRef4}>
+          <FourthSection isBackGroundBlack={isHeaderBlack} />
+        </div>
+        <div className="fifth-section" ref={observationRef5}>
+          <FifthSection />
+        </div>
       </div>
     </>
   );

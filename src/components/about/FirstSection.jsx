@@ -8,7 +8,11 @@ import Space from '../../util/Space';
 import useLoading from '../../hooks/useLoading';
 import caption from '../../assets/caption/caption-possible.svg';
 
-function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
+function FirstSection({
+  isVisibleHeaderLogo,
+  scrollHeight,
+  isBackGroundBlack,
+}) {
   const { isLoading, loadingProgress } = useLoading();
   return (
     <FirstSectionWrapper>
@@ -26,48 +30,45 @@ function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
         src={caption}
         $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
       />
-      <TriangleLoop>
+      <TriangleLoop $isBackGroundBlack={isBackGroundBlack}>
         <div className="track">
           <LoopText>
             ✶ Now recruiting{' '}
             <span>
-              Like<i>lion</i> 12th
+              Like<i>lion</i> 12th{' '}
             </span>{' '}
             Member ✶ Now recruiting{' '}
             <span>
-              Like<i>lion</i> 12th
+              Like<i>lion</i> 12th{' '}
             </span>
             Member ✶ Now recruiting{' '}
             <span>
-              Like<i>lion</i> 12th
+              Like<i>lion</i> 12th{' '}
             </span>
             Member ✶ Now recruiting{' '}
             <span>
-              Like<i>lion</i> 12th
+              Like<i>lion</i> 12th{' '}
             </span>
             Member ✶ Now recruiting{' '}
             <span>
-              Like<i>lion</i> 12th
+              Like<i>lion</i> 12th{' '}
             </span>
             Member ✶ Now recruiting{' '}
             <span>
-              Like<i>lion</i> 12th
+              Like<i>lion</i> 12th{' '}
             </span>
             Member ✶
           </LoopText>
         </div>
       </TriangleLoop>
-      <Space height={'150rem'} />
     </FirstSectionWrapper>
   );
 }
 const FirstSectionWrapper = React.memo(styled.div`
-  height: calc(176vh + 30rem);
+  height: calc(150vh);
   position: relative;
   z-index: 1;
   width: 100%;
-  background-color: black;
-  overflow: hidden;
   canvas {
     position: absolute;
     top: 1rem;
@@ -123,11 +124,17 @@ const LogoCaption = React.memo(styled.div`
   span {
     font-style: italic;
   }
+  @media (max-width: 768px) {
+    transform: translateY(
+        calc(50vh - ${(props) => props.$process} * (50vh - 2rem) / 100)
+      )
+      translateX(2.5rem);
+  }
 `);
 
 const PossibiltyCaption = React.memo(styled.img`
   position: absolute;
-  top: calc(100vh - 8rem + 29rem * ${(props) => props?.$process} / 100);
+  top: calc(100vh - 8rem + 3rem * ${(props) => props?.$process} / 100);
   right: calc(10rem + (100vw - 50rem) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1.5 / 100);
   -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
@@ -137,14 +144,17 @@ from { transform: translateX(0); }
 to { transform: translateX(-50%); }
 `;
 const TriangleLoop = styled.div`
-  width: 130%;
+  width: 200%;
   height: 25.2rem;
   position: absolute;
-  background-color: white;
-  bottom: -13rem;
+  background-color: ${(props) =>
+    props.$isBackGroundBlack ? 'white' : 'black'};
+  color: ${(props) => (props.$isBackGroundBlack ? 'black' : 'white')};
+  transition: 1s ease;
+  bottom: 0rem;
   overflow-x: hidden;
   overflow-y: hidden;
-  transform: rotate(-8deg);
+  transform: rotate(-8deg) translateX(-25%);
 
   .track {
     white-space: nowrap;
@@ -154,7 +164,6 @@ const TriangleLoop = styled.div`
 `;
 
 const LoopText = styled.p`
-  color: black;
   leading-trim: both;
   text-edge: cap;
   font-family: Figtree;
