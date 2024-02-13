@@ -40,7 +40,10 @@ function MobileHeader({
   const { isLoading, loadingProgress } = useLoading(4);
   const [isSpreadMenu, setIsSpreadMenu] = useState(false);
   return (
-    <HeaderWrapper $isBackGroundBlack={isBackGroundBlack}>
+    <HeaderWrapper
+      $isBackGroundBlack={isBackGroundBlack}
+      $isVisibleHeaderLogo={isVisibleHeaderLogo}
+    >
       <div className="inner">
         <AnimatePresence>
           {isLoading && <Loading progress={loadingProgress} />}
@@ -48,6 +51,7 @@ function MobileHeader({
         <MenuList>
           <LogoItem
             $isBackGroundBlack={isBackGroundBlack}
+            $isVisibleHeaderLogo={isVisibleHeaderLogo}
             onClick={() => {
               navigate('/');
             }}
@@ -121,9 +125,10 @@ const MenuList = styled.ul`
 `;
 const LogoCaption = styled.div`
   font-family: 'PP-Editorial';
-  position: fixed;
   z-index: 999;
   white-space: nowrap;
+  margin-top: 2.2rem;
+  margin-left: 2rem;
   color: #fff;
   leading-trim: both;
   font-size: 2rem;
@@ -131,10 +136,9 @@ const LogoCaption = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  position: absolute;
   top: 2.7rem;
   left: 3rem;
-  color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'blac')};
+  color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
   span {
     font-style: italic;
   }
@@ -149,11 +153,11 @@ const ToggleMenu = styled.div`
 const SlideMenu = styled.ul`
   width: 100vw;
   height: 100vh;
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  top: 0;
+  left: ${(props) => (props.$isSpreadMenu ? '0%' : '100%')};
   transition: 0.5s;
-  transform: ${(props) =>
-    !props.$isSpreadMenu && 'translateY(calc(100vh))'};
+  transform: translateX(100);
   background-color: ${(props) =>
     props.$isBackGroundBlack ? 'black' : 'white'};
   color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
