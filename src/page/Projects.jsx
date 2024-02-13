@@ -6,6 +6,9 @@ import styled from 'styled-components';
 import backgroundBG from '../assets/icon/projectsBG.png';
 import Footer from '../components/common/Footer';
 import { instance } from '../api/axios';
+import useMediaQuery from '../hooks/useMediaQuery';
+import MobileHeader from '../components/common/MobileHeader';
+import MobileFooter from '../components/common/MobileFooter';
 
 function Projects() {
   useEffect(() => {
@@ -15,16 +18,17 @@ function Projects() {
     };
     fetchData();
   }, []);
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
   return (
     <ProjectsWrapper>
-      <Header />
+      {isMobileScreen ? <MobileHeader /> : <Header />}
+
       <ContentWrapper>
         <Title />
         <Content />
       </ContentWrapper>
       <BackgroundImage src={backgroundBG} />
-
-      <Footer />
+      {isMobileScreen ? <MobileFooter /> : <Footer />}
     </ProjectsWrapper>
   );
 }
@@ -37,6 +41,7 @@ const ProjectsWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  z-index: 10;
 `;
 
 const BackgroundImage = styled.img`
@@ -51,7 +56,7 @@ const BackgroundImage = styled.img`
 
 const ContentWrapper = styled.div`
   position: relative;
-  z-index: 999;
+  z-index: 2;
   height: auto;
 `;
 

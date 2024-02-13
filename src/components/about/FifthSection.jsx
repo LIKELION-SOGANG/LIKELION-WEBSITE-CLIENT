@@ -12,9 +12,12 @@ import django from '../../assets/icon/django.png';
 import python from '../../assets/icon/python.png';
 import aws from '../../assets/icon/aws.png';
 import Footer from '../common/Footer';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import MobileFooter from '../common/MobileFooter';
 const frontIconList = [html, css, js, react, github, git];
 const backIconList = [html, python, django, aws, github, git];
 function FifthSection() {
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
   return (
     <FifthWholeSection>
       <Space height={'20vh'} />
@@ -57,12 +60,14 @@ function FifthSection() {
         </ScrollContainer>
       </OverflowContainer>
       <Space height={'25rem'} />
-      <Footer isBackgroundBlack={true} />
+      {isMobileScreen ? <MobileFooter /> : <Footer isBackgroundBlack={true} />}
     </FifthWholeSection>
   );
 }
 const FifthWholeSection = styled.section`
   background-color: black;
+  position: relative;
+  z-index: -2;
   text-align: center;
   font-family: 'PP-Editorial';
   font-size: 4rem;
