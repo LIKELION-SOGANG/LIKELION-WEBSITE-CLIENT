@@ -29,12 +29,31 @@ function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
       <TriangleLoop>
         <div className="track">
           <LoopText>
-            ✶ Now recruiting <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
-            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
-            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
-            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
-            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
-            <span>Likelion 12th</span> Member ✶
+            ✶ Now recruiting{' '}
+            <span>
+              Like<i>lion</i> 12th
+            </span>{' '}
+            Member ✶ Now recruiting{' '}
+            <span>
+              Like<i>lion</i> 12th
+            </span>
+            Member ✶ Now recruiting{' '}
+            <span>
+              Like<i>lion</i> 12th
+            </span>
+            Member ✶ Now recruiting{' '}
+            <span>
+              Like<i>lion</i> 12th
+            </span>
+            Member ✶ Now recruiting{' '}
+            <span>
+              Like<i>lion</i> 12th
+            </span>
+            Member ✶ Now recruiting{' '}
+            <span>
+              Like<i>lion</i> 12th
+            </span>
+            Member ✶
           </LoopText>
         </div>
       </TriangleLoop>
@@ -69,12 +88,20 @@ const Object2 = React.memo(styled.img`
   top: -10rem;
   right: 0;
   width: 40rem;
+  @media (max-width: 768px) {
+    width: 50%;
+    top: 35vh;
+  }
 `);
 const Object3 = React.memo(styled.img`
   position: absolute;
   top: calc(100vh - 30rem);
   left: 20rem;
   width: 30%;
+  @media (max-width: 768px) {
+    top: calc(100vh - 20rem);
+    left: 0;
+  }
 `);
 const LogoCaption = React.memo(styled.div`
   font-family: 'PP-Editorial';
@@ -141,6 +168,13 @@ const LoopText = styled.p`
   span {
     font-family: 'PP-Editorial';
     font-weight: 400;
+    text-transform: capitalize;
+  }
+  span i {
+    font-style: italic;
+  }
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
   }
 `;
 

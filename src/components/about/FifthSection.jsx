@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Space from '../../util/Space';
 import Curri from '../../assets/caption/curriculumn.png';
+import MobileCurri from '../../assets/caption/mobile-curriculmn.png';
 import css from '../../assets/icon/css.png';
 import git from '../../assets/icon/git.png';
 import github from '../../assets/icon/github.png';
@@ -28,14 +29,17 @@ function FifthSection() {
       </H2>
       <Space height={'3.8rem'} />
       <ImageBox>
-        <CurriculumImage src={Curri} alt="커리큘럼" />
+        <CurriculumImage
+          src={isMobileScreen ? MobileCurri : Curri}
+          alt="커리큘럼"
+        />
       </ImageBox>
-      <Space height={'20vh'} />
+      {isMobileScreen ? <Space height={'40rem'} /> : <Space height={'20vh'} />}
       <H1>Lion Sprint</H1>
       <Space height={'2.7rem'} />
       <H2>
-        매주 화요일, 금요일에 진행되는 정기 세션에서 다양한 기술 스택을 배우고
-        있습니다.
+        매주 화요일, 금요일에 진행되는 정기 세션에서 {isMobileScreen && <br />}{' '}
+        다양한 기술 스택을 배우고 있습니다.
       </H2>
       <Space height={'6.2rem'} />
       <H3>Front-end</H3>
@@ -88,6 +92,10 @@ const H2 = styled.div`
   font-family: Pretendard;
   font-size: 1.6rem;
   font-weight: 500;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
 `;
 
 const H3 = styled.div`
@@ -110,6 +118,9 @@ const ImageBox = styled.div`
 const CurriculumImage = styled.img`
   width: 50vw;
   display: block;
+  @media (max-width: 768px) {
+    width: calc(100% - 6rem);
+  }
 `;
 
 const OverflowContainer = styled.div`
@@ -140,7 +151,7 @@ const StackItem = styled.div`
 
 const StackImg = styled.img`
   display: block;
-  width: 95%;
+  width: 70%;
 `;
 
 export default FifthSection;
