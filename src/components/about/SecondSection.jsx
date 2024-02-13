@@ -35,7 +35,8 @@ function SecondSection() {
     <SeondWholeSection>
       <Space height={'40rem'} />
       <p data-aos="fade-up" data-aos-duration="600">
-        멋쟁이사자처럼 대학은 국내외 <span>121개 </span>대학이 참여하는{' '}
+        멋쟁이사자처럼 대학은 국내외 <span>121개 </span>대학이{' '}
+        {isMobileScreen && <br />} 참여하는{' '}
         <span>국내 최대 규모의 IT 창업 동아리</span>입니다.
       </p>
       <Space height={'50vh'} />
@@ -79,15 +80,17 @@ function SecondSection() {
 }
 
 const SeondWholeSection = styled.section`
-  background-color: white;
   transition: 1s;
   position: relative;
-  z-index: -2;
+  z-index: 0;
   .sticky {
     height: 150vh;
   }
   .final-sticky {
-    height: 200vh;
+    height: 120vh;
+    @media (max-width: 768px) {
+      height: 80vh;
+    }
   }
   section.change-text {
     position: sticky;
@@ -121,7 +124,8 @@ const SeondWholeSection = styled.section`
     transition: opacity 1s ease-in-out;
     @media (max-width: 768px) {
       word-break: keep-all;
-      width: calc(100% - 1rem);
+      line-height: 2.2rem;
+      width: calc(100% - 6rem);
       margin: 0 auto;
       font-size: 1.6rem;
     }

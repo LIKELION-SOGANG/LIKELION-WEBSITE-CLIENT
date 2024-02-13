@@ -36,7 +36,6 @@ function MobileHeader({
     }
     window.scrollTo({ top: 0 });
   }, [pathname]);
-  console.log(isVisibleHeaderLogo);
   const { isLoading, loadingProgress } = useLoading(4);
   const [isSpreadMenu, setIsSpreadMenu] = useState(false);
   return (
