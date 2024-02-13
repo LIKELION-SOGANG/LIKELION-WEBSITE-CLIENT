@@ -5,31 +5,40 @@ import Header from '../components/common/Header';
 import styled from 'styled-components';
 import backgroundBG from '../assets/icon/projectsBG.png';
 import Footer from '../components/common/Footer';
-import { instance } from '../api/axios';
+import { motion } from 'framer-motion';
 import useMediaQuery from '../hooks/useMediaQuery';
+import Mobile from '../components/projects/mobile';
 import MobileHeader from '../components/common/MobileHeader';
 import MobileFooter from '../components/common/MobileFooter';
 
 function Projects() {
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await instance.get('project/3');
-      console.log(res);
-    };
-    fetchData();
-  }, []);
   const isMobileScreen = useMediaQuery('(max-width: 768px)');
   return (
-    <ProjectsWrapper>
-      {isMobileScreen ? <MobileHeader /> : <Header />}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
+      {isMobileScreen ? (
+        <Mobile />
+      ) : (
+        <ProjectsWrapper>
+           {isMobileScreen ? <MobileHeader /> : <Header />}
+          <ContentWrapper>
+            <Title />
+            <Content />
+          </ContentWrapper>
+          <BackgroundImage src={backgroundBG} />
+           {isMobileScreen ? <MobileFooter /> : <Footer />}
+        </ProjectsWrapper>
+      )}
+    </motion.div>
 
-      <ContentWrapper>
-        <Title />
-        <Content />
-      </ContentWrapper>
-      <BackgroundImage src={backgroundBG} />
-      {isMobileScreen ? <MobileFooter /> : <Footer />}
-    </ProjectsWrapper>
+
+    
+
+     
   );
 }
 
@@ -56,7 +65,9 @@ const BackgroundImage = styled.img`
 
 const ContentWrapper = styled.div`
   position: relative;
+
   z-index: 2;
+
   height: auto;
 `;
 
