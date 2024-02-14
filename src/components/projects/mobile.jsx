@@ -87,6 +87,7 @@ function Mobile() {
           {selectedProjects.length === 0 ? (
             <ProjectInfoWrapper>
               <ProjectSoon>Coming soon</ProjectSoon>
+
             </ProjectInfoWrapper>
           ) : (
             selectedProjects.map((project) => (
@@ -207,6 +208,17 @@ const ProjectSoon = styled(ProjectTitle)`
   width: 100%;
   font-family: PP-Editorial;
   font-style: italic;
+`;
+const ComingSoon = styled.h1`
+  font-weight: 400;
+  font-size: 4rem;
+  width: 100%;
+  font-family: PP-Editorial;
+  font-style: italic;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0 1rem 0;
 `;
 const ProjectDetails = styled.div`
   color: #fff;
