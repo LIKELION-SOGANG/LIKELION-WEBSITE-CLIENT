@@ -6,7 +6,6 @@ import { useMousePosition } from './MouseContextProvider';
 
 const Cursor = () => {
   const { hoverNav, variants } = useMousePosition();
-
   return (
     <StyledCursor
       animate={hoverNav}
@@ -27,6 +26,9 @@ const StyledCursor = styled(motion.div)`
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: difference;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export default Cursor;
