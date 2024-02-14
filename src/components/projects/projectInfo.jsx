@@ -7,8 +7,6 @@ const ProjectInfo = ({ selectedProjects, generation }) => {
   const openModal = () => {
     setIsModalOpen(true);
   };
-  console.log(isModalOpen);
-
   return (
     selectedProjects && (
       <>

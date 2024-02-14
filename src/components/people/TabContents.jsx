@@ -19,9 +19,10 @@ const Member = styled.div`
 
 const Emoji = styled.img`
   width: 20rem;
-  height: auto;
+  height: 20rem;
   margin-bottom: 2rem;
   display: block;
+  object-fit: cover;
 `;
 
 const Name = styled.div`
@@ -78,7 +79,6 @@ const TabContents = ({ data }) => {
   const { adult_lion, baby_lion } = data;
 
   const slidesPerView = useSlidesPerView();
-
   return (
     <>
       <DividerWithText text="운영진" />

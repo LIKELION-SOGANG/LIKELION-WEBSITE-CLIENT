@@ -6,12 +6,14 @@ import backButton from '../assets/icon/ctrlz.png';
 import { useNavigate } from 'react-router-dom';
 import { useMousePosition } from '../util/MouseContextProvider';
 import { motion } from 'framer-motion';
+import useMediaQuery from '../hooks/useMediaQuery';
 function Credit() {
   const { textEnter, textLeave } = useMousePosition();
   const navigate = useNavigate();
   const clickNavigate = () => {
     navigate('/');
   };
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
 
   return (
     <CreditWrapper>
@@ -57,9 +59,10 @@ function Credit() {
         <Space height={'3rem'} />
         <p className="small">
           Likelion Sogang, a leading IT startup club at Sogang University,
-          empowers members to bring their ideas to life,
-          <br /> fostering innovation, and achieving notable success with the
-          motto, Lets actualize our ideas with our own hands!
+          empowers{isMobileScreen && <br />} members to bring their ideas to
+          life, {!isMobileScreen && <br />}
+          fostering innovation, and achieving notable {isMobileScreen && <br />}
+          success with the motto, Lets actualize our ideas with our own hands!
         </p>
         <Space height={'3rem'} />
         <p className="small">© Likelion Sogang. All Rights Reserved.</p>
@@ -80,6 +83,9 @@ const CreditWrapper = styled.div`
     font-size: 3rem;
     text-transform: capitalize;
     margin-bottom: 6.1rem;
+    @media (max-width: 768px) {
+      font-size: 2.4rem;
+    }
   }
   section {
     display: flex;
@@ -89,6 +95,9 @@ const CreditWrapper = styled.div`
   }
   label {
     font-size: 2rem;
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+    }
     text-align: right;
     width: 16rem;
   }
@@ -97,6 +106,10 @@ const CreditWrapper = styled.div`
     margin-bottom: 1rem;
     padding-right: 6rem;
     font-size: 2rem;
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+      padding-right: 12rem;
+    }
     font-weight: 400;
   }
 
@@ -112,17 +125,29 @@ const CreditWrapper = styled.div`
     justify-content: center;
   }
   .logo img {
+    display: block;
     width: 6rem;
+    margin-bottom: 1rem;
+    margin-right: 0.5rem;
+    @media (max-width: 768px) {
+      width: 3rem;
+      margin-bottom: 0.4rem;
+      margin-right: 0.5rem;
+    }
   }
   .logo p.logo {
     color: #fff;
     font-family: 'PP-Editorial';
     font-size: 4.8rem;
+    @media (max-width: 768px) {
+      font-size: 2.4rem;
+    }
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   }
-  .logo p.small {
+  p.small {
+    margin: 0 auto;
     color: #fff;
     text-align: center;
     font-family: 'PP-Editorial';
@@ -130,6 +155,9 @@ const CreditWrapper = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 1.5;
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
   .logo p span {
     font-style: italic;

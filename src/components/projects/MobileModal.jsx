@@ -1,42 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
-import Space from './../../util/Space';
 import CloseIcon from './../../assets/icon/ph_x-light.svg';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import Space from '../../util/Space';
 import linkIcon from './../../assets/icon/ion_link.svg';
 
-const ProjectDetail = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { projectList, generation, projectId } = location.state;
-
-  if (!projectList) {
-    console.error(` not found the project list.`);
-    return null;
-  }
-
+function MobileModal({ projectList, generation, projectId, setIsModalOpen }) {
   const selectedProject = projectList.find(
     (project) => project.id === projectId,
   );
-
-  if (!selectedProject) {
-    console.error(
-      `Project with id ${projectId} not found in the project list.`,
-    );
-    return null;
-  }
-
   const { title, year, team_name, member_list, project_image, content, url } =
     selectedProject;
+  let generationText;
+  switch (generation) {
+    case 1:
+      generationText = '11th';
+      break;
+    case 3:
+      generationText = '10th';
+      break;
+    case 4:
+      generationText = '9th';
+      break;
+    default:
+      generationText = '11th';
+  }
   return (
     <DetailWrapper>
-      <CloseButton onClick={() => navigate(-1)} />
+      <CloseButton
+        onClick={() => {
+          setIsModalOpen(false);
+        }}
+      />
       <ModalContent>
-        <Space height={'10.8rem'} />
+        <Space height={'1.1rem'} />
         <ProjectTitle>{`${title}`}</ProjectTitle>
         <Space height={'1.1rem'} />
-        <ProjectDetails>{`${generation} | ${year} `}</ProjectDetails>
+        <ProjectDetails>{`${generationText} | ${year} `}</ProjectDetails>
         <Space height={'1.2rem'} />
         <Team>
           Team {`${team_name} `}
@@ -46,7 +45,7 @@ const ProjectDetail = () => {
         <Space height={'3rem'} />
         <ProjectImage src={project_image} />
         <Space height={'3rem'} />
-        <Description>{`${content}`}</Description> <Space height={'15rem'} />
+        <Description>{`${content}`}</Description>
         {url && (
           <ProjectLink href={url} target="_blank" rel="noopener noreferrer">
             <img src={linkIcon} />
@@ -57,13 +56,15 @@ const ProjectDetail = () => {
       </ModalContent>
     </DetailWrapper>
   );
-};
-
+}
 const DetailWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999999;
+  height: 100vh;
+  padding: 3rem;
+  background-color: white;
 `;
 
 const ModalContent = styled.div`
@@ -98,7 +99,6 @@ const ProjectTitle = styled.h2`
   font-style: normal;
   line-height: normal;
   overflow-wrap: break-word;
-  max-width: 333px;
 `;
 
 const ProjectDetails = styled.div`
@@ -109,7 +109,6 @@ const ProjectDetails = styled.div`
   font-weight: 400;
   line-height: normal;
   margin-bottom: 1.2rem;
-  max-width: 333px;
 `;
 
 const ProjectImage = styled.img`
@@ -129,7 +128,6 @@ const Team = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  max-width: 333px;
 `;
 
 const Description = styled.div`
@@ -138,8 +136,9 @@ const Description = styled.div`
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 20px;
-  max-width: 333px;
+  line-height: 20px; /* 142.857% */
+  height: 12rem;
+  overflow-y: scroll;
 `;
 
 const ProjectLink = styled.a`
@@ -151,7 +150,6 @@ const ProjectLink = styled.a`
   background-color: #fff;
   color: #000;
   border: 2px solid rgba(0, 0, 0, 0.25);
-
   border-radius: 10px;
   text-decoration: none;
   font-family: Figtree;
@@ -159,8 +157,8 @@ const ProjectLink = styled.a`
   font-style: normal;
   font-weight: 500;
   line-height: 30px; /* 150% */
-
   cursor: pointer;
+  position: fixed;
+  bottom: 0rem;
 `;
-
-export default ProjectDetail;
+export default MobileModal;

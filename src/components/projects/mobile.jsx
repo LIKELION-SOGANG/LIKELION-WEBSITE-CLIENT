@@ -6,11 +6,13 @@ import backgroundBG from './../../assets/icon/Cone_01 3.png';
 import { useNavigate } from 'react-router-dom';
 import MobileHeader from '../common/MobileHeader';
 import MobileFooter from '../common/MobileFooter';
+import MobileModal from './MobileModal';
 function Mobile() {
   const tabs = ['11th', '10th', '9th', '8th', '7th', '6th'];
   const [selectedTab, setSelectedTab] = useState('11th');
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [projectId, setProjectId] = useState(3);
+  console.log(selectedProjects);
   const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +31,6 @@ function Mobile() {
           default:
             generationId = 3;
         }
-
         const data = await projectList(generationId);
         setSelectedProjects(data);
         setProjectId(generationId);
@@ -44,15 +45,17 @@ function Mobile() {
     setSelectedTab(tab);
   };
   const handleProjectClick = (projectId) => {
-    navigate(`/projects/projectDetail/${projectId}`, {
-      state: {
-        projectList: selectedProjects,
-        generation: selectedTab,
-        projectId: projectId,
-      },
-    });
+    // navigate(`/projects/projectDetail/${projectId}`, {
+    //   state: {
+    //     projectList: selectedProjects,
+    //     generation: selectedTab,
+    //     projectId: projectId,
+    //   },
+    // });
+    setIsModalOpen(true);
+    setProjectId(projectId);
   };
-  //console.log(selectedProjects, selectedTab);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <MobileWrapper>
@@ -73,11 +76,18 @@ function Mobile() {
           ))}
         </TabContainer>
         <Line />
+        {isModalOpen && (
+          <MobileModal
+            setIsModalOpen={setIsModalOpen}
+            projectList={selectedProjects}
+            projectId={projectId}
+          />
+        )}
         <ProjectContainer>
           {selectedProjects.length === 0 ? (
             <ProjectInfoWrapper>
-              <ComingSoon>Coming Soon!</ComingSoon>
-              <ProjectSoon>곧 아카이빙 될 예정입니다.</ProjectSoon>
+              <ProjectSoon>Coming soon</ProjectSoon>
+
             </ProjectInfoWrapper>
           ) : (
             selectedProjects.map((project) => (
@@ -194,12 +204,10 @@ const ProjectTitle = styled.h2`
   max-width: 30rem;
 `;
 const ProjectSoon = styled(ProjectTitle)`
-  font-weight: 400;
-  font-size: 1.6rem;
+  font-weight: 200;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  margin: auto;
+  font-family: PP-Editorial;
+  font-style: italic;
 `;
 const ComingSoon = styled.h1`
   font-weight: 400;
