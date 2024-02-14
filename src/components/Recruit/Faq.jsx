@@ -211,10 +211,10 @@ const Answer = styled.div`
   overflow: hidden;
 
   &.open {
-    animation: ${dropDown} 1.5s ease;
+    animation: ${dropDown} 1.5s ease forwards;
   }
   &.close {
-    animation: ${dropUp} 0.5s ease;
+    animation: ${dropUp} 0.4s ease;
   }
 `;
 
