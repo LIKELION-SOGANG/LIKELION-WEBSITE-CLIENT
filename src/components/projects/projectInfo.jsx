@@ -12,14 +12,14 @@ const ProjectInfo = ({ selectedProjects, generation }) => {
   return (
     selectedProjects && (
       <>
-        {isModalOpen && (
-          <ProjectModal
-            setIsModalOpen={setIsModalOpen}
-            project={selectedProjects}
-            generation={generation}
-          />
-        )}
-        <ProjectInfoWrapper onClick={openModal}>
+        <ProjectInfoWrapper>
+          {isModalOpen && (
+            <ProjectModal
+              setIsModalOpen={setIsModalOpen}
+              project={selectedProjects}
+              generation={generation}
+            />
+          )}
           <ProjectTitle>{selectedProjects.title}</ProjectTitle>
           <Space height={'8px'} />
           <ProjectDetails>
@@ -29,6 +29,7 @@ const ProjectInfo = ({ selectedProjects, generation }) => {
           </ProjectDetails>
           <Space height={'17px'} />
           <ProjectImage
+            onClick={openModal}
             src={selectedProjects.project_image}
             alt={selectedProjects.title}
           />

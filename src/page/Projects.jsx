@@ -37,7 +37,7 @@ function Projects() {
 const ProjectsWrapper = styled.div`
   background-color: black;
   display: flex;
-  min-height: 100vh;
+  min-height: 230vh;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;

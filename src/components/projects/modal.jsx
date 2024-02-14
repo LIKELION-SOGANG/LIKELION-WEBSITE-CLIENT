@@ -150,17 +150,13 @@ const Description = styled.div`
 `;
 
 const LinkWrapper = styled.div`
-  position: absolute;
   width: 100%;
   height: 5.3rem;
-  bottom: 0rem;
-  left: 0;
 `;
 
 const LinkIcon = styled.img``;
 const ProjectLink = styled.div`
   display: flex;
-  width: calc(100% - 4rem);
   margin: 0 auto;
   align-items: center;
   justify-content: center;
