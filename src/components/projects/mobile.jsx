@@ -76,6 +76,7 @@ function Mobile() {
         <ProjectContainer>
           {selectedProjects.length === 0 ? (
             <ProjectInfoWrapper>
+              <ComingSoon>Coming Soon!</ComingSoon>
               <ProjectSoon>곧 아카이빙 될 예정입니다.</ProjectSoon>
             </ProjectInfoWrapper>
           ) : (
@@ -194,7 +195,22 @@ const ProjectTitle = styled.h2`
 `;
 const ProjectSoon = styled(ProjectTitle)`
   font-weight: 400;
+  font-size: 1.6rem;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+`;
+const ComingSoon = styled.h1`
+  font-weight: 400;
+  font-size: 4rem;
+  width: 100%;
+  font-family: PP-Editorial;
+  font-style: italic;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0 1rem 0;
 `;
 const ProjectDetails = styled.div`
   color: #fff;
