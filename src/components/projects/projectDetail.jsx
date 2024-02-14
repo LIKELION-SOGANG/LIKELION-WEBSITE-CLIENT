@@ -5,6 +5,7 @@ import CloseIcon from './../../assets/icon/ph_x-light.svg';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import linkIcon from './../../assets/icon/ion_link.svg';
+import { formattedMessage } from '../../util/formattedMessage';
 
 const ProjectDetail = () => {
   const navigate = useNavigate();
@@ -46,7 +47,8 @@ const ProjectDetail = () => {
         <Space height={'3rem'} />
         <ProjectImage src={project_image} />
         <Space height={'3rem'} />
-        <Description>{`${content}`}</Description> <Space height={'15rem'} />
+        <Description>{`${formattedMessage(content)}`}</Description>{' '}
+        <Space height={'15rem'} />
         {url && (
           <ProjectLink href={url} target="_blank" rel="noopener noreferrer">
             <img src={linkIcon} />
