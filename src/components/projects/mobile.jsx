@@ -86,7 +86,7 @@ function Mobile() {
         <ProjectContainer>
           {selectedProjects.length === 0 ? (
             <ProjectInfoWrapper>
-              <ProjectSoon>곧 아카이빙 될 예정입니다.</ProjectSoon>
+              <ProjectSoon>Coming soon</ProjectSoon>
             </ProjectInfoWrapper>
           ) : (
             selectedProjects.map((project) => (
@@ -203,8 +203,10 @@ const ProjectTitle = styled.h2`
   max-width: 30rem;
 `;
 const ProjectSoon = styled(ProjectTitle)`
-  font-weight: 400;
+  font-weight: 200;
   width: 100%;
+  font-family: PP-Editorial;
+  font-style: italic;
 `;
 const ProjectDetails = styled.div`
   color: #fff;
