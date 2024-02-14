@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Space from './../../util/Space';
 import CloseIcon from './../../assets/icon/ph_x-light.svg';
 import linkIcon from '../../assets/icon/link.svg';
+import { formattedMessage } from '../../util/formattedMessage';
 const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
   const { title, year, team_name, member_list, project_image, content, url } =
     project;
@@ -27,7 +28,7 @@ const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
           <Space height={'3rem'} />
           <ProjectImage $url={project_image} />
           <Space height={'3rem'} />
-          <Description>{content}</Description>
+          <Description>{formattedMessage(content)}</Description>
           <Space height={'1rem'} />
         </ModalContent>
         {url && (

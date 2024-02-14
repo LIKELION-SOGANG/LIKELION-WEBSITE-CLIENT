@@ -22,7 +22,7 @@ const Emoji = styled.img`
   height: 20rem;
   margin-bottom: 2rem;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 const Name = styled.div`
@@ -73,6 +73,11 @@ const NoData = styled.div`
   }
 `;
 
+const EasterEgg = styled.div`
+  margin-top: 0.4rem;
+  font-weight: 600;
+`;
+
 const TabContents = ({ data }) => {
   if (!data) return null;
 
@@ -106,6 +111,13 @@ const TabContents = ({ data }) => {
               <Info>
                 {member.generation_id}th / {member.part}
               </Info>
+              {member.name === '정인영' ? (
+                <EasterEgg>대표</EasterEgg>
+              ) : member.name === '임정연' ? (
+                <EasterEgg>부대표</EasterEgg>
+              ) : (
+                ''
+              )}
             </Member>
           </SwiperSlide>
         ))}
