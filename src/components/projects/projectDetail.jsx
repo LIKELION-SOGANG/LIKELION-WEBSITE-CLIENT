@@ -98,6 +98,7 @@ const ProjectTitle = styled.h2`
   font-style: normal;
   line-height: normal;
   overflow-wrap: break-word;
+  max-width: 333px;
 `;
 
 const ProjectDetails = styled.div`
@@ -108,6 +109,7 @@ const ProjectDetails = styled.div`
   font-weight: 400;
   line-height: normal;
   margin-bottom: 1.2rem;
+  max-width: 333px;
 `;
 
 const ProjectImage = styled.img`
@@ -127,6 +129,7 @@ const Team = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  max-width: 333px;
 `;
 
 const Description = styled.div`
@@ -135,7 +138,8 @@ const Description = styled.div`
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 20px; /* 142.857% */
+  line-height: 20px;
+  max-width: 333px;
 `;
 
 const ProjectLink = styled.a`
