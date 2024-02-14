@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import styled, { css, keyframes } from 'styled-components';
 import {
   faChevronUp,
   faChevronDown,
@@ -57,30 +57,63 @@ const Faq = () => {
   const navigate = useNavigate();
   const { textEnter, textLeave } = useMousePosition();
 
+  const [state, setState] = useState([
+    'close',
+    'close',
+    'close',
+    'close',
+    'close',
+    'close',
+    'close',
+    'close',
+  ]);
+
   const handleToggle = (index) => {
     const isOpened = openIndex.includes(index);
-    setOpenIndex(
-      isOpened
-        ? openIndex.filter((currentIndex) => currentIndex !== index)
-        : [...openIndex, index],
-    );
+
+    if (isOpened) {
+      setOpenIndex(openIndex.filter((currentIndex) => currentIndex !== index));
+      let copyState = [...state];
+      copyState[index] = 'close';
+      setState(copyState);
+    } else {
+      setOpenIndex([...openIndex, index]);
+      let copyState = [...state];
+      copyState[index] = 'open';
+      setState(copyState);
+    }
   };
   return (
     <FaqContainer>
       <Topic>FAQ</Topic>
       {faqData.map((item, index) => (
-        <Item key={item.title}>
+        <Item
+          key={item.title}
+          className={openIndex.includes(index) ? 'expanded' : ''}
+          isOpen={openIndex.includes(index)}
+        >
           <Question onClick={() => handleToggle(index)}>
             {item.title}
-            <motion.div onMouseEnter={textEnter} onMouseLeave={textLeave}>
+            <motion.div
+              onMouseEnter={textEnter}
+              onMouseLeave={textLeave}
+              animate={{ rotate: openIndex.includes(index) ? 180 : 0 }}
+              transition={{ duration: 0.5 }}
+              style={{
+                display: 'inline-flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                transformOrigin: 'center',
+              }}
+            >
               <FontAwesomeIcon
-                icon={openIndex.includes(index) ? faChevronUp : faChevronDown}
-                style={{ cursor: 'pointer', marginLeft: '2rem' }}
+                icon={faChevronDown}
+                style={{ cursor: 'pointer' }}
               />
             </motion.div>
           </Question>
-          {openIndex.includes(index) && (
-            <Answer>
+          <Answer className={state[index]}>
+            <ItemContainer>
               {item.content.includes('홈페이지') ? (
                 <>
                   {item.content.replace('About 탭을 참고해 주세요.', '')}
@@ -97,13 +130,31 @@ const Faq = () => {
               ) : (
                 item.content
               )}
-            </Answer>
-          )}
+            </ItemContainer>
+          </Answer>
         </Item>
       ))}
     </FaqContainer>
   );
 };
+const dropDown = keyframes`
+0% {
+    max-height: 0;
+}
+100% {
+    max-height: 300px;
+}
+
+`;
+const dropUp = keyframes`
+0% {
+    max-height: 300px;
+}
+100% {
+    max-height: 0;
+}
+
+`;
 
 const FaqContainer = styled.div`
   max-width: 97rem;
@@ -123,18 +174,21 @@ const Topic = styled.div`
   line-height: normal;
   text-transform: capitalize;
 `;
+
 const Item = styled.div`
   width: 100%;
-  height: 100%;
   margin-top: 3.9rem;
   padding: 1.7rem 2.1rem;
   border-radius: 1rem;
+  background: #f4f4f4;
   bottom: 0;
-  //   align-items: flex-start;
   gap: 1rem;
   flex: 1 0 0;
   align-self: stretch;
-  background: #f4f4f4;
+  // position: relative;
+  // z-index: 100;
+  // margin-bottom: 10rem;
+  height: max-content;
 `;
 
 const TextBase = styled.div`
@@ -152,23 +206,36 @@ const Question = styled(TextBase)`
   justify-content: space-between;
   align-items: center;
 `;
-const Answer = styled(TextBase)`
-  margin-top: 1.4rem;
+const Answer = styled.div`
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+
+  &.open {
+    animation: ${dropDown} 1.5s ease;
+  }
+  &.close {
+    animation: ${dropUp} 0.5s ease;
+  }
+`;
+
+const ItemContainer = styled(TextBase)`
+  // width: 100%;
+  // padding: 1.7rem 2.1rem;
+  // border-radius: 1rem;
+  // background: #f4f4f4;
   font-size: 1.6rem;
   font-weight: 400;
-  // line-height: 200%;
   line-height: 2.3rem;
-  a {
-    color: #b7b7b7;
-    text-decoration: underline;
-    // display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
+  margin-top: 1.4rem;
 `;
 
 const Move = styled(motion.a)`
   display: inline-flex;
+  color: #b7b7b7;
+  text-decoration: underline;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default Faq;

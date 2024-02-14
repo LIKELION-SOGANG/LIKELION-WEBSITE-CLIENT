@@ -99,7 +99,6 @@ const Form = () => {
         ]}
         onChange={handleFieldChange}
       />
-
       <div>
         <Button onClick={handleSubmit}>
           <ButtonText>입력한 이메일로 고유 번호 전송</ButtonText>
