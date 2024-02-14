@@ -11,6 +11,9 @@ import { instance } from './api/axios';
 import useLoading from './hooks/useLoading';
 function App() {
   const { isLoading, loadingProgress } = useLoading();
+  useEffect(() => {
+    instance.post('visit/');
+  }, []);
   return (
     <MouseContextProvider>
       <BrowserRouter>

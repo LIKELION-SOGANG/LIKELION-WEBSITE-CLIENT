@@ -27,12 +27,8 @@ const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
           <Space height={'3rem'} />
           <ProjectImage $url={project_image} />
           <Space height={'3rem'} />
-          <Description>
-            {`${content}` +
-              '설명이 길때는 이렇게 해보아요 라라라라ㅏ 설명이 길때는 이렇게 해보아요 라라라라ㅏ설명이 길때는 이렇게 해보아요 라라라라ㅏ설명이 길때는 이렇게 해보아요 라라라라ㅏ' +
-              '설명이 길때는 이렇게 해보아요 라라라라ㅏ 설명이 길때는 이렇게 해보아요 라라라라ㅏ설명이 길때는 이렇게 해보아요 라라라라ㅏ설명이 길때는 이렇게 해보아요 라라라라ㅏ'}
-          </Description>
-          <Space height={'3rem'} />
+          <Description>{content}</Description>
+          <Space height={'1rem'} />
         </ModalContent>
         {url && (
           <LinkWrapper>
@@ -147,6 +143,8 @@ const Description = styled.div`
   font-weight: 500;
   line-height: 150%;
   text-align: left;
+  height: 12rem;
+  overflow: scroll;
 `;
 
 const LinkWrapper = styled.div`
