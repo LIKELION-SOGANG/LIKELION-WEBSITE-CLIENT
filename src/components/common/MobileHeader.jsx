@@ -265,6 +265,7 @@ const MenuItem = styled(motion.div)`
   display: inline-block;
   color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
   font-family: 'PP-Editorial';
+  
   font-weight: ${(props) => (props.$isActive ? 400 : 300)};
   border-bottom: ${(props) =>
     !props.$isActive
