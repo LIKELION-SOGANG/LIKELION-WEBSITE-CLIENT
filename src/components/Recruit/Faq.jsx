@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import {
   faChevronUp,
   faChevronDown,
@@ -70,7 +70,6 @@ const Faq = () => {
 
   const handleToggle = (index) => {
     const isOpened = openIndex.includes(index);
-
     if (isOpened) {
       setOpenIndex(openIndex.filter((currentIndex) => currentIndex !== index));
       let copyState = [...state];
@@ -201,7 +200,7 @@ const TextBase = styled.div`
 
 const Question = styled(TextBase)`
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -212,10 +211,10 @@ const Answer = styled.div`
   overflow: hidden;
 
   &.open {
-    animation: ${dropDown} 1.5s ease;
+    animation: ${dropDown} 1.5s ease forwards;
   }
   &.close {
-    animation: ${dropUp} 0.5s ease;
+    animation: ${dropUp} 0.4s ease;
   }
 `;
 
