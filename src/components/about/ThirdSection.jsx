@@ -140,7 +140,7 @@ function ThirdSection() {
           </ul>
         </section>
       )}
-      <Space height={'40vh'} />
+      <Space height={'60vh'} />
     </ThirdWholeSection>
   );
 }

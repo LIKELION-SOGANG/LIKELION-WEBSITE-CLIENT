@@ -6,37 +6,37 @@ const ProjectInfo = ({ selectedProjects, generation }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
   };
-  const closeModal = () => {
-    setIsModalOpen(false);
-    console.log('close');
-    document.body.style.overflow = 'auto';
-  };
+  console.log(isModalOpen);
 
-  return selectedProjects ? (
-    <ProjectInfoWrapper onClick={openModal}>
-      {isModalOpen ? (
-        <ProjectModal
-          project={selectedProjects}
-          closeModal={closeModal}
-          generation={generation}
-        />
-      ) : null}
-      <ProjectTitle>{selectedProjects.title}</ProjectTitle>
-      <Space height={'8px'} />
-      <ProjectDetails>
-        <div>
-          {`${generation}`} | {`${selectedProjects.year}`}
-        </div>
-      </ProjectDetails>
-      <Space height={'17px'} />
-      <ProjectImage
-        src={selectedProjects.project_image}
-        alt={selectedProjects.title}
-      />
-    </ProjectInfoWrapper>
-  ) : null;
+  return (
+    selectedProjects && (
+      <>
+        <ProjectInfoWrapper>
+          {isModalOpen && (
+            <ProjectModal
+              setIsModalOpen={setIsModalOpen}
+              project={selectedProjects}
+              generation={generation}
+            />
+          )}
+          <ProjectTitle>{selectedProjects.title}</ProjectTitle>
+          <Space height={'8px'} />
+          <ProjectDetails>
+            <div>
+              {`${generation}`} | {`${selectedProjects.year}`}
+            </div>
+          </ProjectDetails>
+          <Space height={'17px'} />
+          <ProjectImage
+            onClick={openModal}
+            src={selectedProjects.project_image}
+            alt={selectedProjects.title}
+          />
+        </ProjectInfoWrapper>
+      </>
+    )
+  );
 };
 const ProjectInfoWrapper = styled.div`
   width: 360px;

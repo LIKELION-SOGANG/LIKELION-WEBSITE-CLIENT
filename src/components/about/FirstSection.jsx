@@ -167,7 +167,7 @@ const LogoCaption = React.memo(styled.div`
   white-space: nowrap;
   color: #fff;
   leading-trim: both;
-  font-size: calc(25vw - ${(props) => props.$process} * (2vw - 2rem) / 100);
+  font-size: calc(25vw - ${(props) => props.$process} * (25vw - 2rem) / 100);
   visibility: ${(props) => (props.$isVisibleHeaderLogo ? 'hidden' : 'visible')};
   transform: translateY(
       calc(100vh - 58rem - ${(props) => props.$process} * (100vh - 60rem) / 100)
@@ -182,7 +182,7 @@ const LogoCaption = React.memo(styled.div`
   }
   @media (max-width: 768px) {
     transform: translateY(
-        calc(30vh - ${(props) => props.$process} * (50vh - 2rem) / 100)
+        calc(30vh - ${(props) => props.$process} * (30vh - 2rem) / 100)
       )
       translateX(2.5rem);
   }

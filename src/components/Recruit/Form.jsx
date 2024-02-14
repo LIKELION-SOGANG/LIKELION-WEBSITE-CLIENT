@@ -22,44 +22,50 @@ const Form = () => {
     setCurrentStep,
   } = useStore();
 
-  const Form = () => {
-    const [name, setName] = useState('');
-    const [studentId, setStudentId] = useState('');
-    const [email, setEmail] = useState('');
-    const [field, setField] = useState('');
-    const handleNameChange = (event) => {
-      setName(event.target.value);
-    };
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
 
-    const handleStudentIdChange = (event) => {
-      setStudentId(event.target.value);
-    };
+  const handleStudentIdChange = (event) => {
+    setStudentId(event.target.value);
+  };
 
-    const handleEmailChange = (event) => {
-      setEmail(event.target.value);
-    };
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
 
-    const handleFieldChange = (event) => {
-      setField(event.target.value);
-    };
+  const handleFieldChange = (event) => {
+    setField(event.target.value);
+  };
 
-    const handleSubmit = () => {
-      instance
-        .post(`application/`, {
-          name: name,
-          student_number: student_number,
-          email: email,
-          field: field,
-        })
-        .then((response) => {
-          setPassword(response.data.apply_id);
-          console.log('지원서 생성 성공! ', response.data);
+  const handleSubmit = () => {
+    instance
+      .post(`application/`, {
+        name: name,
+        student_number: student_number,
+        email: email,
+        field: field,
+      })
+      .then((response) => {
+        setPassword(response.data.apply_id);
+        console.log('지원서 생성 성공! ', response.data);
+        setCurrentStep(currentStep + 1);
+      })
+      .catch((error) => {
+        console.log('지원서 생성 실패 !', error);
+        const errorMessage =
+          error.response && error.response.data
+            ? error.response.data.message
+            : '';
+        if (errorMessage === 'Duplicate application exists.') {
+          alert('이미 가입된 이메일입니다!');
           setCurrentStep(currentStep + 1);
         } else {
           alert('지원서 생성 중 오류가 발생했습니다. 다시 시도해주세요.');
         }
       });
   };
+
   return (
     <motion.div onMouseEnter={textLeave}>
       <InputField
@@ -94,49 +100,13 @@ const Form = () => {
         onChange={handleFieldChange}
       />
 
-    return (
       <div>
-        <InputField
-          label="이름"
-          type="text"
-          placeholder="지원자 이름을 입력해주세요."
-          onChange={handleNameChange}
-        />
-        <InputField
-          label="학번"
-          type="text"
-          placeholder="서강대학교 학번을 입력해주세요. ex) 20220001"
-          onChange={handleStudentIdChange}
-        />
-        <InputField
-          label="이메일"
-          type="email"
-          placeholder="이메일 주소를 입력해주세요."
-          onChange={handleEmailChange}
-        />
-        <InputField
-          label="지원분야"
-          type="select"
-          options={[
-            {
-              label: '지원 분야를 선택해주세요.',
-              value: '',
-            },
-            { label: 'Front-End', value: 'FRONTEND' },
-            { label: 'Back-End', value: 'BACEKEND' },
-          ]}
-          onChange={handleFieldChange}
-        />
-
-        <div>
-          <Button onClick={handleSubmit}>
-            <ButtonText>입력한 이메일로 고유 번호 전송</ButtonText>
-          </Button>
-        </div>
+        <Button onClick={handleSubmit}>
+          <ButtonText>입력한 이메일로 고유 번호 전송</ButtonText>
+        </Button>
       </div>
     </motion.div>
   );
-
 };
 
 const Button = styled.button`
