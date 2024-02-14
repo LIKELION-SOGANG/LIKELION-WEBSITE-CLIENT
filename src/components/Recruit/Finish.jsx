@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../../assets/icon/mark.png';
+import logo from '../../assets/icon/likelion-grey.svg';
 import useStore from './Store';
 import { useNavigate } from 'react-router-dom';
 const Finish = () => {
