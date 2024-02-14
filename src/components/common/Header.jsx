@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useMousePosition } from '../../util/MouseContextProvider';
@@ -30,6 +30,7 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
   const [selectedTab, setSelectedTab] = useState('11th');
   const [selectedProjects, setSelectedProjects] = useState([]);
   const { isLoading, loadingProgress } = useLoading(4);
+  const navigate = useNavigate();
   return (
     <HeaderWrapper $isBackGroundBlack={isBackGroundBlack}>
       <AnimatePresence>
@@ -41,6 +42,7 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
           $isVisibleHeaderLogo={isVisibleHeaderLogo}
           onClick={() => {
             window.scrollTo({ top: 0 });
+            navigate('/');
           }}
         >
           Like<span>lion</span> So<span>gang</span>
