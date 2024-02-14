@@ -40,9 +40,13 @@ function FirstSection({
         </MobilePossibleCaption>
       ) : (
         <PossibiltyCaption
-          src={caption}
+          $isBackGroundBlack={isBackGroundBlack}
           $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
-        />
+        >
+          <Possibility>Possibility</Possibility>
+          <To>To</To>
+          <Reality>Reality</Reality>
+        </PossibiltyCaption>
       )}
 
       <TriangleLoop $isBackGroundBlack={isBackGroundBlack}>
@@ -96,7 +100,6 @@ const Possibility = styled.div`
   text-edge: cap;
   font-size: 3.2rem;
   font-style: italic;
-  font-weight: 200;
   line-height: normal;
   text-transform: capitalize;
 `;
@@ -116,7 +119,6 @@ const Reality = styled.div`
   top: 3.9rem;
   left: 5.7rem;
   font-style: italic;
-  font-weight: 200;
 `;
 
 const FirstSectionWrapper = React.memo(styled.div`
@@ -167,7 +169,7 @@ const LogoCaption = React.memo(styled.div`
   white-space: nowrap;
   color: #fff;
   leading-trim: both;
-  font-size: calc(25vw - ${(props) => props.$process} * (25vw - 2rem) / 100);
+  font-size: calc(28vw - ${(props) => props.$process} * (28vw - 2rem) / 100);
   visibility: ${(props) => (props.$isVisibleHeaderLogo ? 'hidden' : 'visible')};
   transform: translateY(
       calc(100vh - 58rem - ${(props) => props.$process} * (100vh - 60rem) / 100)
@@ -188,12 +190,21 @@ const LogoCaption = React.memo(styled.div`
   }
 `);
 
-const PossibiltyCaption = React.memo(styled.img`
+const PossibiltyCaption = React.memo(styled.div`
   position: absolute;
-  top: calc(100vh - 8rem + 3rem * ${(props) => props?.$process} / 100);
+  top: calc(100vh - 10rem + 3rem * ${(props) => props?.$process} / 100);
   right: calc(10rem + (100vw - 50rem) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1.5 / 100);
   -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  font-weight: ${(props) => (!props.$isBackGroundBlack ? '400' : '200')};
+  // position: absolute;
+  // right: 4rem;
+  font-family: 'PP-Editorial';
+  color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
+  // top: calc(100vh - 22rem + 10rem * ${(props) => props?.$process} / 100);
+  // right: calc(4rem + (22vw) * ${(props) => props?.$process} / 100);
+  // scale: calc(1 + ${(props) => props.$process} * 1 / 100);
+  // -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
 `);
 const textLoop = keyframes`
 from { transform: translateX(0); }
@@ -202,6 +213,10 @@ to { transform: translateX(-50%); }
 const TriangleLoop = styled.div`
   width: 200%;
   height: 25.2rem;
+  @media (max-width: 768px) {
+    height: 2.3rem;
+    bottom: 20rem;
+  }
   position: absolute;
   background-color: ${(props) =>
     props.$isBackGroundBlack ? 'white' : 'black'};

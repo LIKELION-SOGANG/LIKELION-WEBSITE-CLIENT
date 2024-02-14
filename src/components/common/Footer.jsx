@@ -11,8 +11,6 @@ function Footer({ isBackgroundBlack = true }) {
   useEffect(() => {
     const fetchData = async () => {
       const res = await instance.get('visit/');
-      const res2 = await instance.get('people/1');
-      console.log(res2);
       setVisitNum(res?.data?.data);
     };
     fetchData();
