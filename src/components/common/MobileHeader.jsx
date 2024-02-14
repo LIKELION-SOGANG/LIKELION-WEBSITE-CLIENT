@@ -73,7 +73,12 @@ function MobileHeader({
         $isSpreadMenu={isSpreadMenu}
         $isBackGroundBlack={isBackGroundBlack}
       >
-        <LogoCaption $isBackGroundBlack={isBackGroundBlack}>
+        <LogoCaption
+          $isBackGroundBlack={isBackGroundBlack}
+          onClick={() => {
+            navigate('/about');
+          }}
+        >
           Like<span>lion</span> So<span>gang</span>
         </LogoCaption>
         <Space height={'10rem'} />
@@ -126,7 +131,7 @@ function MobileHeader({
 const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
-  z-index: 9;
+  z-index: 999;
   transition: 1s;
   background-color: ${(props) =>
     !props.$isVisibleHeaderLogo
@@ -170,7 +175,7 @@ const LogoCaption = styled.div`
 const ToggleMenu = styled.div`
   display: block;
   position: relative;
-  z-index: 9998;
+  z-index: 999999;
   width: 2rem;
   height: 2rem;
 `;
@@ -265,7 +270,7 @@ const MenuItem = styled(motion.div)`
   display: inline-block;
   color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
   font-family: 'PP-Editorial';
-  
+
   font-weight: ${(props) => (props.$isActive ? 400 : 300)};
   border-bottom: ${(props) =>
     !props.$isActive
