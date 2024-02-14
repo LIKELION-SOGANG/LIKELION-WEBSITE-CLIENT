@@ -58,6 +58,7 @@ const Body = styled.div`
   justify-content: space-between;
   gap: 2.8rem;
   position: relative;
+  // background: yellow;
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -65,9 +66,9 @@ const Body = styled.div`
 
 const Item = styled.div`
   // max-width: 42.9rem;
-  width: 100%;
+  // width: 100%;
   font-size: 1.6rem;
-  height: 10rem;
+  // height: 10rem;
   margin-top: 3.9rem;
   padding: 1.7rem;
   border-radius: 1rem;
