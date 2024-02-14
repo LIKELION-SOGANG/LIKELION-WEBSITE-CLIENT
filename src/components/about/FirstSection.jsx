@@ -3,10 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import object1 from '../../assets/icon/object-1.png';
 import object2 from '../../assets/icon/object-2.png';
 import object3 from '../../assets/icon/object-3.png';
-import caption1 from '../../assets/caption/about-caption.svg';
-import Space from '../../util/Space';
-import useLoading from '../../hooks/useLoading';
-import caption from '../../assets/caption/caption-possible.svg';
 import useMediaQuery from '../../hooks/useMediaQuery';
 
 function FirstSection({
@@ -197,14 +193,8 @@ const PossibiltyCaption = React.memo(styled.div`
   scale: calc(1 + ${(props) => props.$process} * 1.5 / 100);
   -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
   font-weight: ${(props) => (!props.$isBackGroundBlack ? '400' : '200')};
-  // position: absolute;
-  // right: 4rem;
   font-family: 'PP-Editorial';
   color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
-  // top: calc(100vh - 22rem + 10rem * ${(props) => props?.$process} / 100);
-  // right: calc(4rem + (22vw) * ${(props) => props?.$process} / 100);
-  // scale: calc(1 + ${(props) => props.$process} * 1 / 100);
-  // -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
 `);
 const textLoop = keyframes`
 from { transform: translateX(0); }
@@ -233,8 +223,6 @@ const TriangleLoop = styled.div`
     animation: ${textLoop} 40s linear infinite;
   }
 `;
-
-const FirstText = styled.div``;
 
 const LoopText = styled.p`
   leading-trim: both;
