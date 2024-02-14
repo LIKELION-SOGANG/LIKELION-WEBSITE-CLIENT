@@ -76,7 +76,7 @@ function MobileHeader({
         <LogoCaption
           $isBackGroundBlack={isBackGroundBlack}
           onClick={() => {
-            navigate('/about');
+            navigate('/');
           }}
         >
           Like<span>lion</span> So<span>gang</span>
