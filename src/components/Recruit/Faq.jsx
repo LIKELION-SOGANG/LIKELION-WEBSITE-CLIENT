@@ -211,7 +211,7 @@ const Answer = styled.div`
   overflow: hidden;
 
   &.open {
-    animation: ${dropDown} 1.5s ease forwards;
+    animation: ${dropDown} 1.5s ease;
   }
   &.close {
     animation: ${dropUp} 0.5s ease;
