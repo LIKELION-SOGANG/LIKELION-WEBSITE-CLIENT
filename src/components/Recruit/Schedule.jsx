@@ -17,13 +17,13 @@ const Schedule = () => {
     {
       title: 'Front-End',
       content: '사용자와 상호작용하는 인터페이스를 시각화하여 구현합니다.',
-      more: '자세한 커리큘럼 보러가기',
+      more: '기술 스택 보러가기',
       link: 'https://www.naver.com/',
     },
     {
       title: 'Back-End',
       content: '데이터 처리, 비즈니스 로직, 서버 관리 등을 담당합니다.',
-      more: '자세한 커리큘럼 보러가기',
+      more: '기술 스택 보러가기',
       link: 'https://www.google.com',
     },
   ];
@@ -83,7 +83,7 @@ const Date = styled(TextBase)`
   font-size: 1.2rem;
   font-weight: 500;
   @media (max-width: 768px) {
-    white-space: nowrap;
+    white-space: normal;
   }
 `;
 
@@ -92,6 +92,9 @@ const MoreInfo = styled.div`
   a {
     display: flex;
     flex-direction: row;
+  }
+  @media (max-width: 768px) {
+    display: inline-flex;
   }
 `;
 

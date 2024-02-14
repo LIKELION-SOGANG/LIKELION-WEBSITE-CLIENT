@@ -36,23 +36,12 @@ function Recruit() {
           setBackgroundColor('black');
           setIsBackGroundBlack(true);
         }
-
-        // if (firstSectionVisible && !secondSectionVisible) {
-        //   setBackgroundColor('black');
-        //   setIsBackGroundBlack(true);
-        // } else if (!firstSectionVisible && secondSectionVisible) {
-        //   setBackgroundColor('white');
-        //   setIsBackGroundBlack(false);
-        // }
       },
       {
         threshold: [0.05, 1],
       },
     );
 
-    // if (observationRef.current) {
-    //   observer.observe(observationRef.current);
-    // }
     if (observationRef2.current) {
       observer.observe(observationRef2.current);
     }
@@ -61,42 +50,10 @@ function Recruit() {
       observer.disconnect();
     };
   }, []);
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       const isSecondVisible = entries.some(
-  //         (entry) =>
-  //           entry.target === observationRef2.current && entry.isIntersecting,
-  //       );
-
-  //       setBackgroundColor(isSecondVisible ? 'white' : 'black');
-  //     },
-  //     {
-  //       threshold: [0.1, 1.0],
-  //     },
-  //   );
-
-  //   if (observationRef.current) {
-  //     observer.observe(observationRef.current);
-  //   }
-
-  //   if (observationRef2.current) {
-  //     observer.observe(observationRef2.current);
-  //   }
-
-  //   return () => {
-  //     observer.disconnect();
-  //   };
-  // }, []);
   return (
     <OverallContainer style={{ backgroundColor: backgroundColor }}>
       <div className="first-section">
-        <Intro
-        // style={{
-        //   backgroundColor: backgroundColor,
-        //   transition: 'background-color 1.5s ease',
-        // }}
-        />
+        <Intro />
       </div>
       <div className="second-section" ref={observationRef2}>
         {isMobileScreen ? (
@@ -105,12 +62,7 @@ function Recruit() {
           <Header isBackGroundBlack={isBackGroundBlack} />
         )}
 
-        <RecruitContainer
-        // style={{
-        //   backgroundColor: backgroundColor,
-        //   transition: 'background-color 1.5s ease',
-        // }}
-        >
+        <RecruitContainer>
           <Schedule />
           <Faq />
         </RecruitContainer>
@@ -131,7 +83,7 @@ const RecruitContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 10rem;
+  padding: 4rem;
   position: relative;
   z-index: 1;
 `;
