@@ -10,6 +10,20 @@ function MobileModal({ projectList, generation, projectId, setIsModalOpen }) {
   );
   const { title, year, team_name, member_list, project_image, content, url } =
     selectedProject;
+  let generationText;
+  switch (generation) {
+    case 1:
+      generationText = '11th';
+      break;
+    case 3:
+      generationText = '10th';
+      break;
+    case 4:
+      generationText = '9th';
+      break;
+    default:
+      generationText = '11th';
+  }
   return (
     <DetailWrapper>
       <CloseButton
@@ -21,7 +35,7 @@ function MobileModal({ projectList, generation, projectId, setIsModalOpen }) {
         <Space height={'1.1rem'} />
         <ProjectTitle>{`${title}`}</ProjectTitle>
         <Space height={'1.1rem'} />
-        <ProjectDetails>{`${generation} | ${year} `}</ProjectDetails>
+        <ProjectDetails>{`${generationText} | ${year} `}</ProjectDetails>
         <Space height={'1.2rem'} />
         <Team>
           Team {`${team_name} `}
@@ -31,7 +45,7 @@ function MobileModal({ projectList, generation, projectId, setIsModalOpen }) {
         <Space height={'3rem'} />
         <ProjectImage src={project_image} />
         <Space height={'3rem'} />
-        <Description>{`${content}`}</Description> 
+        <Description>{`${content}`}</Description>
         {url && (
           <ProjectLink href={url} target="_blank" rel="noopener noreferrer">
             <img src={linkIcon} />
