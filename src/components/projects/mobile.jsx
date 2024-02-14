@@ -58,7 +58,6 @@ function Mobile() {
     <MobileWrapper>
       <MobileHeader />
       <FirstSectionWrapper>
-        <Space height={'30rem'} />
         <Title>Our Projects</Title>
       </FirstSectionWrapper>
       <SecondSectionWrapper>
@@ -75,52 +74,75 @@ function Mobile() {
         </TabContainer>
         <Line />
         <ProjectContainer>
-          {selectedProjects.map((project) => (
-            <ProjectInfoWrapper
-              key={project.id}
-              onClick={() => handleProjectClick(project.id)}
-            >
-              <ProjectTitle>{project.title}</ProjectTitle>
-              <Space height={'8px'} />
-              <ProjectDetails>
-                <div>
-                  {`${selectedTab}`} | {`${project.year}`}
-                </div>
-              </ProjectDetails>
-              <Space height={'17px'} />
-              <ProjectImage src={project.project_image} alt={project.title} />
+          {selectedProjects.length === 0 ? (
+            <ProjectInfoWrapper>
+              <ProjectSoon>곧 아카이빙 될 예정입니다.</ProjectSoon>
             </ProjectInfoWrapper>
-          ))}
+          ) : (
+            selectedProjects.map((project) => (
+              <ProjectInfoWrapper
+                key={project.id}
+                onClick={() => handleProjectClick(project.id)}
+              >
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <Space height={'8px'} />
+                <ProjectDetails>
+                  <div>
+                    {`${selectedTab}`} | {`${project.year}`}
+                  </div>
+                </ProjectDetails>
+                <Space height={'17px'} />
+                <ProjectImage src={project.project_image} alt={project.title} />
+              </ProjectInfoWrapper>
+            ))
+          )}
         </ProjectContainer>
       </SecondSectionWrapper>
+      <BackgroundImage src={backgroundBG} />
       <MobileFooter />
     </MobileWrapper>
   );
 }
 const MobileWrapper = styled.div`
   background-color: black;
+  position: relative;
+  z-index: 100;
 `;
+
 const FirstSectionWrapper = styled.div`
   display: flex;
   justify-content: center;
-  text-align: center;
-  background-image: url (${backgroundBG});
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: -2;
+`;
+const BackgroundImage = styled.img`
+  filter: blur(200px);
+  width: 100vw;
+  height: 80vh;
   object-fit: cover;
+  position: absolute;
+  top: 40rem;
+  left: 50px;
+  z-index: -100;
 `;
 const Title = styled.h1`
   font-family: 'PP-Editorial';
-  font-weight: 400;
+  font-size: 48px;
   font-style: italic;
-  font-size: 9.6rem;
+  font-weight: 400;
+  line-height: normal;
   color: white;
   text-transform: capitalize;
-  margin-top: 33.1rem;
-  margin-bottom: 40.7rem;
+  z-index: 2;
 `;
 
 const SecondSectionWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  min-height: 100vh;
   justify-content: center;
   margin-bottom: 18rem;
 `;
@@ -153,6 +175,7 @@ const Line = styled.div`
 `;
 const ProjectContainer = styled.div`
   margin-right: 1rem;
+  width: calc(100%);
 `;
 const ProjectInfoWrapper = styled.div`
   margin-bottom: 6rem;
@@ -169,7 +192,10 @@ const ProjectTitle = styled.h2`
   text-overflow: ellipsis;
   max-width: 30rem;
 `;
-
+const ProjectSoon = styled(ProjectTitle)`
+  font-weight: 400;
+  width: 100%;
+`;
 const ProjectDetails = styled.div`
   color: #fff;
   font-family: Figtree;
@@ -179,7 +205,6 @@ const ProjectDetails = styled.div`
 `;
 
 const ProjectImage = styled.img`
-  width: 36rem;
   height: 20.2rem;
 `;
 

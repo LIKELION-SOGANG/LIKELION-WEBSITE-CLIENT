@@ -8,6 +8,7 @@ function Content() {
   const [selectedTab, setSelectedTab] = useState('11th');
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [projectId, setProjectId] = useState(3);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,6 +60,8 @@ function Content() {
         {selectedProjects.map((project) => (
           <ProjectInfo
             key={project.id}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
             selectedProjects={project}
             generation={selectedTab}
           />
@@ -118,11 +121,11 @@ const ProjectContainer = styled.div`
   }
 
   & > div:nth-child(3n + 1):nth-child(odd) {
-    margin-left: 64px;
+    margin-left: 5%;
   }
 
   & > div:nth-child(3n + 1):nth-child(even) {
-    margin-left: 318px;
+    margin-left: 10%;
   }
 `;
 

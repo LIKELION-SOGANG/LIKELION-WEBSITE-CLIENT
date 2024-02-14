@@ -21,30 +21,31 @@ function Projects() {
       {isMobileScreen ? (
         <Mobile />
       ) : (
-        <ProjectsWrapper>
+        <ProjectsWrapper $imgUrl={backgroundBG} src={backgroundBG}>
           <Header />
           <ContentWrapper>
             <Title />
             <Content />
           </ContentWrapper>
-          <BackgroundImage src={backgroundBG} />
           <Footer />{' '}
         </ProjectsWrapper>
       )}
     </motion.div>
-
   );
 }
 
 const ProjectsWrapper = styled.div`
-  height: auto;
   background-color: black;
   display: flex;
+  min-height: 230vh;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   position: relative;
-  z-index: 10;
+  z-index: 1;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+    url(${(props) => props.$imgUrl});
+  background-position: center;
 `;
 
 const BackgroundImage = styled.img`
@@ -53,15 +54,15 @@ const BackgroundImage = styled.img`
   height: 100vh;
   object-fit: cover;
   position: absolute;
-  top: 21rem;
+  top: 1rem;
   left: 0;
+  opacity: 0.6;
+  z-index: -9;
 `;
 
 const ContentWrapper = styled.div`
   position: relative;
-
   z-index: 2;
-
   height: auto;
 `;
 
