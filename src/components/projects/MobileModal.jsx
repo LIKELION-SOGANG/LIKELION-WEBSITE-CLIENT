@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CloseIcon from './../../assets/icon/ph_x-light.svg';
 import Space from '../../util/Space';
 import linkIcon from './../../assets/icon/ion_link.svg';
+import { formattedMessage } from '../../util/formattedMessage';
 
 function MobileModal({ projectList, generation, projectId, setIsModalOpen }) {
   const selectedProject = projectList.find(
@@ -45,7 +46,7 @@ function MobileModal({ projectList, generation, projectId, setIsModalOpen }) {
         <Space height={'3rem'} />
         <ProjectImage src={project_image} />
         <Space height={'3rem'} />
-        <Description>{`${content}`}</Description>
+        <Description>{formattedMessage(content)}</Description>
         {url && (
           <ProjectLink href={url} target="_blank" rel="noopener noreferrer">
             <img src={linkIcon} />
