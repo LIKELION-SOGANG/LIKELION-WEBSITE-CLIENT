@@ -213,6 +213,10 @@ to { transform: translateX(-50%); }
 const TriangleLoop = styled.div`
   width: 200%;
   height: 25.2rem;
+  @media (max-width: 768px) {
+    height: 2.3rem;
+    bottom: 20rem;
+  }
   position: absolute;
   background-color: ${(props) =>
     props.$isBackGroundBlack ? 'white' : 'black'};
