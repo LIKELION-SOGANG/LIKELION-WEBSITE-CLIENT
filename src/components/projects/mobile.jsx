@@ -116,7 +116,7 @@ const FirstSectionWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   position: relative;
-  z-index: 99;
+  z-index: -2;
 `;
 const BackgroundImage = styled.img`
   filter: blur(200px);
