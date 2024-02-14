@@ -200,7 +200,7 @@ const TextBase = styled.div`
 
 const Question = styled(TextBase)`
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
   align-items: center;
