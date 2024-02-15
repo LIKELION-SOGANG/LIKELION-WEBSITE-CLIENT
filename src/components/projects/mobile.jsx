@@ -105,7 +105,7 @@ function Mobile() {
                   </div>
                 </ProjectDetails>
                 <Space height={'17px'} />
-                <ProjectImage src={project.project_image} alt={project.title} />
+                <ProjectImageBox $url={project.project_image} />
               </ProjectInfoWrapper>
             ))
           )}
@@ -159,6 +159,14 @@ const SecondSectionWrapper = styled.div`
   justify-content: center;
   margin-bottom: 18rem;
 `;
+const ProjectImageBox = styled.div`
+  background-image: url(${(props) => props.$url});
+  width: calc(100% - 3rem);
+  height: 15.5rem;
+  background-size: cover;
+  background-position: center;
+`;
+
 const TabContainer = styled.div`
   margin-right: 2rem;
   margin: 0 10px;

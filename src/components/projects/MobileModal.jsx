@@ -160,6 +160,6 @@ const ProjectLink = styled.a`
   line-height: 30px; /* 150% */
   cursor: pointer;
   position: fixed;
-  bottom: 0rem;
+  bottom: 5rem;
 `;
 export default MobileModal;
