@@ -34,7 +34,6 @@ function App() {
 const AppContainer = styled.div`
   overflow: hidden;
   position: relative;
-  z-index: 0;
   ::selection {
     background-color: rgba(100, 100, 100, 0.5);
   }
