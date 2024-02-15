@@ -18,13 +18,13 @@ function FirstSection({
   return (
     <>
       <FirstSectionWrapper>
-        {isVisible3dLogo && !isMobileScreen && (
+        {/* {isVisible3dLogo && !isMobileScreen && (
           <CanvasContainer camera={{ position: [0, 0, 0], fov: 5 }}>
             <Canvas>
               <Sogang3d />
             </Canvas>
           </CanvasContainer>
-        )}
+        )} */}
         <LogoCaption
           $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
           $isVisibleHeaderLogo={isVisibleHeaderLogo}
