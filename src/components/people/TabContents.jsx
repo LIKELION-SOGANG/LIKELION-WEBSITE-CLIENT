@@ -81,7 +81,7 @@ const EasterEgg = styled.div`
 const TabContents = ({ data }) => {
   if (!data) return null;
 
-  const { adult_lion, baby_lion } = data;
+  const { adult_lion, baby_lion,generation } = data;
 
   const slidesPerView = useSlidesPerView();
   return (
@@ -109,7 +109,7 @@ const TabContents = ({ data }) => {
               <Emoji src={member.emoji} alt={member.name} />
               <Name>{member.name}</Name>
               <Info>
-                {member.generation_id}th / {member.part}
+                {generation} / {member.part}
               </Info>
               {member.name === '정인영' ? (
                 <EasterEgg>대표</EasterEgg>

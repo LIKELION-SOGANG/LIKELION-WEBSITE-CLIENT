@@ -7,7 +7,6 @@ import People from './page/People';
 import Projects from './page/Projects';
 import Recruit from './page/Recruit';
 import Apply from './page/Apply';
-import ProjectDetail from './components/projects/projectDetail';
 
 function Router() {
   return (
