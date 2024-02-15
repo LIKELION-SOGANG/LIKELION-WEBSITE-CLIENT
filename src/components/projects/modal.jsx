@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Space from './../../util/Space';
 import CloseIcon from './../../assets/icon/ph_x-light.svg';
 import linkIcon from '../../assets/icon/link.svg';
+import { formattedMessage } from '../../util/formattedMessage';
 const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
   const { title, year, team_name, member_list, project_image, content, url } =
     project;
@@ -12,7 +13,6 @@ const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
       <ModalOverlay>
         <CloseButton
           onClick={() => {
-            console.log('click!');
             setIsModalOpen(false);
           }}
         />
@@ -27,7 +27,7 @@ const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
           <Space height={'3rem'} />
           <ProjectImage $url={project_image} />
           <Space height={'3rem'} />
-          <Description>{content}</Description>
+          <Description>{formattedMessage(content)}</Description>
           <Space height={'1rem'} />
         </ModalContent>
         {url && (
@@ -44,21 +44,21 @@ const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
 };
 const ModalWrapper = styled.section`
   position: fixed;
-  z-index: 9;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   background-color: rgba(0, 0, 0, 0.5);
 `;
 const ModalOverlay = styled.div`
   width: 40%;
   min-width: 50rem;
   padding: 3rem 3.4rem;
-  height: calc(100vh - 12rem);
+  height: calc(100% - 7.2rem);
+  margin-bottom: 1rem;
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -89,7 +89,6 @@ const CloseButton = styled.div`
   }
   background-image: url(${CloseIcon});
   background-size: cover;
-  z-index: 999;
 `;
 const ProjectTitle = styled.h2`
   color: #000;
@@ -143,7 +142,7 @@ const Description = styled.div`
   font-weight: 500;
   line-height: 150%;
   text-align: left;
-  height: 12rem;
+  max-height: 15rem;
   overflow: scroll;
 `;
 
@@ -153,8 +152,9 @@ const LinkWrapper = styled.div`
 `;
 
 const LinkIcon = styled.img``;
-const ProjectLink = styled.div`
+const ProjectLink = styled.a`
   display: flex;
+  height: 5.3rem;
   margin: 0 auto;
   align-items: center;
   justify-content: center;

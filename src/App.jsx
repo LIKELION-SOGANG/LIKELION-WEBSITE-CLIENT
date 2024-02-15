@@ -14,6 +14,7 @@ function App() {
   useEffect(() => {
     instance.post('visit/');
   }, []);
+ 
   return (
     <MouseContextProvider>
       <BrowserRouter>
