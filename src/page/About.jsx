@@ -16,6 +16,7 @@ function About() {
   const observationRef4 = useRef(null);
   const observationRef5 = useRef(null);
   const [isVisibleHeaderLogo, setIsVisibleHeaderLogo] = useState(false);
+  const [isVisible3dLogo, setIsVisible3dLogo] = useState(true);
   const [isHeaderBlack, setIsHeaderBlack] = useState(true);
   const scrollHeight = useThrottleScroll(10, 0, 400);
   // 모바일 화면여부
@@ -30,6 +31,9 @@ function About() {
           } else if (entries[0].target.className === 'second-section') {
             setIsHeaderBlack(!entries[0]?.isIntersecting);
           } else if (entries[0].target.className === 'third-section') {
+            if (entries[0]?.isIntersecting) {
+              setIsVisible3dLogo(false);
+            }
             setIsHeaderBlack(entries[0]?.isIntersecting);
           } else if (entries[0].target.className === 'fourth-section') {
             setIsHeaderBlack(!entries[0]?.isIntersecting);
@@ -75,6 +79,7 @@ function About() {
           <FirstSection
             isBackGroundBlack={isHeaderBlack}
             isVisibleHeaderLogo={isVisibleHeaderLogo}
+            isVisible3dLogo={isVisible3dLogo}
             scrollHeight={scrollHeight}
           />
         </div>
