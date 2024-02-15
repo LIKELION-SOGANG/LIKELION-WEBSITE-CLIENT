@@ -11,17 +11,20 @@ function FirstSection({
   isVisibleHeaderLogo,
   scrollHeight,
   isBackGroundBlack,
+  isVisible3dLogo,
 }) {
   const isMobileScreen = useMediaQuery('(max-width: 768px)');
 
   return (
     <>
       <FirstSectionWrapper>
-        <CanvasContainer camera={{ near: 1, far: 4, position: [0, 0, 20] }}>
-          <Canvas>
-            <Sogang3d />
-          </Canvas>
-        </CanvasContainer>
+        {isVisible3dLogo && (
+          <CanvasContainer camera={{ position: [0, 0, 0], fov: 5 }}>
+            <Canvas>
+              <Sogang3d />
+            </Canvas>
+          </CanvasContainer>
+        )}
         <LogoCaption
           $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
           $isVisibleHeaderLogo={isVisibleHeaderLogo}
@@ -131,11 +134,11 @@ const Reality = styled.div`
 `;
 
 const CanvasContainer = styled.div`
-  position: absolute;
-  top: 5rem;
-  right: 0;
-  width: 70vw;
-  height: 40vh;
+  position: fixed;
+  top: 10rem;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh);
   z-index: 99999;
 `;
 
@@ -224,7 +227,7 @@ to { transform: translateX(-50%); }
 `;
 const TriangleLoop = styled.div`
   width: 200%;
-  height: 25.2rem;
+  height: 4rem;
   @media (max-width: 768px) {
     height: 2.3rem;
     bottom: 20rem;
@@ -234,7 +237,7 @@ const TriangleLoop = styled.div`
     props.$isBackGroundBlack ? 'white' : 'black'};
   color: ${(props) => (props.$isBackGroundBlack ? 'black' : 'white')};
   transition: 1s ease;
-  bottom: 0rem;
+  bottom: 15rem;
   overflow-x: hidden;
   overflow-y: hidden;
   transform: rotate(-8deg) translateX(-25%);

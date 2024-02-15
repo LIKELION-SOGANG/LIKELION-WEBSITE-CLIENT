@@ -4,7 +4,7 @@ import ProjectInfo from './projectInfo';
 import Space from '../../util/Space';
 import { projectList } from '../../api/projectList';
 function Content() {
-  const tabs = ['6th', '7th', '8th', '9th', '10th', '11th'];
+  const tabs = ['10th', '11th', '12th'];
   const [selectedTab, setSelectedTab] = useState('11th');
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [projectId, setProjectId] = useState(3);
@@ -14,6 +14,9 @@ function Content() {
       try {
         let generationId;
         switch (selectedTab) {
+          case '12th':
+            generationId = 2;
+            break;
           case '11th':
             generationId = 1;
             break;
@@ -140,12 +143,8 @@ const ComingSoon = styled.h1`
 const ProjectContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  width: 100vw;
   gap: 2rem;
-
-  // & > div {
-  //   width: 360px;
-  //   margin-bottom: 7.8rem;
-  // }
   & > div {
     width: 25%;
     margin-bottom: 7.8rem;
@@ -156,7 +155,7 @@ const ProjectContainer = styled.div`
   }
 
   & > div:nth-child(3n + 1):nth-child(even) {
-    margin-left: 10%;
+    margin-left: 18%;
   }
 `;
 
