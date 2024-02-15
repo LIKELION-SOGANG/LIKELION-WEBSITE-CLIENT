@@ -18,13 +18,13 @@ const Schedule = () => {
       title: 'Front-End',
       content: '사용자와 상호작용하는 인터페이스를 시각화하여 구현합니다.',
       more: '기술 스택 보러가기',
-      link: 'https://www.naver.com/',
+      link: 'https://www.instagram.com/likelion_sg/',
     },
     {
       title: 'Back-End',
       content: '데이터 처리, 비즈니스 로직, 서버 관리 등을 담당합니다.',
       more: '기술 스택 보러가기',
-      link: 'https://www.google.com',
+      link: 'https://www.instagram.com/likelion_sg/',
     },
   ];
 

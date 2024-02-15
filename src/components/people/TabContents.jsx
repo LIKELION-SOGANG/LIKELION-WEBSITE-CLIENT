@@ -81,47 +81,53 @@ const EasterEgg = styled.div`
 const TabContents = ({ data }) => {
   if (!data) return null;
 
-  const { adult_lion, baby_lion,generation } = data;
+  const { adult_lion, baby_lion, generation } = data;
 
   const slidesPerView = useSlidesPerView();
   return (
     <>
-      <DividerWithText text="운영진" />
-      <Swiper
-        modules={[Autoplay]}
-        loop={true}
-        autoplay={{
-          delay: 1000,
-          disableOnInteraction: false,
-        }}
-        speed={1500}
-        slidesPerView={slidesPerView}
-        style={{
-          marginLeft: '2rem',
-          marginRight: '2rem',
-          marginTop: '4rem',
-          marginBottom: '12rem',
-        }}
-      >
-        {adult_lion?.map((member) => (
-          <SwiperSlide key={member.id}>
-            <Member>
-              <Emoji src={member.emoji} alt={member.name} />
-              <Name>{member.name}</Name>
-              <Info>
-                {generation} / {member.part}
-              </Info>
-              {member.name === '정인영' ? (
-                <EasterEgg>대표</EasterEgg>
-              ) : member.name === '임정연' ? (
-                <EasterEgg>부대표</EasterEgg>
-              ) : (
-                ''
-              )}
-            </Member>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {adult_lion.length !== 1 && (
+        <>
+          {' '}
+          <DividerWithText text="운영진" />
+          <Swiper
+            modules={[Autoplay]}
+            loop={true}
+            autoplay={{
+              delay: 1000,
+              disableOnInteraction: false,
+            }}
+            speed={1500}
+            slidesPerView={slidesPerView}
+            style={{
+              marginLeft: '2rem',
+              marginRight: '2rem',
+              marginTop: '4rem',
+              marginBottom: '12rem',
+            }}
+          >
+            {adult_lion?.map((member) => (
+              <SwiperSlide key={member.id}>
+                <Member>
+                  <Emoji src={member.emoji} alt={member.name} />
+                  <Name>{member.name}</Name>
+                  <Info>
+                    {generation} / {member.part}
+                  </Info>
+                  {member.name === '정인영' ? (
+                    <EasterEgg>대표</EasterEgg>
+                  ) : member.name === '임정연' ? (
+                    <EasterEgg>부대표</EasterEgg>
+                  ) : (
+                    ''
+                  )}
+                </Member>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </>
+      )}
+
       <DividerWithText text="아기사자" />
       <BabyLionContainer>
         {baby_lion?.length > 0 ? (
