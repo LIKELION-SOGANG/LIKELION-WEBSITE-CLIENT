@@ -92,7 +92,7 @@ const Faq = () => {
           isOpen={openIndex.includes(index)}
         >
           <Question onClick={() => handleToggle(index)}>
-            {item.title}
+            <div style={{ marginRight: '1rem' }}>{item.title}</div>
             <motion.div
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
@@ -161,6 +161,7 @@ const FaqContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  padding-bottom: 10rem;
 `;
 
 const Topic = styled.div`
