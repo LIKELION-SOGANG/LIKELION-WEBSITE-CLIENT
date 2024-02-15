@@ -224,7 +224,7 @@ to { transform: translateX(-50%); }
 `;
 const TriangleLoop = styled.div`
   width: 200%;
-  height: 25.2rem;
+  height: 4rem;
   @media (max-width: 768px) {
     height: 2.3rem;
     bottom: 20rem;
@@ -234,7 +234,7 @@ const TriangleLoop = styled.div`
     props.$isBackGroundBlack ? 'white' : 'black'};
   color: ${(props) => (props.$isBackGroundBlack ? 'black' : 'white')};
   transition: 1s ease;
-  bottom: 0rem;
+  bottom: 15rem;
   overflow-x: hidden;
   overflow-y: hidden;
   transform: rotate(-8deg) translateX(-25%);
