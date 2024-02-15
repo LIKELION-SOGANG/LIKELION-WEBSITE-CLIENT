@@ -18,7 +18,7 @@ function FirstSection({
   return (
     <>
       <FirstSectionWrapper>
-        {isVisible3dLogo && (
+        {isVisible3dLogo && !isMobileScreen && (
           <CanvasContainer camera={{ position: [0, 0, 0], fov: 5 }}>
             <Canvas>
               <Sogang3d />
