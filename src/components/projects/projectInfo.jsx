@@ -26,24 +26,32 @@ const ProjectInfo = ({ selectedProjects, generation }) => {
             </div>
           </ProjectDetails>
           <Space height={'17px'} />
-          <ProjectImage
+          <ProjectImageBox
             onClick={openModal}
-            src={selectedProjects.project_image}
-            alt={selectedProjects.title}
-          />
+            $url={selectedProjects.project_image}
+          ></ProjectImageBox>
         </ProjectInfoWrapper>
       </>
     )
   );
 };
 const ProjectInfoWrapper = styled.div`
-  width: 360px;
+  max-width: 100%;
+  max-width: 360px;
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 7.8rem;
 `;
+const ProjectImageBox = styled.div`
+  width: 100%;
+  height: 15rem;
+  background-image: url(${(props) => props.$url});
+  background-size: cover;
+  background-position: center;
+`;
+
 const ProjectTitle = styled.h2`
   color: #fff;
   font-family: Figtree;
@@ -66,7 +74,7 @@ const ProjectDetails = styled.div`
 `;
 
 const ProjectImage = styled.img`
-  width: 360px;
+  width: 160px;
   height: 202px;
   object-fit: cover;
 `;
