@@ -7,12 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import MobileHeader from '../common/MobileHeader';
 import MobileFooter from '../common/MobileFooter';
 import MobileModal from './MobileModal';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 function Mobile() {
   const tabs = ['12th', '11th', '10th'];
   const [selectedTab, setSelectedTab] = useState('11th');
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [projectId, setProjectId] = useState(3);
-  console.log(selectedProjects);
+  const { lockScroll, openScroll } = useBodyScrollLock();
   const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
@@ -56,6 +57,7 @@ function Mobile() {
     //   },
     // });
     setIsModalOpen(true);
+    lockScroll();
     setProjectId(projectId);
   };
   const [isModalOpen, setIsModalOpen] = useState(false);

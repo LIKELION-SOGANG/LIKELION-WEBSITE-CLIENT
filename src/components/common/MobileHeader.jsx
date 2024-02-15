@@ -13,6 +13,7 @@ import xiconwhite from '../../assets/icon/x-icon-white.svg';
 import menuBlack from '../../assets/icon/menu-icon-black.svg';
 import menuWhite from '../../assets/icon/menu-icon-white.svg';
 import Space from '../../util/Space';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 // 헤더 배경 검은색 , 헤더 로고 보일지 여부 props 전달받기 (기본값 true)
 function MobileHeader({
   isBackGroundBlack = true,
@@ -38,6 +39,7 @@ function MobileHeader({
   }, [pathname]);
   const { isLoading, loadingProgress } = useLoading(4);
   const [isSpreadMenu, setIsSpreadMenu] = useState(false);
+  const { lockScroll, openScroll } = useBodyScrollLock();
   return (
     <HeaderWrapper
       $isBackGroundBlack={isBackGroundBlack}
@@ -60,6 +62,11 @@ function MobileHeader({
           <ToggleMenu
             onClick={() => {
               setIsSpreadMenu(!isSpreadMenu);
+              if (isSpreadMenu) {
+                openScroll();
+              } else {
+                lockScroll();
+              }
             }}
           >
             <Span
