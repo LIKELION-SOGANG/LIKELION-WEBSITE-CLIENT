@@ -8,7 +8,7 @@ import MobileHeader from '../common/MobileHeader';
 import MobileFooter from '../common/MobileFooter';
 import MobileModal from './MobileModal';
 function Mobile() {
-  const tabs = ['11th', '10th', '9th', '8th', '7th', '6th'];
+  const tabs = ['12th', '11th', '10th'];
   const [selectedTab, setSelectedTab] = useState('11th');
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [projectId, setProjectId] = useState(3);
@@ -19,6 +19,9 @@ function Mobile() {
       try {
         let generationId;
         switch (selectedTab) {
+          case '12th':
+            generationId = 2;
+            break;
           case '11th':
             generationId = 1;
             break;
@@ -87,7 +90,6 @@ function Mobile() {
           {selectedProjects.length === 0 ? (
             <ProjectInfoWrapper>
               <ProjectSoon>Coming soon</ProjectSoon>
-
             </ProjectInfoWrapper>
           ) : (
             selectedProjects.map((project) => (
