@@ -41,7 +41,6 @@ const Tabs = () => {
 
   const handleClick = async (generationId) => {
     setSelectedTab(generationId);
-
     const data = await fetchData(generationId);
     setSelectedData(data);
   };
@@ -51,7 +50,7 @@ const Tabs = () => {
       const response = await instance.get('/generation');
       setGenerations(response.data.data);
       if (response.data.data.length > 0) {
-        const firstGen = response.data.data.find((gen) => gen.id === 2);
+        const firstGen = response.data.data.find((gen) => gen.id === 7);
         if (firstGen) {
           handleClick(firstGen.id);
         }
