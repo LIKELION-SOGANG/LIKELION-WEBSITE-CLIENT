@@ -181,7 +181,7 @@ const TabElement = styled.div`
   font-family: 'PP Editorial New';
   font-size: 2.25rem;
   font-style: italic;
-  font-weight: ${(props) => (props.isSelected ? '400' : '200;')}
+  font-weight: ${(props) => (props.isSelected ? '400' : '200;')};
   color: ${(props) => (props.isSelected ? 'white' : '#686868')};
   cursor: pointer;
   margin: 0.1rem;

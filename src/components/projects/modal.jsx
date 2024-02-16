@@ -14,14 +14,16 @@ const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
   return (
     <ModalWrapper onMouseEnter={textLeave}>
       <ModalOverlay>
-        <CloseButton
-          onClick={() => {
-            setIsModalOpen(false);
-          }}
-          onMouseEnter={textEnter}
-          onMouseLeave={textLeave}
-        />
         <ModalContent>
+          <CloseButton
+            onClick={() => {
+              setIsModalOpen(false);
+            }}
+            onMouseEnter={textEnter}
+            onMouseLeave={textLeave}
+          >
+            <img src={CloseIcon} alt="Close" />
+          </CloseButton>
           <Space height={'4.7rem'} />
           <ProjectTitle>{title}</ProjectTitle>
           <Space height={'0.9rem'} />
@@ -82,18 +84,13 @@ const ModalContent = styled.div`
 `;
 const CloseButton = styled.div`
   position: absolute;
-  top: 1.8rem;
-  right: 1.8rem;
+  top: 0rem;
+  right: 0rem;
   cursor: pointer;
   width: 3rem;
   height: 3rem;
   pointer-events: auto;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-  background-image: url(${CloseIcon});
-  background-size: cover;
+  z-index: 10;
 `;
 const ProjectTitle = styled.h2`
   color: #000;
