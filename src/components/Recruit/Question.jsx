@@ -130,9 +130,11 @@ const Question = () => {
       setReplys(initialAnswers);
     }
   }, [answer]);
-  const handleTimeSlotClick = (index) => {
+  const handleTimeSlotClick = (id) => {
     setSelectedTimeSlots((prev) =>
-      prev.map((slot, idx) => (idx === index ? !slot : slot)),
+      prev.map((isSelected, idx) =>
+        idx === id - 1 ? !isSelected : isSelected,
+      ),
     );
   };
   const timeSlots = [
@@ -198,31 +200,30 @@ const Question = () => {
             </CharCount>
           </div>
         ))}
-        <InputField
-          label="6. 면접 가능한 날짜와 시간을 모두 선택해주세요."
-          type="text"
-          validCheck={true}
-          placeholder="ex) https://github.com/likelionsg"
-          fontWeight="400"
-        />
-
-        <TimeContainer>
-          {timeSlots.map(({ date, slots }) => (
-            <DateRow key={date}>
-              <DateText>{date}</DateText>
-              {slots.map(({ id, time }) => (
-                <TimeSlot key={id}>
-                  <FontAwesomeIcon
-                    icon={faCheck}
-                    style={{ width: '1.4rem', height: '1rem' }}
-                  />
-                  <TimeText>{time}</TimeText>
-                </TimeSlot>
-              ))}
-            </DateRow>
-          ))}
-        </TimeContainer>
-        <div style={{ marginBottom: '5rem' }} />
+        <TimeWrapper>
+          6. 면접 가능한 날짜와 시간을 모두 선택해주세요.
+          <div style={{ marginBottom: '2rem' }} />
+          <TimeContainer>
+            {timeSlots.map(({ date, slots }) => (
+              <DateRow key={date}>
+                <DateText>{date}</DateText>
+                {slots.map(({ id, time }) => (
+                  <TimeSlot
+                    key={id}
+                    isSelected={selectedTimeSlots[id - 1]}
+                    onClick={() => handleTimeSlotClick(id)}
+                  >
+                    <Icon icon={faCheck} className="icon" />
+                    <TimeText isSelected={selectedTimeSlots[id - 1]}>
+                      {time}
+                    </TimeText>
+                  </TimeSlot>
+                ))}
+              </DateRow>
+            ))}
+          </TimeContainer>
+        </TimeWrapper>
+        <div style={{ marginTop: '3.5rem' }} />
         <InputField
           label="7. GitHub 계정이 있다면 링크를 올려주세요. (선택)"
           type="text"
@@ -230,6 +231,7 @@ const Question = () => {
           placeholder="ex) https://github.com/likelionsg"
           fontWeight="400"
         />
+        <div style={{ marginTop: '15rem' }} />
         <>
           {information.map((warning, index) => (
             <Info key={index}>{warning.content}</Info>
@@ -299,9 +301,20 @@ const Info = styled.div`
   line-height: 180%;
 `;
 
+const TimeWrapper = styled.div`
+  width: 52rem;
+  height: auto;
+  gap: 0.8rem;
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-style: normal;
+  line-height: normal;
+  margin-bottom: 1.3rem;
+  // background: skyblue;
+`;
 const TimeContainer = styled.div`
   display: flex;
-  width: 55rem;
+  width: 52rem;
   // height: 13rem;
   // align-items: center;
   justify-content: center;
@@ -309,10 +322,11 @@ const TimeContainer = styled.div`
 `;
 const DateRow = styled.div`
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
-  // margin-bottom: 1.5rem;
-  background: tomato;
+  margin-bottom: 2rem;
+  // background: tomato;
 `;
 
 const TimeSlot = styled.div`
@@ -321,28 +335,48 @@ const TimeSlot = styled.div`
   // justify-content: flex-start;
   // align-items: center;
   width: 12.5rem;
+  height: 3rem;
   border-radius: 0.5rem;
   border: 1px solid #d9d9d9;
   background: #fff;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 0.8rem;
+  // gap: 0.5rem;
+  // padding: 0.5rem 0.8rem;
+  // background: blue;
+  cursor: pointer;
+  background: ${({ isSelected }) => (isSelected ? 'black' : 'white')};
+  &:hover {
+    border: 1px solid black;
+  }
+  &:hover .icon {
+    ${({ isSelected }) => !isSelected && `color: black;`}
+  }
 `;
 
 const DateText = styled.div`
   font-size: 1.3rem;
-  margin-right: 1.5rem;
+  // margin-right: 1.5rem;
+  color: #626262;
 `;
 
+const Icon = styled(FontAwesomeIcon)`
+  width: 1.4rem;
+  height: 1.5rem;
+  margin-left: 1rem;
+  color: white;
+  &.hover &.icon {
+    display: ${({ isSelected }) => (isSelected ? 'black' : 'none')};
+  }
+`;
 const TimeText = styled.div`
   font-family: Pretendard;
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 2.4rem;
-  color: #b7b7b7;
-  // padding: 1rem 0.8rem;
+  color: ${({ isSelected }) => (isSelected ? 'white' : '#b7b7b7')};
+  padding: 1rem 0.8rem;
 `;
 
 const Button = styled.button`
