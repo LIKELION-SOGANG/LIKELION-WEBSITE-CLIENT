@@ -21,13 +21,13 @@ function Mobile() {
         let generationId;
         switch (selectedTab) {
           case '12th':
-            generationId = 2;
+            generationId = 7;
             break;
           case '11th':
-            generationId = 1;
+            generationId = 6;
             break;
           case '10th':
-            generationId = 3;
+            generationId = 5;
             break;
           case '9th':
             generationId = 4;
