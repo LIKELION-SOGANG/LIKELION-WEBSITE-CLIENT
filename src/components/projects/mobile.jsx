@@ -86,6 +86,7 @@ function Mobile() {
             setIsModalOpen={setIsModalOpen}
             projectList={selectedProjects}
             projectId={projectId}
+            openScroll={openScroll}
           />
         )}
         <ProjectContainer>
@@ -202,6 +203,7 @@ const ProjectContainer = styled.div`
 `;
 const ProjectInfoWrapper = styled.div`
   margin-bottom: 6rem;
+  cursor: pointer;
 `;
 const ProjectTitle = styled.h2`
   color: #fff;
