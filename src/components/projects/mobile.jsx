@@ -86,6 +86,7 @@ function Mobile() {
             setIsModalOpen={setIsModalOpen}
             projectList={selectedProjects}
             projectId={projectId}
+            openScroll={openScroll}
           />
         )}
         <ProjectContainer>
