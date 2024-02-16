@@ -46,7 +46,9 @@ function MobileModal({ projectList, generation, projectId, setIsModalOpen }) {
         <Space height={'3rem'} />
         <ProjectImage src={project_image} />
         <Space height={'3rem'} />
-        <Description>{formattedMessage(content)}</Description>
+        <div>
+          <Description>{formattedMessage(content)}</Description>
+        </div>
         {url && (
           <ProjectLink href={url} target="_blank" rel="noopener noreferrer">
             <img src={linkIcon} />
@@ -132,6 +134,7 @@ const Team = styled.div`
 `;
 
 const Description = styled.div`
+  width: 33rem;
   color: #000;
   font-family: Pretendard;
   font-size: 14px;

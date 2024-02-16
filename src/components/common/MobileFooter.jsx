@@ -29,7 +29,7 @@ function MobileFooter({ isBackgroundBlack = true }) {
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
             >
-              ↖︎ Credits{' '}
+              Credits ↘{' '}
             </a>
           </div>
         </div>
