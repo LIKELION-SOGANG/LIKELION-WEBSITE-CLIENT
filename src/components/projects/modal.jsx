@@ -4,19 +4,26 @@ import Space from './../../util/Space';
 import CloseIcon from './../../assets/icon/ph_x-light.svg';
 import linkIcon from '../../assets/icon/link.svg';
 import { formattedMessage } from '../../util/formattedMessage';
+import { useMousePosition } from '../../util/MouseContextProvider';
+import { motion } from 'framer-motion';
 const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
+  const { textEnter, textLeave } = useMousePosition();
   const { title, year, team_name, member_list, project_image, content, url } =
     project;
 
   return (
-    <ModalWrapper>
+    <ModalWrapper onMouseEnter={textLeave}>
       <ModalOverlay>
-        <CloseButton
-          onClick={() => {
-            setIsModalOpen(false);
-          }}
-        />
         <ModalContent>
+          <CloseButton
+            onClick={() => {
+              setIsModalOpen(false);
+            }}
+            onMouseEnter={textEnter}
+            onMouseLeave={textLeave}
+          >
+            <img src={CloseIcon} alt="Close" />
+          </CloseButton>
           <Space height={'4.7rem'} />
           <ProjectTitle>{title}</ProjectTitle>
           <Space height={'0.9rem'} />
@@ -31,7 +38,7 @@ const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
           <Space height={'1rem'} />
         </ModalContent>
         {url && (
-          <LinkWrapper>
+          <LinkWrapper onMouseEnter={textEnter} onMouseLeave={textLeave}>
             <ProjectLink href={url} target="_blank" rel="noopener noreferrer">
               <LinkIcon src={linkIcon} />
               <span>Link</span>
@@ -42,7 +49,7 @@ const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
     </ModalWrapper>
   );
 };
-const ModalWrapper = styled.section`
+const ModalWrapper = styled(motion.section)`
   position: fixed;
   top: 0;
   left: 0;
@@ -77,18 +84,13 @@ const ModalContent = styled.div`
 `;
 const CloseButton = styled.div`
   position: absolute;
-  top: 1.8rem;
-  right: 1.8rem;
+  top: 0rem;
+  right: 0rem;
   cursor: pointer;
   width: 3rem;
   height: 3rem;
   pointer-events: auto;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-  background-image: url(${CloseIcon});
-  background-size: cover;
+  z-index: 10;
 `;
 const ProjectTitle = styled.h2`
   color: #000;
@@ -146,7 +148,7 @@ const Description = styled.div`
   overflow: scroll;
 `;
 
-const LinkWrapper = styled.div`
+const LinkWrapper = styled(motion.div)`
   width: 100%;
   height: 5.3rem;
 `;
