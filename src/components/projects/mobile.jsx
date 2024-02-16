@@ -202,6 +202,7 @@ const ProjectContainer = styled.div`
 `;
 const ProjectInfoWrapper = styled.div`
   margin-bottom: 6rem;
+  cursor: pointer;
 `;
 const ProjectTitle = styled.h2`
   color: #fff;

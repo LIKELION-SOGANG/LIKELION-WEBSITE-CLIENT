@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Space from '../../util/Space';
 import ProjectModal from './modal';
+import { useMousePosition } from '../../util/MouseContextProvider';
+import { motion } from 'framer-motion';
 const ProjectInfo = ({ selectedProjects, generation }) => {
+  const { textEnter, textLeave } = useMousePosition();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -10,7 +14,7 @@ const ProjectInfo = ({ selectedProjects, generation }) => {
   return (
     selectedProjects && (
       <>
-        <ProjectInfoWrapper>
+        <ProjectInfoWrapper onMouseEnter={textEnter} onMouseLeave={textLeave}>
           {isModalOpen && (
             <ProjectModal
               setIsModalOpen={setIsModalOpen}
@@ -35,7 +39,7 @@ const ProjectInfo = ({ selectedProjects, generation }) => {
     )
   );
 };
-const ProjectInfoWrapper = styled.div`
+const ProjectInfoWrapper = styled(motion.div)`
   max-width: 100%;
   max-width: 360px;
   height: auto;
@@ -43,6 +47,7 @@ const ProjectInfoWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 7.8rem;
+  cursor: pointer;
 `;
 const ProjectImageBox = styled.div`
   width: 100%;
