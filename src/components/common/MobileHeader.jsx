@@ -13,6 +13,7 @@ import xiconwhite from '../../assets/icon/x-icon-white.svg';
 import menuBlack from '../../assets/icon/menu-icon-black.svg';
 import menuWhite from '../../assets/icon/menu-icon-white.svg';
 import Space from '../../util/Space';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 // 헤더 배경 검은색 , 헤더 로고 보일지 여부 props 전달받기 (기본값 true)
 function MobileHeader({
   isBackGroundBlack = true,
@@ -38,6 +39,7 @@ function MobileHeader({
   }, [pathname]);
   const { isLoading, loadingProgress } = useLoading(4);
   const [isSpreadMenu, setIsSpreadMenu] = useState(false);
+  const { lockScroll, openScroll } = useBodyScrollLock();
   return (
     <HeaderWrapper
       $isBackGroundBlack={isBackGroundBlack}
@@ -60,6 +62,11 @@ function MobileHeader({
           <ToggleMenu
             onClick={() => {
               setIsSpreadMenu(!isSpreadMenu);
+              if (isSpreadMenu) {
+                openScroll();
+              } else {
+                lockScroll();
+              }
             }}
           >
             <Span
@@ -122,12 +129,49 @@ function MobileHeader({
         >
           Contact
         </SlideItem>
-        <PossibleCaption src={isBackGroundBlack ? Caption : WhiteCaption} />
+        <PossibiltyCaption $isBackGroundBlack={isBackGroundBlack}>
+          <Possibility>Possibility</Possibility>
+          <To>To</To>
+          <Reality>Reality</Reality>
+        </PossibiltyCaption>
       </SlideMenu>
     </HeaderWrapper>
   );
 }
-
+const PossibiltyCaption = React.memo(styled.div`
+  position: absolute;
+  bottom: 15.3rem;
+  right: 5.6rem;
+  -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  font-weight: 400;
+  font-family: 'PP-Editorial';
+  color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
+`);
+const Possibility = styled.div`
+  leading-trim: both;
+  text-edge: cap;
+  font-size: 3.2rem;
+  font-style: italic;
+  line-height: normal;
+  text-transform: capitalize;
+`;
+const To = styled.div`
+  font-size: 2rem;
+  position: absolute;
+  top: 3.6rem;
+  left: 3.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: lowercase;
+`;
+const Reality = styled.div`
+  font-size: 3.2rem;
+  position: absolute;
+  top: 3.9rem;
+  left: 5.7rem;
+  font-style: italic;
+`;
 const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
