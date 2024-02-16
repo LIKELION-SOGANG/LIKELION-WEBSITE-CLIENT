@@ -5,7 +5,13 @@ import Space from '../../util/Space';
 import linkIcon from './../../assets/icon/ion_link.svg';
 import { formattedMessage } from '../../util/formattedMessage';
 
-function MobileModal({ projectList, generation, projectId, setIsModalOpen }) {
+function MobileModal({
+  projectList,
+  generation,
+  projectId,
+  setIsModalOpen,
+  openScroll,
+}) {
   const selectedProject = projectList.find(
     (project) => project.id === projectId,
   );
@@ -30,6 +36,7 @@ function MobileModal({ projectList, generation, projectId, setIsModalOpen }) {
       <CloseButton
         onClick={() => {
           setIsModalOpen(false);
+          openScroll();
         }}
       />
       <ModalContent>
@@ -46,9 +53,7 @@ function MobileModal({ projectList, generation, projectId, setIsModalOpen }) {
         <Space height={'3rem'} />
         <ProjectImage src={project_image} />
         <Space height={'3rem'} />
-        <div>
-          <Description>{formattedMessage(content)}</Description>
-        </div>
+        <Description>{formattedMessage(content)}</Description>
         {url && (
           <ProjectLink href={url} target="_blank" rel="noopener noreferrer">
             <img src={linkIcon} />
@@ -78,8 +83,8 @@ const ModalContent = styled.div`
 
 const CloseButton = styled.div`
   position: absolute;
-  top: 5.3rem;
-  right: 3rem;
+  top: 5rem;
+  right: 3.5rem;
   cursor: pointer;
   width: 2rem;
   height: 2rem;
@@ -94,7 +99,7 @@ const CloseButton = styled.div`
 
 const ProjectTitle = styled.h2`
   color: #000;
-  width: 33rem;
+  /* width: 33rem; */
   font-family: Figtree;
   font-weight: 700;
   margin-bottom: 0.9rem;
@@ -115,9 +120,8 @@ const ProjectDetails = styled.div`
 `;
 
 const ProjectImage = styled.img`
-  width: 333px;
-  height: 201px;
-  max-height: 300px;
+  width: auto;
+  height: auto;
   border-radius: 8px;
   object-fit: cover;
   margin-bottom: 1.2rem;
@@ -134,23 +138,21 @@ const Team = styled.div`
 `;
 
 const Description = styled.div`
-  width: 33rem;
   color: #000;
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 20px; /* 142.857% */
-  height: 12rem;
+  height: 13vh;
   overflow-y: scroll;
 `;
 
 const ProjectLink = styled.a`
-  width: 333px;
   height: 53px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 1.2rem 13.4rem;
   background-color: #fff;
   color: #000;
   border: 2px solid rgba(0, 0, 0, 0.25);
@@ -160,9 +162,10 @@ const ProjectLink = styled.a`
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
-  line-height: 30px; /* 150% */
+  line-height: 30px;
   cursor: pointer;
   position: fixed;
-  bottom: 5rem;
+  bottom: 2rem;
+  width: calc(100% - 6rem);
 `;
 export default MobileModal;
