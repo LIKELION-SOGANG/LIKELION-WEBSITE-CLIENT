@@ -53,10 +53,10 @@ const Circle = styled.div`
 
 const StepDescription = styled.div`
   font-family: Pretendard;
-  font-size: 1.2rem
+  font-size: 1.4rem;
   font-style: normal;
   font-weight: 700;
-  color : ${({ active }) => (active ? '#black' : '#e9e9e9')};
+  color: ${({ active }) => (active ? '#black' : '#e9e9e9')};
   transition: background 1.5s ease;
   line-height: normal;
   margin-left: 0.5rem;
