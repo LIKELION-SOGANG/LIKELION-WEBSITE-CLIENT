@@ -71,7 +71,7 @@ function Footer({ isBackgroundBlack = true }) {
                 onMouseEnter={textEnter}
                 onMouseLeave={textLeave}
               >
-                ↖︎ Credits{' '}
+                Credits ↘{' '}
               </a>
             </u>
             <br />© Likelion Sogang. All Rights Reserved.
