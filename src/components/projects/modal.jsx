@@ -4,17 +4,22 @@ import Space from './../../util/Space';
 import CloseIcon from './../../assets/icon/ph_x-light.svg';
 import linkIcon from '../../assets/icon/link.svg';
 import { formattedMessage } from '../../util/formattedMessage';
+import { useMousePosition } from '../../util/MouseContextProvider';
+import { motion } from 'framer-motion';
 const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
+  const { textEnter, textLeave } = useMousePosition();
   const { title, year, team_name, member_list, project_image, content, url } =
     project;
 
   return (
-    <ModalWrapper>
+    <ModalWrapper onMouseEnter={textLeave}>
       <ModalOverlay>
         <CloseButton
           onClick={() => {
             setIsModalOpen(false);
           }}
+          onMouseEnter={textEnter}
+          onMouseLeave={textLeave}
         />
         <ModalContent>
           <Space height={'4.7rem'} />
@@ -31,7 +36,7 @@ const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
           <Space height={'1rem'} />
         </ModalContent>
         {url && (
-          <LinkWrapper>
+          <LinkWrapper onMouseEnter={textEnter} onMouseLeave={textLeave}>
             <ProjectLink href={url} target="_blank" rel="noopener noreferrer">
               <LinkIcon src={linkIcon} />
               <span>Link</span>
@@ -42,7 +47,7 @@ const ProjectModal = ({ project, closeModal, generation, setIsModalOpen }) => {
     </ModalWrapper>
   );
 };
-const ModalWrapper = styled.section`
+const ModalWrapper = styled(motion.section)`
   position: fixed;
   top: 0;
   left: 0;
@@ -146,7 +151,7 @@ const Description = styled.div`
   overflow: scroll;
 `;
 
-const LinkWrapper = styled.div`
+const LinkWrapper = styled(motion.div)`
   width: 100%;
   height: 5.3rem;
 `;
