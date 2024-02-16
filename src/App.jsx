@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     instance.post('visit/');
   }, []);
- 
+
   return (
     <MouseContextProvider>
       <BrowserRouter>
@@ -33,6 +33,7 @@ function App() {
 
 const AppContainer = styled.div`
   overflow: hidden;
+  position: relative;
   ::selection {
     background-color: rgba(100, 100, 100, 0.5);
   }

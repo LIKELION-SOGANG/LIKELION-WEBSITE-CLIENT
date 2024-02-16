@@ -98,6 +98,7 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
           </MenuItem>
         </Link>
       </MenuList>
+    
     </HeaderWrapper>
   );
 }
@@ -161,4 +162,39 @@ const MenuItem = styled(motion.div)`
     }
   }
 `;
+const PossibiltyCaption = React.memo(styled.div`
+  position: absolute;
+  bottom: 5rem;
+  left: 2rem;
+  -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  font-weight: 400;
+  font-family: 'PP-Editorial';
+  color: ${(props) => (props.$isBackGroundBlack ? 'white' : 'black')};
+`);
+const Possibility = styled.div`
+  leading-trim: both;
+  text-edge: cap;
+  font-size: 3.2rem;
+  font-style: italic;
+  line-height: normal;
+  text-transform: capitalize;
+`;
+const To = styled.div`
+  font-size: 2rem;
+  position: absolute;
+  top: 3.6rem;
+  left: 3.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: lowercase;
+`;
+const Reality = styled.div`
+  font-size: 3.2rem;
+  position: absolute;
+  top: 3.9rem;
+  left: 5.7rem;
+  font-style: italic;
+`;
+
 export default React.memo(Header);
