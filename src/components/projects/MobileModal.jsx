@@ -62,7 +62,7 @@ const DetailWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999999999;
+  z-index: 999;
   height: 100vh;
   padding: 3rem;
   background-color: white;
@@ -160,6 +160,6 @@ const ProjectLink = styled.a`
   line-height: 30px; /* 150% */
   cursor: pointer;
   position: fixed;
-  bottom: 0rem;
+  bottom: 5rem;
 `;
 export default MobileModal;

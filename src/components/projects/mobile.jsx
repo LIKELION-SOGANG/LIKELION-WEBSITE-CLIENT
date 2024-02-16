@@ -7,12 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import MobileHeader from '../common/MobileHeader';
 import MobileFooter from '../common/MobileFooter';
 import MobileModal from './MobileModal';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 function Mobile() {
   const tabs = ['12th', '11th', '10th'];
   const [selectedTab, setSelectedTab] = useState('11th');
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [projectId, setProjectId] = useState(3);
-  console.log(selectedProjects);
+  const { lockScroll, openScroll } = useBodyScrollLock();
   const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
@@ -56,6 +57,7 @@ function Mobile() {
     //   },
     // });
     setIsModalOpen(true);
+    lockScroll();
     setProjectId(projectId);
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -105,7 +107,7 @@ function Mobile() {
                   </div>
                 </ProjectDetails>
                 <Space height={'17px'} />
-                <ProjectImage src={project.project_image} alt={project.title} />
+                <ProjectImageBox $url={project.project_image} />
               </ProjectInfoWrapper>
             ))
           )}
@@ -159,6 +161,14 @@ const SecondSectionWrapper = styled.div`
   justify-content: center;
   margin-bottom: 18rem;
 `;
+const ProjectImageBox = styled.div`
+  background-image: url(${(props) => props.$url});
+  width: calc(100% - 3rem);
+  height: 15.5rem;
+  background-size: cover;
+  background-position: center;
+`;
+
 const TabContainer = styled.div`
   margin-right: 2rem;
   margin: 0 10px;
