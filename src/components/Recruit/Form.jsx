@@ -137,7 +137,7 @@ const Form = () => {
         <InputField
           label="이메일"
           type="email"
-          placeholder="이메일 주소를 입력해주세요."
+          placeholder="이메일 주소를 입력해주세요. ex) likelionsg@gmail.com"
           onChange={handleEmailChange}
           validCheck={emailValid}
         />
