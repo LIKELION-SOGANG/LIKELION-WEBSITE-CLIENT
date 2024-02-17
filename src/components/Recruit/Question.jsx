@@ -15,6 +15,7 @@ const Question = () => {
     password,
     answer,
     githubAddress,
+    selectedTimeSlots,
     setName,
     setPassword,
     setStudentId,
@@ -26,6 +27,7 @@ const Question = () => {
     goNext,
     setSubmitTime,
     setGithubAddress,
+    setSelectedTimeSlots,
   } = useStore();
   const questions = [
     {
@@ -67,9 +69,7 @@ const Question = () => {
     },
   ];
   const [replys, setReplys] = useState(questions.map(() => ''));
-  const [selectedTimeSlots, setSelectedTimeSlots] = useState(
-    new Array(9).fill(false),
-  );
+
   const [isTimeSlotSelected, setIsTimeSlotSelected] = useState(true);
   const [fieldValid, setFieldValid] = useState(true);
 
@@ -103,18 +103,20 @@ const Question = () => {
     if (!isValid) {
       console.log(fieldValid);
       console.log('field를 선택해주세요');
+      alert('필수 입력 항목을 확인하세요');
       return;
     }
 
     handleTime();
-    const isAnyTimeSlotSelected = selectedTimeSlots.some(
-      (isSelected) => isSelected,
-    );
+    // const isAnyTimeSlotSelected = selectedTimeSlots?.some(
+    //   (isSelected) => isSelected,
+    // );
 
-    if (!isAnyTimeSlotSelected) {
-      setIsTimeSlotSelected(false);
-      return;
-    }
+    // if (!isAnyTimeSlotSelected) {
+    //   setIsTimeSlotSelected(false);
+    //   return;
+    // }
+
     setIsTimeSlotSelected(true);
     const answerPayload = replys.reduce((acc, answer, index) => {
       const key = `app${index + 1}`;
@@ -122,7 +124,7 @@ const Question = () => {
       return acc;
     }, {});
 
-    const interviewPayload = selectedTimeSlots.reduce(
+    const interviewPayload = selectedTimeSlots?.reduce(
       (acc, isSelected, index) => {
         const key = `interview${index + 1}`;
         acc[key] = isSelected;
@@ -160,8 +162,8 @@ const Question = () => {
     }
   }, [answer]);
   const handleTimeSlotClick = (id) => {
-    setSelectedTimeSlots((prev) =>
-      prev.map((isSelected, idx) =>
+    setSelectedTimeSlots(
+      selectedTimeSlots?.map((isSelected, idx) =>
         idx === id - 1 ? !isSelected : isSelected,
       ),
     );
@@ -192,7 +194,7 @@ const Question = () => {
       ],
     },
   ];
-
+  console.log(selectedTimeSlots);
   return (
     <Background>
       <QuestionContainer>

@@ -50,6 +50,7 @@ const InputField = ({
           onChange={onChange}
           onKeyDown={onKeyDown}
           isValid={validCheck}
+          value={value}
         />
       )}
     </FieldContainer>
