@@ -14,6 +14,7 @@ const Question = () => {
     field,
     password,
     answer,
+    githubAddress,
     setName,
     setPassword,
     setStudentId,
@@ -69,6 +70,8 @@ const Question = () => {
   const [selectedTimeSlots, setSelectedTimeSlots] = useState(
     new Array(9).fill(false),
   );
+  const [isTimeSlotSelected, setIsTimeSlotSelected] = useState(true);
+  const [fieldValid, setFieldValid] = useState(true);
 
   const handleFieldChange = (event) => {
     setField(event.target.value);
@@ -78,6 +81,10 @@ const Question = () => {
     newAnswers[index] = event.target.value;
     setReplys(newAnswers);
   };
+  // const handleGithubAddressChange = (event) => {
+  //   setGithubAddress(event.target.value);
+  // };
+
   const handleTime = () => {
     const today = new Date();
     const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
@@ -87,30 +94,52 @@ const Question = () => {
     const submitTime = `${formattedDate} ${hours}시 ${minutes}분`;
     setSubmitTime(submitTime);
   };
-
-  const answerPayload = replys.reduce((acc, answer, index) => {
-    const key = `app${index + 1}`;
-    acc[key] = answer;
-    return acc;
-  }, {});
-  const payload = {
-    ...answerPayload,
-    name: name,
-    student_number: student_number,
-    email: email,
-    field: field,
-    password: password,
-    github: ``,
-  };
+  // console.log(githubAddress);
   // setPassword(`d64d4730-26a7-4358-92e6-12d7dca173c9`);
 
   const handleSubmit = () => {
+    const isValid = field !== '';
+    setFieldValid(isValid);
+    if (!isValid) {
+      console.log(fieldValid);
+      console.log('field를 선택해주세요');
+      return;
+    }
+
     handleTime();
-    console.log('테스트');
-    console.log(name);
-    console.log(email);
-    console.log(student_number);
-    console.log(field);
+    const isAnyTimeSlotSelected = selectedTimeSlots.some(
+      (isSelected) => isSelected,
+    );
+
+    if (!isAnyTimeSlotSelected) {
+      setIsTimeSlotSelected(false);
+      return;
+    }
+    setIsTimeSlotSelected(true);
+    const answerPayload = replys.reduce((acc, answer, index) => {
+      const key = `app${index + 1}`;
+      acc[key] = answer;
+      return acc;
+    }, {});
+
+    const interviewPayload = selectedTimeSlots.reduce(
+      (acc, isSelected, index) => {
+        const key = `interview${index + 1}`;
+        acc[key] = isSelected;
+        return acc;
+      },
+      {},
+    );
+    const payload = {
+      ...answerPayload,
+      ...interviewPayload,
+      name: name,
+      student_number: student_number,
+      email: email,
+      field: field,
+      password: password,
+      github: githubAddress,
+    };
     console.log('payload 여기에요 ', payload);
     instance
       .patch(`application/${password}`, payload)
@@ -180,8 +209,12 @@ const Question = () => {
               { label: 'Back-End', value: 'BACEKEND' },
             ]}
             onChange={handleFieldChange}
-            validCheck={field}
+            value={field}
+            validCheck={fieldValid}
           />
+          {!fieldValid && (
+            <WarningMessage>필수 선택 항목입니다.</WarningMessage>
+          )}
         </InputContainer>
         {questions.map((question, index) => (
           <div key={index}>
@@ -196,11 +229,14 @@ const Question = () => {
               style={{ fontSize: '1.3rem' }}
             />
             <CharCount>
-              {replys[index].length} / {question.limit}자
+              {replys[index]
+                ? `${replys[index].length} / ${question.limit}자`
+                : `0 / ${question.limit}자`}
             </CharCount>
           </div>
         ))}
         <TimeWrapper>
+          <Circle isValid={isTimeSlotSelected} />
           6. 면접 가능한 날짜와 시간을 모두 선택해주세요.
           <div style={{ marginBottom: '2rem' }} />
           <TimeContainer>
@@ -222,11 +258,18 @@ const Question = () => {
               </DateRow>
             ))}
           </TimeContainer>
+          {!isTimeSlotSelected && (
+            <WarningMessage>필수 선택 항목입니다.</WarningMessage>
+          )}
         </TimeWrapper>
         <div style={{ marginTop: '3.5rem' }} />
         <InputField
           label="7. GitHub 계정이 있다면 링크를 올려주세요. (선택)"
           type="text"
+          onChange={(event) => {
+            setGithubAddress(event.target.value);
+          }}
+          value={githubAddress}
           validCheck={true}
           placeholder="ex) https://github.com/likelionsg"
           fontWeight="400"
@@ -247,7 +290,13 @@ const Question = () => {
     </Background>
   );
 };
-
+const WarningMessage = styled.div`
+  color: #f66570;
+  font-family: Pretendard;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 500;
+`;
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -329,6 +378,17 @@ const DateRow = styled.div`
   // background: tomato;
 `;
 
+const Circle = styled.div`
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: ${({ isValid }) => (isValid ? 'white' : '#f66570')};
+  // background: black;
+  position: absolute;
+  left: 54%;
+  // top: 0;
+  // transform: translateY(-50%);
+`;
 const TimeSlot = styled.div`
   display: flex;
   flex-direction: column

@@ -46,12 +46,13 @@ const Form = () => {
   };
 
   const handleSubmit = () => {
+    validInput();
     instance
       .post(`application/`, {
         name: name,
         student_number: studentId,
         email: email,
-        field: field,
+        phone: phone_number,
       })
       .then((response) => {
         setPassword(response.data.apply_id);
@@ -65,8 +66,8 @@ const Form = () => {
             ? error.response.data.message
             : '';
         if (errorMessage === 'Duplicate application exists.') {
-          alert('이미 가입된 이메일입니다!');
-          setCurrentStep(currentStep + 1);
+          alert('입력을 확인해주세요');
+          // setCurrentStep(currentStep + 1);
         } else {
           alert('지원서 생성 중 오류가 발생했습니다. 다시 시도해주세요.');
         }
@@ -98,8 +99,7 @@ const Form = () => {
   };
 
   const handleTest = (event) => {
-    validInput();
-    setCurrentStep(currentStep + 1);
+    // setCurrentStep(currentStep + 1);
     // if (!isValid) {
     //   console.log('입력을 확인해주세요.');
     //   return;
@@ -157,12 +157,12 @@ const Form = () => {
       </InputContainer>
 
       <div>
-        {/* <Button onClick={handleSubmit}>
-          <ButtonText>입력한 이메일로 고유 번호 전송</ButtonText>
-        </Button> */}
-        <Button onClick={handleTest}>
+        <Button onClick={handleSubmit}>
           <ButtonText>입력한 이메일로 고유 번호 전송</ButtonText>
         </Button>
+        {/* <Button onClick={handleTest}>
+          <ButtonText>입력한 이메일로 고유 번호 전송</ButtonText>
+        </Button> */}
       </div>
     </motion.div>
   );
