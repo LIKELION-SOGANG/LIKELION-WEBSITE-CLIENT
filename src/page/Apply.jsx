@@ -11,10 +11,7 @@ import Finish from '../components/Recruit/Finish';
 import useStore from '../components/Recruit/Store';
 import { motion } from 'framer-motion';
 const Apply = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const goNext = () => {
-    setCurrentStep((prevStep) => (prevStep < 2 ? prevStep + 1 : prevStep));
-  };
+  const { currentStep, setCurrentStep, goNext } = useStore();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -52,7 +49,6 @@ const Apply = () => {
             <Finish />
           </>
         )}
-
 
         {/* <div
         style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}
