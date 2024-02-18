@@ -191,7 +191,6 @@ const Question = () => {
       ],
     },
   ];
-  console.log(selectedTimeSlots);
   return (
     <Background>
       <QuestionContainer>

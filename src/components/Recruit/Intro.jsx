@@ -10,16 +10,16 @@ const Intro = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const navigate = useNavigate();
 
-  const handleApplyClick = () => {
-    const today = new Date();
-    const deadline = new Date('2024-02-19');
+  // const handleApplyClick = () => {
+  //   const today = new Date();
+  //   const deadline = new Date('2024-02-19 11:00');
 
-    if (today < deadline) {
-      alert('지원 기간이 아닙니다.');
-    } else {
-      navigate('/recruit/apply');
-    }
-  };
+  //   if (today < deadline) {
+  //     alert('지원 기간이 아닙니다.');
+  //   } else {
+  //     navigate('/recruit/apply');
+  //   }
+  // };
 
   useEffect(() => {
     const handleResize = () => {
@@ -37,7 +37,6 @@ const Intro = () => {
         <ApplyButton
           onMouseEnter={textEnter}
           onMouseLeave={textLeave}
-          onClick={handleApplyClick}
         >
           <ApplyButtonText />
         </ApplyButton>
