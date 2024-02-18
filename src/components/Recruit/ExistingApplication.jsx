@@ -14,6 +14,8 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
     email,
     field,
     student_number,
+    githubAddress,
+    selectedTimeSlots,
     setAnswer,
     setName,
     setStudentId,
@@ -21,6 +23,8 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
     setField,
     password,
     setPassword,
+    setGithubAddress,
+    setSelectedTimeSlots,
   } = useStore();
 
   const handleInputChange = (event) => {
@@ -34,7 +38,6 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
   const handleButtonClick = () => {
     if (isValid) {
       onExistingApplication();
-      onGoNext();
       handleSubmit();
     }
   };
@@ -50,6 +53,17 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
         setField(responsedata.field);
         setAnswer(0, responsedata.app1);
         setAnswer(1, responsedata.app2);
+        setAnswer(2, responsedata.app3);
+        setAnswer(3, responsedata.app4);
+        setGithubAddress(responsedata.github);
+
+        const newSelectedTimeSlots = Array.from(
+          { length: 9 },
+          (_, index) => responsedata[`interview${index + 1}`],
+        );
+        setSelectedTimeSlots(newSelectedTimeSlots);
+        console.log('깃허브 주소 업데이트 체크 : ', githubAddress);
+        onGoNext();
 
         console.log('지원서 불러오기 성공!', response.data);
       })
