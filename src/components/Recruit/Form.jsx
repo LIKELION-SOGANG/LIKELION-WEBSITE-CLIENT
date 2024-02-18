@@ -38,7 +38,10 @@ const Form = () => {
   };
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+    const newEmail = event.target.value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setEmail(newEmail);
+    // setEmailValid(emailRegex.test(newEmail.trim()));
   };
 
   const handlePhoneChange = (event) => {
@@ -46,7 +49,11 @@ const Form = () => {
   };
 
   const handleSubmit = () => {
-    validInput();
+    const isValid = validInput();
+    if (!isValid) {
+      alert('입력을 확인해주세요!');
+      return;
+    }
     instance
       .post(`application/`, {
         name: name,
@@ -88,22 +95,17 @@ const Form = () => {
     }
   };
   const validInput = () => {
-    setNameValid(name.trim() !== '');
-    setStudentNumberValid(studentId.trim() !== '');
-    setEmailValid(email.trim() !== '');
-    setPhoneValid(phone_number.trim() !== '');
+    const isNameValid = name.trim() !== '';
+    const isStudentIdValid = studentId.trim() !== '';
+    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    const isPhoneValid = phone_number.trim() !== '';
 
-    return (
-      name.trim() && studentId.trim() && email.trim() && phone_number.trim()
-    );
-  };
+    setNameValid(isNameValid);
+    setStudentNumberValid(isStudentIdValid);
+    setEmailValid(isEmailValid);
+    setPhoneValid(isPhoneValid);
 
-  const handleTest = (event) => {
-    // setCurrentStep(currentStep + 1);
-    // if (!isValid) {
-    //   console.log('입력을 확인해주세요.');
-    //   return;
-    // }
+    return isNameValid && isStudentIdValid && isEmailValid && isPhoneValid;
   };
 
   return (
@@ -137,11 +139,13 @@ const Form = () => {
         <InputField
           label="이메일"
           type="email"
-          placeholder="이메일 주소를 입력해주세요."
+          placeholder="이메일 주소를 입력해주세요. ex) likelionsg@gmail.com"
           onChange={handleEmailChange}
           validCheck={emailValid}
         />
-        {!emailValid && <WarningMessage>필수 입력 항목입니다.</WarningMessage>}
+        {!emailValid && (
+          <WarningMessage>이메일 형식을 확인해주세요.</WarningMessage>
+        )}
       </InputContainer>
       <InputContainer>
         <InputField
