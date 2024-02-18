@@ -9,6 +9,8 @@ const useStore = create((set) => ({
   password: '',
   githubAddress: '',
   answer: [],
+  selectedTimeSlots: new Array(9).fill(false),
+
   setAnswer: (index, answer) =>
     set((state) => {
       const newAnswer = [...state.answer];
@@ -33,6 +35,7 @@ const useStore = create((set) => ({
 
   submitTime: '',
   setSubmitTime: (submitTime) => set(() => ({ submitTime })),
+  setSelectedTimeSlots: (selectedTimeSlots) => set({ selectedTimeSlots }),
 }));
 
 export default useStore;
