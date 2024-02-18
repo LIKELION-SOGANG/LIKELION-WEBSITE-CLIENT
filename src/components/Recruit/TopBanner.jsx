@@ -13,7 +13,13 @@ const TopBanner = () => {
         <Styletext>th&nbsp;</Styletext> Re
         <Styletext>cruitment</Styletext>
       </BannerText>
-      <HomeButton>홈으로 돌아가기</HomeButton>
+      <HomeButton
+        onClick={() => {
+          navigate('/recruit');
+        }}
+      >
+        홈으로 돌아가기
+      </HomeButton>
     </Banner>
   );
 };
