@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const TopBanner = () => {
   const navigate = useNavigate();
   return (
-    <Banner onClick={() => navigate('/')}>
+    <Banner>
       <BannerText>
         Like <Styletext>lion</Styletext>&nbsp;So
         <Styletext>gang&nbsp;</Styletext>

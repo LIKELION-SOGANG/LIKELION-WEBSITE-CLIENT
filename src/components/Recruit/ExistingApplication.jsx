@@ -37,7 +37,7 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
 
   const handleButtonClick = () => {
     if (isValid) {
-      onExistingApplication();
+      // onExistingApplication();
       handleSubmit();
     }
   };
@@ -63,9 +63,10 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
         );
         setSelectedTimeSlots(newSelectedTimeSlots);
         onGoNext();
-
       })
-      .catch((error) => console.log('지원서 불러오기 실패!', error));
+      .catch((error) => {
+        alert('존재하지 않은 고유 번호입니다.');
+      });
   };
   return (
     <div>
