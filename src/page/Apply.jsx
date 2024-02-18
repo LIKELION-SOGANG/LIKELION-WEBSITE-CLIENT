@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TopBanner from '../components/Recruit/TopBanner';
 import NewApplication from '../components/Recruit/NewApplication';
@@ -10,8 +10,18 @@ import Question from '../components/Recruit/Question';
 import Finish from '../components/Recruit/Finish';
 import useStore from '../components/Recruit/Store';
 import { motion } from 'framer-motion';
+import useMediaQuery from '../hooks/useMediaQuery';
+import { useNavigate } from 'react-router-dom';
 const Apply = () => {
   const { currentStep, setCurrentStep, goNext } = useStore();
+  const navigate = useNavigate();
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
+  useEffect(() => {
+    if (isMobileScreen) {
+      alert('서류 지원은 PC에서만 가능합니다.');
+      navigate('/');
+    }
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -28,7 +38,7 @@ const Apply = () => {
             <div style={{ marginBottom: '7rem' }} />
             <ExistingApplication
               onGoNext={goNext}
-              onExistingApplication={() => setCurrentStep(1)}
+              onExistingApplication={() => setCurrentStep(2)}
             />
           </>
         ) : (

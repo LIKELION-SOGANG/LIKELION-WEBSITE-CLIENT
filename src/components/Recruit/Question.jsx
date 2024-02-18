@@ -145,6 +145,8 @@ const Question = () => {
       .then((response) => {
         // console.log('지원서 저장 성공 ? ', response.data);
         goNext();
+        setAnswer([]);
+        setSelectedTimeSlots(new Array(9).fill(false));
       })
       .catch((error) => {
         console.log('지원서 저장 실패 ?', error);
