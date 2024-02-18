@@ -37,17 +37,24 @@ const Form = () => {
   };
 
   const handleStudentIdChange = (event) => {
+    if (isNaN(event.target.value)) {
+      return;
+    }
     setStudentId(event.target.value);
   };
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setEmail(newEmail);
-    // setEmailValid(emailRegex.test(newEmail.trim()));
   };
 
   const handlePhoneChange = (event) => {
+    if (isNaN(event.target.value)) {
+      if (event.target.value.includes('-')) {
+        setPhoneNumber(event.target.value);
+      }
+      return;
+    }
     setPhoneNumber(event.target.value);
   };
 
@@ -84,32 +91,16 @@ const Form = () => {
         }
       });
   };
-  const handleKeyDown = (event) => {
-    const allowedKeys = [
-      'Backspace',
-      'Tab',
-      'ArrowLeft',
-      'ArrowRight',
-      'Delete',
-      'Enter',
-    ];
 
-    if (!/[0-9-]/.test(event.key) && !allowedKeys.includes(event.key)) {
-      // console.log('여기야 : ', event);
-      event.preventDefault();
-    }
-  };
   const validInput = () => {
     const isNameValid = name.trim() !== '';
     const isStudentIdValid = studentId.trim() !== '';
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
     const isPhoneValid = phone_number.trim() !== '';
-
     setNameValid(isNameValid);
     setStudentNumberValid(isStudentIdValid);
     setEmailValid(isEmailValid);
     setPhoneValid(isPhoneValid);
-
     return isNameValid && isStudentIdValid && isEmailValid && isPhoneValid;
   };
 
@@ -140,7 +131,6 @@ const Form = () => {
                 label="학번"
                 type="text"
                 placeholder="서강대학교 학번을 입력해주세요. ex) 20220001"
-                onKeyDown={handleKeyDown}
                 onChange={handleStudentIdChange}
                 value={studentId}
                 validCheck={studentNumberValid}
@@ -166,9 +156,9 @@ const Form = () => {
               <InputField
                 label="전화번호"
                 type="text"
+                
                 placeholder="연락 가능한 전화번호를 입력해주세요. ex) 010-1234-5678"
                 value={phone_number}
-                onKeyDown={handleKeyDown}
                 onChange={handlePhoneChange}
                 validCheck={phoneValid}
               />
@@ -187,7 +177,6 @@ const Form = () => {
     </motion.div>
   );
 };
-
 const FormWrapper = styled.div`
   position: relative;
 `;
