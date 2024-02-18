@@ -66,7 +66,9 @@ const Form = () => {
             ? error.response.data.message
             : '';
         if (errorMessage === 'Duplicate application exists.') {
-          alert('입력을 확인해주세요');
+          alert(
+            '중복 지원을 하실 수 없습니다. 이메일로 전송된 고유번호를 통해 폼 작성을 진행해주세요.',
+          );
           // setCurrentStep(currentStep + 1);
         } else {
           alert('지원서 생성 중 오류가 발생했습니다. 다시 시도해주세요.');

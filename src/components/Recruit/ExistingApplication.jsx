@@ -15,6 +15,7 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
     field,
     student_number,
     githubAddress,
+    selectedTimeSlots,
     setAnswer,
     setName,
     setStudentId,
@@ -23,6 +24,7 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
     password,
     setPassword,
     setGithubAddress,
+    setSelectedTimeSlots,
   } = useStore();
 
   const handleInputChange = (event) => {
@@ -54,6 +56,14 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
         setAnswer(2, responsedata.app3);
         setAnswer(3, responsedata.app4);
         setGithubAddress(responsedata.github);
+
+        const newSelectedTimeSlots = Array.from(
+          { length: 9 },
+          (_, index) => responsedata[`interview${index + 1}`],
+        );
+        console.log(newSelectedTimeSlots);
+        setSelectedTimeSlots(newSelectedTimeSlots);
+
         console.log('깃허브 주소 업데이트 체크 : ', githubAddress);
         onGoNext();
 
