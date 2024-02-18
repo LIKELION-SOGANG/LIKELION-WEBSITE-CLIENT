@@ -396,7 +396,7 @@ const TimeSlot = styled.div`
   width: 12.5rem;
   height: 3rem;
   border-radius: 0.5rem;
-  border: 1px solid #d9d9d9;
+  border: ${({ isSelected }) => (isSelected ? '1px solid black' : '1px solid #d9d9d9')};
   background: #fff;
   display: flex;
   // justify-content: center;
