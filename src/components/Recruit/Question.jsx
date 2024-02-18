@@ -103,6 +103,7 @@ const Question = () => {
     if (!isValid) {
       console.log(fieldValid);
       console.log('field를 선택해주세요');
+      alert('필수 입력 항목을 확인하세요');
       return;
     }
 
