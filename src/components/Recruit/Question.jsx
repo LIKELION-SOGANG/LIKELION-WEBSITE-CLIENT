@@ -101,8 +101,6 @@ const Question = () => {
     const isValid = field !== '';
     setFieldValid(isValid);
     if (!isValid) {
-      console.log(fieldValid);
-      console.log('field를 선택해주세요');
       alert('필수 입력 항목을 확인하세요');
       return;
     }
@@ -142,11 +140,10 @@ const Question = () => {
       password: password,
       github: githubAddress,
     };
-    console.log('payload 여기에요 ', payload);
     instance
       .patch(`application/${password}`, payload)
       .then((response) => {
-        console.log('지원서 저장 성공 ? ', response.data);
+        // console.log('지원서 저장 성공 ? ', response.data);
         goNext();
       })
       .catch((error) => {
@@ -221,7 +218,7 @@ const Question = () => {
         {questions.map((question, index) => (
           <div key={index}>
             <QuestionTitle>
-              {index + 2}. {question.prompt}({question.limit}자 이내)
+              {index + 1}. {question.prompt}({question.limit}자 이내)
             </QuestionTitle>
             <TextArea
               value={replys[index]}
@@ -239,7 +236,7 @@ const Question = () => {
         ))}
         <TimeWrapper>
           <Circle isValid={isTimeSlotSelected} />
-          6. 면접 가능한 날짜와 시간을 모두 선택해주세요.
+          면접 가능한 날짜와 시간을 모두 선택해주세요.
           <div style={{ marginBottom: '2rem' }} />
           <TimeContainer>
             {timeSlots.map(({ date, slots }) => (
@@ -266,7 +263,7 @@ const Question = () => {
         </TimeWrapper>
         <div style={{ marginTop: '3.5rem' }} />
         <InputField
-          label="7. GitHub 계정이 있다면 링크를 올려주세요. (선택)"
+          label="GitHub 계정이 있다면 링크를 올려주세요. (선택)"
           type="text"
           onChange={(event) => {
             setGithubAddress(event.target.value);

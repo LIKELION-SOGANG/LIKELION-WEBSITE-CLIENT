@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { useMousePosition } from '../../util/MouseContextProvider';
 import Lottie from 'react-lottie';
 import Spin from './Spin';
+import { useNavigate } from 'react-router-dom';
 const Form = () => {
   const { textLeave } = useMousePosition();
   const {
@@ -57,9 +58,10 @@ const Form = () => {
     }
     setPhoneNumber(event.target.value);
   };
-
+  const navigate = useNavigate();
   const handleSubmit = () => {
     const isValid = validInput();
+
     if (!isValid) {
       alert('입력을 확인해주세요!');
       return;
@@ -74,18 +76,22 @@ const Form = () => {
       })
       .then((response) => {
         setPassword(response.data.apply_id);
-        console.log('지원서 생성 성공! ', response.data);
         setCurrentStep(currentStep + 1);
         setSpin(false);
       })
       .catch((error) => {
-        console.log('지원서 생성 실패 !', error);
         const errorMessage =
           error.response && error.response.data
             ? error.response.data.message
             : '';
         if (errorMessage === 'Duplicate application exists.') {
-          alert('입력을 확인해주세요');
+          alert('중복 지원은 허용되지 않습니다!');
+          setSpin(false);
+          setCurrentStep(1);
+          setName('');
+          setStudentId('');
+          setEmail('');
+          setPhoneNumber('');
         } else {
           alert('지원서 생성 중 오류가 발생했습니다. 다시 시도해주세요.');
         }
@@ -109,7 +115,7 @@ const Form = () => {
       <FormWrapper>
         {spin ? (
           <Unique>
-            <p>입력하신 이메일로 고유번호 생성중입니다 잠시만 기다려주세요!</p>
+            <p>입력하신 이메일로 고유번호 생성중입니다. 잠시만 기다려주세요!</p>
             <Spin />
           </Unique>
         ) : (
@@ -156,7 +162,6 @@ const Form = () => {
               <InputField
                 label="전화번호"
                 type="text"
-                
                 placeholder="연락 가능한 전화번호를 입력해주세요. ex) 010-1234-5678"
                 value={phone_number}
                 onChange={handlePhoneChange}
