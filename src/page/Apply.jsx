@@ -38,7 +38,7 @@ const Apply = () => {
             <div style={{ marginBottom: '7rem' }} />
             <ExistingApplication
               onGoNext={goNext}
-              onExistingApplication={() => setCurrentStep(1)}
+              onExistingApplication={() => setCurrentStep(2)}
             />
           </>
         ) : (
