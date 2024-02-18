@@ -208,7 +208,7 @@ const Question = () => {
                 value: '',
               },
               { label: 'Front-End', value: 'FRONTEND' },
-              { label: 'Back-End', value: 'BACEKEND' },
+              { label: 'Back-End', value: 'BACKEND' },
             ]}
             onChange={handleFieldChange}
             value={field}
