@@ -74,12 +74,10 @@ const Form = () => {
       })
       .then((response) => {
         setPassword(response.data.apply_id);
-        console.log('지원서 생성 성공! ', response.data);
         setCurrentStep(currentStep + 1);
         setSpin(false);
       })
       .catch((error) => {
-        console.log('지원서 생성 실패 !', error);
         const errorMessage =
           error.response && error.response.data
             ? error.response.data.message
@@ -109,7 +107,7 @@ const Form = () => {
       <FormWrapper>
         {spin ? (
           <Unique>
-            <p>입력하신 이메일로 고유번호 생성중입니다 잠시만 기다려주세요!</p>
+            <p>입력하신 이메일로 고유번호 생성중입니다. 잠시만 기다려주세요!</p>
             <Spin />
           </Unique>
         ) : (
@@ -156,7 +154,6 @@ const Form = () => {
               <InputField
                 label="전화번호"
                 type="text"
-                
                 placeholder="연락 가능한 전화번호를 입력해주세요. ex) 010-1234-5678"
                 value={phone_number}
                 onChange={handlePhoneChange}

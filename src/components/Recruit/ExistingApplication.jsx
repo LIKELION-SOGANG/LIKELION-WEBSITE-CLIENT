@@ -62,10 +62,8 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
           (_, index) => responsedata[`interview${index + 1}`],
         );
         setSelectedTimeSlots(newSelectedTimeSlots);
-        console.log('깃허브 주소 업데이트 체크 : ', githubAddress);
         onGoNext();
 
-        console.log('지원서 불러오기 성공!', response.data);
       })
       .catch((error) => console.log('지원서 불러오기 실패!', error));
   };
