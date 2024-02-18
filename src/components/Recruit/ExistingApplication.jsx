@@ -62,7 +62,7 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
           (_, index) => responsedata[`interview${index + 1}`],
         );
         setSelectedTimeSlots(newSelectedTimeSlots);
-        onGoNext();
+        onExistingApplication();
       })
       .catch((error) => {
         alert('존재하지 않은 고유 번호입니다.');
