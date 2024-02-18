@@ -11,9 +11,6 @@ import MobileHeader from '../components/common/MobileHeader';
 
 function Contact() {
   const isMobileScreen = useMediaQuery('(max-width: 768px)');
-  useEffect(() => {
-    instance.get('application');
-  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
