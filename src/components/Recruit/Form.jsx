@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { useMousePosition } from '../../util/MouseContextProvider';
 import Lottie from 'react-lottie';
 import Spin from './Spin';
+import { useNavigate } from 'react-router-dom';
 const Form = () => {
   const { textLeave } = useMousePosition();
   const {
@@ -57,9 +58,10 @@ const Form = () => {
     }
     setPhoneNumber(event.target.value);
   };
-
+  const navigate = useNavigate();
   const handleSubmit = () => {
     const isValid = validInput();
+
     if (!isValid) {
       alert('입력을 확인해주세요!');
       return;
@@ -83,7 +85,13 @@ const Form = () => {
             ? error.response.data.message
             : '';
         if (errorMessage === 'Duplicate application exists.') {
-          alert('입력을 확인해주세요');
+          alert('중복 지원은 허용되지 않습니다!');
+          setSpin(false);
+          setCurrentStep(1);
+          setName('');
+          setStudentId('');
+          setEmail('');
+          setPhoneNumber('');
         } else {
           alert('지원서 생성 중 오류가 발생했습니다. 다시 시도해주세요.');
         }
