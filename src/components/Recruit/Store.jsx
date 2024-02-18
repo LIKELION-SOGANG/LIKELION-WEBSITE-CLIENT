@@ -35,7 +35,7 @@ const useStore = create((set) => ({
 
   submitTime: '',
   setSubmitTime: (submitTime) => set(() => ({ submitTime })),
-  setSelectedTimeSlots: (selectedTimeSlots) => set({ selectedTimeSlots }),
+  setSelectedTimeSlots: (selectedTimeSlots) => set({ selectedTimeSlots}),
 }));
 
 export default useStore;

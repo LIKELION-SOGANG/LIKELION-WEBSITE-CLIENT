@@ -105,6 +105,7 @@ const CreditWrapper = styled.div`
     text-align: left;
     margin-bottom: 1rem;
     padding-right: 6rem;
+    white-space: nowrap;  
     font-size: 2rem;
     @media (max-width: 768px) {
       font-size: 1.6rem;

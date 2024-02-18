@@ -61,9 +61,7 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
           { length: 9 },
           (_, index) => responsedata[`interview${index + 1}`],
         );
-
         setSelectedTimeSlots(newSelectedTimeSlots);
-
         console.log('깃허브 주소 업데이트 체크 : ', githubAddress);
         onGoNext();
 
