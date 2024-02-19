@@ -11,8 +11,8 @@ const Intro = () => {
   const navigate = useNavigate();
 
   const handleApplyClick = () => {
-    alert('지원 기간이 아닙니다.');
-    // navigate('/recruit/apply');
+    // alert('지원 기간이 아닙니다.');
+    navigate('/recruit/apply');
   };
 
   useEffect(() => {

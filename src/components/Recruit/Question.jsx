@@ -90,7 +90,6 @@ const Question = () => {
     const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
     let hours = today.getHours();
     let minutes = today.getMinutes();
-
     const submitTime = `${formattedDate} ${hours}시 ${minutes}분`;
     setSubmitTime(submitTime);
   };
@@ -146,6 +145,8 @@ const Question = () => {
         // console.log('지원서 저장 성공 ? ', response.data);
         goNext();
         setAnswer([]);
+        // 전화번호 초기화 
+        // 학번 초기화
         setSelectedTimeSlots(new Array(9).fill(false));
       })
       .catch((error) => {
