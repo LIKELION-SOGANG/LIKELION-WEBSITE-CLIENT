@@ -56,7 +56,6 @@ const ExistingApplication = ({ onGoNext, onExistingApplication }) => {
         setAnswer(2, responsedata.app3);
         setAnswer(3, responsedata.app4);
         setGithubAddress(responsedata.github);
-
         const newSelectedTimeSlots = Array.from(
           { length: 9 },
           (_, index) => responsedata[`interview${index + 1}`],
