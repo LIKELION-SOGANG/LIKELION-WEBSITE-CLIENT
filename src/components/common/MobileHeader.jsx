@@ -140,8 +140,8 @@ function MobileHeader({
 }
 const PossibiltyCaption = React.memo(styled.div`
   position: absolute;
-  bottom: 15.3rem;
-  right: 5.6rem;
+  bottom: 15vh;
+  right: 10vw;
   -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
   font-weight: 400;
   font-family: 'PP-Editorial';
@@ -215,6 +215,7 @@ const LogoCaption = styled.div`
   span {
     font-style: italic;
   }
+  cursor: pointer;
 `;
 const ToggleMenu = styled.div`
   display: block;
@@ -222,6 +223,7 @@ const ToggleMenu = styled.div`
   z-index: 999999;
   width: 2rem;
   height: 2rem;
+  cursor: pointer;
 `;
 const SlideMenu = styled.ul`
   width: 100vw;
