@@ -28,7 +28,7 @@ function Credit() {
       <section className="design">
         <label>Design</label>
         <div className="people">
-          <p>Sunmyoung Lee</p>
+          <p>Sunmyeong Lee</p>
           <p>Koeun Jeong</p>
         </div>
       </section>
@@ -36,7 +36,7 @@ function Credit() {
         <label>Front-End Develop</label>
         <div className="people">
           <p>Inyoung Chung</p>
-          <p>Sunmyoung Lee</p>
+          <p>Sunmyeong Lee</p>
           <p>Koeun Jeong</p>
           <p>Sehwan Jang</p>
         </div>
@@ -105,7 +105,7 @@ const CreditWrapper = styled.div`
     text-align: left;
     margin-bottom: 1rem;
     padding-right: 6rem;
-    white-space: nowrap;  
+    white-space: nowrap;
     font-size: 2rem;
     @media (max-width: 768px) {
       font-size: 1.6rem;
