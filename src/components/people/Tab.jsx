@@ -68,14 +68,16 @@ const Tabs = () => {
     <>
       <TabContainer>
         {generations.map((gen) => (
-          <TabElement
-            key={gen.id}
-            isSelected={gen.id === selectedTab}
-            onClick={() => handleClick(gen.id)}
-          >
-            {gen.number}
-            {gen.suffix}
-          </TabElement>
+          <>
+            <TabElement
+              key={gen.id}
+              isSelected={gen.id === selectedTab}
+              onClick={() => handleClick(gen.id)}
+            >
+              {gen.number}
+              {gen.suffix}
+            </TabElement>
+          </>
         ))}
       </TabContainer>
       <TabContents data={selectedData} />
