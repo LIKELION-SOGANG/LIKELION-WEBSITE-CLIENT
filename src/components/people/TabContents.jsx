@@ -84,6 +84,7 @@ const TabContents = ({ data }) => {
   const { adult_lion, baby_lion, generation } = data;
 
   const slidesPerView = useSlidesPerView();
+  console.log(data);
   return (
     <>
       {adult_lion.length !== 1 && (
@@ -114,9 +115,9 @@ const TabContents = ({ data }) => {
                   <Info>
                     {generation} / {member.part}
                   </Info>
-                  {member.name === '정인영' ? (
+                  {member.is_president ? (
                     <EasterEgg>대표</EasterEgg>
-                  ) : member.name === '임정연' ? (
+                  ) : member.is_vice_president ? (
                     <EasterEgg>부대표</EasterEgg>
                   ) : (
                     ''
