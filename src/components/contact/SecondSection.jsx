@@ -54,17 +54,19 @@ function SecondSection() {
 
 const SecondSectionWrapper = styled.div`
   background-color: white;
-  padding-bottom: 20rem;
 `;
 
 const ContactsContainer = styled.div`
+  width: calc(100% - 20rem);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20rem;
   gap: 10vw;
+  padding-bottom: 20rem;
   @media (max-width: 768px) {
-    padding: 2rem;
+    width: calc(100% - 5rem);
+    padding-bottom: 10rem;
     gap: 15vw;
   }
 `;

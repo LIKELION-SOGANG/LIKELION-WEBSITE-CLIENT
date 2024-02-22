@@ -36,14 +36,14 @@ function MobileFooter({ isBackgroundBlack = true }) {
         <div className="flex2">
           <div className="flex-item left">
             <div className="email">Email.</div>
-            <div className="id">likelion_sg@gmail.com</div>
+            <div className="id">sogang@likelion.org</div>
           </div>
           <div className="flex-item right">
             <div className="number">
               total {visitNum.total_visit} | today {visitNum.today_visit}
             </div>
             <div className="copyright">
-              © likelion Sogang. All Rights Reserved.
+              © Likelion Sogang. All Rights Reserved.
             </div>
           </div>
         </div>
