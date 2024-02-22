@@ -53,13 +53,13 @@ function Footer({ isBackgroundBlack = true }) {
           <p className="content">
             Email. <br />
             <Link
-              href="mailto:likelion_sg@gmail.com"
+              href="mailto:sogang@likelion.org"
               title="멋사 서강대로 메일 보내기"
               isBackgroundBlack={isBackgroundBlack}
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
             >
-              likelion_sg@gmail.com
+              sogang@likelion.org
             </Link>
           </p>
         </div>
