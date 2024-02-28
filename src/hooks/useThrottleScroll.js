@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 const useThrottleScroll = (delay, top, threshold) => {
   const [scrollPosition, setScrollPosition] = useState(top);
@@ -15,6 +15,7 @@ const useThrottleScroll = (delay, top, threshold) => {
         }, delay);
       }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);

@@ -106,4 +106,6 @@ const MenuItem = styled.div`
   font-style: italic;
   transition: 1s;
 `;
-export default Header;
+
+// Header의 props이 변하지 않을 경우 리렌더링 방지
+export default React.memo(Header);
