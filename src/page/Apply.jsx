@@ -71,7 +71,7 @@ const Apply = () => {
   );
 };
 
-const ApplyContainer = styled.div`
+export const ApplyContainer = styled.div`
   width: 100%;
   // height: 100vh;
   display: flex;
