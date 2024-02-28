@@ -2,16 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import Header from '../components/common/Header';
 import FirstSection from '../components/about/FirstSection';
 import SecondSection from '../components/about/SecondSection';
+import useThrottleScroll from '../hooks/useThrottleScroll';
 
 function About() {
   const observationRef1 = useRef(null);
   const observationRef2 = useRef(null);
   const [isVisibleHeaderLogo, setIsVisibleHeaderLogo] = useState(false);
   const [isHeaderBlack, setIsHeaderBlack] = useState(true);
+  const scrollHeight = useThrottleScroll(3, 0, 400);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        console.log(entries);
         if (!entries[0].isIntersecting) {
           setIsHeaderBlack(false);
           setIsVisibleHeaderLogo(true);
@@ -36,7 +37,9 @@ function About() {
         isVisibleHeaderLogo={isVisibleHeaderLogo}
       />
       <div ref={observationRef1}>
-        <FirstSection isVisibleHeaderLogo={isVisibleHeaderLogo} />
+        <FirstSection
+          isVisibleHeaderLogo={isVisibleHeaderLogo}
+        />
       </div>
       <SecondSection />
     </>
