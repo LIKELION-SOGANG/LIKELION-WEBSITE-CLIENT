@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useMousePosition } from '../../util/MouseContextProvider';
+import { motion } from 'framer-motion';
 
 const contacts = [
   {
@@ -18,11 +20,6 @@ const contacts = [
     display: 'sogang@likelion.org ↘',
   },
   {
-    name: '(kakaotalk)',
-    url: 'mailto:sogang@likelion.org',
-    display: 'inyoungjeong ↘',
-  },
-  {
     name: '(likelion univ.)',
     url: 'https://likelion.university/',
     display: 'https://likelion.university/ ↘︎',
@@ -30,53 +27,88 @@ const contacts = [
 ];
 
 function SecondSection() {
+  const { textEnter, textLeave } = useMousePosition();
+
   return (
-    <SecondSectionWrapper>
-      <ContactsContainer>
-        {contacts.map(({ name, url, display }) => (
-          <ContactContainer key={name}>
-            <TopText>{name}</TopText>
-            <BottomText href={url} target="_blank">
-              {display}
-            </BottomText>
-          </ContactContainer>
-        ))}
-      </ContactsContainer>
-    </SecondSectionWrapper>
+    <>
+      <SecondSectionWrapper>
+        <ContactsContainer>
+          {contacts.map(({ name, url, display }) => (
+            <ContactContainer key={name}>
+              <TopText>{name}</TopText>
+              <BottomText
+                onMouseEnter={textEnter}
+                onMouseLeave={textLeave}
+                href={url}
+                target="_blank"
+              >
+                {display}
+              </BottomText>
+            </ContactContainer>
+          ))}
+        </ContactsContainer>
+      </SecondSectionWrapper>
+    </>
   );
 }
 
 const SecondSectionWrapper = styled.div`
-  height: 100vh;
   background-color: white;
 `;
 
 const ContactsContainer = styled.div`
+  width: calc(100% - 20rem);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20rem;
-  gap: 10rem;
+  gap: 10vw;
+  padding-bottom: 20rem;
+  @media (max-width: 768px) {
+    width: calc(100% - 5rem);
+    padding-bottom: 10rem;
+    gap: 15vw;
+  }
 `;
 
 const ContactContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.5vw;
 `;
 
 const TopText = styled.div`
-  font-family: 'PP Editorial New';
-  font-size: 2rem;
+  font-family: 'PP-Editorial';
+  font-size: 1.5vw;
   font-weight: 400;
   color: black;
+
+  @media (max-width: 768px) {
+    font-size: 3vw;
+  }
 `;
 
-const BottomText = styled.a`
-  font-family: 'PP Editorial New';
-  font-size: 6rem;
+const BottomText = styled(motion.a)`
+  font-family: 'PP-Editorial';
+  font-size: 3.5vw;
   font-weight: 400;
   color: black;
+  &:after {
+    content: '';
+    display: block;
+    transform: scaleX(0);
+    border-bottom: 2px solid black;
+    transition: transform 250ms ease-in-out;
+  }
+  &:hover {
+    &:after {
+      transform: scaleX(1);
+      transform-origin: 0% 50%;
+    }
+  }
+  @media (max-width: 768px) {
+    font-size: 6vw;
+  }
 `;
 
 export default SecondSection;
