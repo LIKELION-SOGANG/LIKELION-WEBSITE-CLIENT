@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Section from './Section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import arrow from '../../assets/icon/arrow.svg';
+import Header from '../common/Header';
 
 const Schedule = () => {
   const scheduleData = [
@@ -15,14 +17,14 @@ const Schedule = () => {
     {
       title: 'Front-End',
       content: '사용자와 상호작용하는 인터페이스를 시각화하여 구현합니다.',
-      more: '자세한 커리큘럼 보러가기',
-      link: 'https://www.naver.com/',
+      more: '기술 스택 보러가기',
+      link: 'https://www.instagram.com/p/C3fFLXIP6pE/?img_index=4',
     },
     {
       title: 'Back-End',
       content: '데이터 처리, 비즈니스 로직, 서버 관리 등을 담당합니다.',
-      more: '자세한 커리큘럼 보러가기',
-      link: 'https://www.google.com',
+      more: '기술 스택 보러가기',
+      link: 'https://www.instagram.com/p/C3fFLXIP6pE/?img_index=5',
     },
   ];
 
@@ -43,14 +45,15 @@ const Schedule = () => {
         data={areaData}
         renderItem={(item) => (
           <>
-            <Title>{item.title}</Title>
+            <Title area={true}>{item.title}</Title>
             <Date>{item.content}</Date>
             <MoreInfo>
               <a href={item.link} target="_blank" rel="noreferrer">
-                <FontAwesomeIcon
+                {/* <FontAwesomeIcon
                   icon={faUpRightFromSquare}
                   color="rgba(183, 183, 183, 1)"
-                />
+                /> */}
+                <img src={arrow} />
                 <Morelink>{item.more}</Morelink>
               </a>
             </MoreInfo>
@@ -70,13 +73,18 @@ const TextBase = styled.div`
 
 const Title = styled(TextBase)`
   font-size: 1.6rem;
-  font-weight: 600;
+  font-family: ${(props) => (props.area ? 'PP-Editorial' : 'Pretendard')};
+  font-style: ${(props) => (props.area ? 'italic' : 'normal')};
+  font-weight: ${(props) => (props.area ? '400' : '600')};
 `;
 
 const Date = styled(TextBase)`
   margin-top: 1.4rem;
   font-size: 1.2rem;
   font-weight: 500;
+  @media (max-width: 768px) {
+    white-space: normal;
+  }
 `;
 
 const MoreInfo = styled.div`
@@ -85,12 +93,16 @@ const MoreInfo = styled.div`
     display: flex;
     flex-direction: row;
   }
+  @media (max-width: 768px) {
+    display: inline-flex;
+  }
 `;
 
 const Morelink = styled.div`
   font-size: 1.1rem;
-  margin-left: 0.5rem;
+  margin-left: 0.2rem;
   color: #b7b7b7;
+  text-decoration: underline;
 `;
 
 export default Schedule;
