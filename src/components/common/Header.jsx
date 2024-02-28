@@ -98,7 +98,6 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
           </MenuItem>
         </Link>
       </MenuList>
-    
     </HeaderWrapper>
   );
 }
@@ -162,10 +161,6 @@ const MenuItem = styled(motion.div)`
     }
   }
 `;
-<<<<<<< HEAD
-
-// Header의 props이 변하지 않을 경우 리렌더링 방지
-=======
 const PossibiltyCaption = React.memo(styled.div`
   position: absolute;
   bottom: 5rem;
@@ -201,5 +196,4 @@ const Reality = styled.div`
   font-style: italic;
 `;
 
->>>>>>> e9824e03e1ad929d4d0886899eb7181fed432c40
 export default React.memo(Header);

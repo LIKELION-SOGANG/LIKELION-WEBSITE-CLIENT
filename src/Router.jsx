@@ -7,6 +7,7 @@ import People from './page/People';
 import Projects from './page/Projects';
 import Recruit from './page/Recruit';
 import Apply from './page/Apply';
+import CheckIsPass from './page/CheckIsPass';
 
 function Router() {
   return (
@@ -18,6 +19,8 @@ function Router() {
       <Route path="/projects" element={<Projects />} />
       <Route path="/recruit" element={<Recruit />} />
       <Route path="/recruit/apply" element={<Apply />} />
+      {/* 합격자 결과조회하는 페이지 */}
+      <Route path="/recruit/ispass" element={<CheckIsPass />} />
     </Routes>
   );
 }

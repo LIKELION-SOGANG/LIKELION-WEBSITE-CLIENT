@@ -5,111 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import object1 from '../../assets/icon/object-1.png';
 import object2 from '../../assets/icon/object-2.png';
 import object3 from '../../assets/icon/object-3.png';
-<<<<<<< HEAD
-import caption1 from '../../assets/caption/about-caption.svg';
-import Header from '../common/Header';
-import Space from '../../util/Space';
-
-// Initialize ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
-
-function FirstSection({ isVisibleHeaderLogo, scrollHeight }) {
-  const object1Ref = useRef(null);
-  const object2Ref = useRef(null);
-  const object3Ref = useRef(null);
-  const logoCaptionRef = useRef(null);
-  const possibilityCaptionRef = useRef(null);
-
-  useEffect(() => {
-    // Animation for Object1
-    gsap.from(object1Ref.current, {
-      y: -100,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: object1Ref.current,
-        start: 'top center',
-        end: 'bottom center',
-        scrub: true,
-      },
-    });
-
-    // Animation for Object2
-    gsap.from(object2Ref.current, {
-      x: 100,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: object2Ref.current,
-        start: 'top center',
-        end: 'bottom center',
-        scrub: true,
-      },
-    });
-
-    // Animation for Object3
-    gsap.from(object3Ref.current, {
-      x: -100,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: object3Ref.current,
-        start: 'top center',
-        end: 'bottom center',
-        scrub: true,
-      },
-    });
-
-    // Animation for LogoCaption and PossibilityCaption
-    gsap.from([logoCaptionRef.current, possibilityCaptionRef.current], {
-      y: 100,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: logoCaptionRef.current,
-        start: 'top center',
-        end: 'bottom center',
-        scrub: true,
-      },
-    });
-  }, []);
-
-  return (
-    <FirstSectionWrapper>
-      <Object1 ref={object1Ref} src={object1} alt="3d 오브젝트1" />
-      <Object2 ref={object2Ref} src={object2} alt="3d 오브젝트2" />
-      <Object3 ref={object3Ref} src={object3} alt="3d 오브젝트3" />
-      {/*  process: 0~100 */}
-      <LogoCaption
-        ref={logoCaptionRef}
-        $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
-        $isVisibleHeaderLogo={isVisibleHeaderLogo}
-      >
-        Like<span>lion</span> So<span>gang</span>
-      </LogoCaption>
-      <PossibiltyCaption
-        ref={possibilityCaptionRef}
-        src={caption1}
-        $process={scrollHeight > 400 ? 100 : (scrollHeight / 400) * 100}
-      />
-      <TriangleLoop>
-        <div className="track">
-          <LoopText>
-            ✶ Now recruiting <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
-            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
-            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
-            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
-            <span>Likelion 12th</span> Member ✶ Now recruiting{' '}
-            <span>Likelion 12th</span> Member ✶
-          </LoopText>
-        </div>
-      </TriangleLoop>
-      <Space height={'10rem'} />
-    </FirstSectionWrapper>
-  );
-}
-
-const FirstSectionWrapper = styled.div`
-  height: 176vh;
-  position: relative;
-  background-color: black;
-=======
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { Canvas } from '@react-three/fiber';
 import Sogang3d from './Sogang3d';
@@ -212,7 +107,6 @@ const MobilePossibleCaption = styled.div`
   right: calc(4rem + (22vw) * ${(props) => props?.$process} / 100);
   scale: calc(1 + ${(props) => props.$process} * 1 / 100);
   -webkit-transition: all 0.1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
->>>>>>> e9824e03e1ad929d4d0886899eb7181fed432c40
 `;
 
 const Possibility = styled.div`
