@@ -98,7 +98,6 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
           </MenuItem>
         </Link>
       </MenuList>
-    
     </HeaderWrapper>
   );
 }

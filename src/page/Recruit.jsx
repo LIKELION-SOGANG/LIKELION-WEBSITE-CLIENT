@@ -20,7 +20,6 @@ function Recruit() {
       (entries) => {
         // let firstSectionVisible = false;
         let secondSectionVisible = false;
-
         entries.forEach((entry) => {
           // if (entry.target.className === 'first-section') {
           //   firstSectionVisible = entry.isIntersecting;
