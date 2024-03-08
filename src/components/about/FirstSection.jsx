@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import object1 from '../../assets/icon/object-1.png';
 import object2 from '../../assets/icon/object-2.png';
 import object3 from '../../assets/icon/object-3.png';
