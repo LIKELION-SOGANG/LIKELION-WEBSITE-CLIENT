@@ -17,6 +17,9 @@ const Apply = () => {
   const navigate = useNavigate();
   const isMobileScreen = useMediaQuery('(max-width: 768px)');
   useEffect(() => {
+    alert("지금은 모집 기간이 아닙니다.");
+    navigate('/');
+
     if (isMobileScreen) {
       alert('서류 지원은 PC에서만 가능합니다.');
       navigate('/');

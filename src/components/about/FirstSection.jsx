@@ -188,13 +188,6 @@ const Object3 = React.memo(styled.img`
 const LogoCaption = React.memo(styled.div`
   font-family: 'PP-Editorial';
   position: fixed;
-<<<<<<< HEAD
-  transform: translateY(
-      calc(100vh - 58rem - ${(props) => props.$process} * (100vh - 60rem) / 100)
-    )
-    translateX(2.5rem);
-=======
->>>>>>> e9824e03e1ad929d4d0886899eb7181fed432c40
   z-index: 999;
   white-space: nowrap;
   color: #fff;
