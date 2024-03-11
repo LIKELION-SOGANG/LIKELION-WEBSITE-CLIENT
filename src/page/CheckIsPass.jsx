@@ -7,6 +7,10 @@ import { motion } from 'framer-motion';
 import { instance } from '../api/axios';
 import { ReactComponent as LikeLionLogo } from '../assets/icon/likelion-grey.svg';
 import Space from '../util/Space';
+import { Canvas } from '@react-three/fiber';
+import Sogang3d from '../components/about/Sogang3d';
+import FireLottie from '../components/lottie/FireLottie';
+
 function CheckIsPass() {
   const { textEnter, textLeave } = useMousePosition();
   const [text, setText] = useState('');
@@ -26,22 +30,69 @@ function CheckIsPass() {
       <TopBannerWrapper>
         <TopBanner />
       </TopBannerWrapper>
-
+      <FireLottie />
       <CheckPassContainer>
         {isViewResult ? (
           <>
-            <LikeLionLogo />
+            <Space height={'3.84rem'} />
+            <LikeLionLogoImg />
             <Space height={'3.84rem'} />
             {isPass ? (
               <>
+                <CanvasContainer>
+                  <Canvas camera={{ near: 20, far: 100, position: [7, 7, 0] }}>
+                    <Sogang3d />
+                  </Canvas>
+                </CanvasContainer>
                 <Congratulation>
-                  멋쟁이사자처럼 서강대학교 12기 <br /> 최종 합격을 축하드려요!
+                  이선명 님, 멋쟁이사자처럼 서강대학교 12기 <br /> 최종 합격을
+                  축하드려요!
                 </Congratulation>
                 <Space height={'3.84rem'} />
-                <SubText>
-                  축하합니다, 이선명 님! <br /> 12기 아기사자가 된 것을
-                  환영해요.
-                </SubText>
+                <공지사항>
+                  안녕하세요, 멋쟁이사자처럼 서강대학교 12기 운영진입니다.
+                  <br />
+                  12기 멋쟁이사자처럼 서강대학교 [최종 합격]을 축하드립니다.
+                  <br />
+                  <br />
+                  그럼 12기 아기사자 활동을 시작하기에 앞서 첫 번째 공지사항
+                  전달드립니다.
+                  <br />
+                  1. 정규 세션시간: 매주 화요일 / 금요일 19:00~21:00
+                  <br />
+                  <br />
+                  2. 오리엔테이션: 3월 19일 (화요일) 19:00 마포 프론트원 - 공덕
+                  ICT COC
+                  <br />
+                  <br />
+                  3. 강의 자료, 과제 등의 업로드는 Notion과 Github를 사용합니다.
+                  Notion에 가입해주시고, Notion에 가입 이메일을 아래 구글폼에
+                  적어서 제출해주시기 바랍니다.
+                  <br />
+                  <br />
+                  4. 멋쟁이사자처럼 서강대학교는 회칙 제 11조에 따라 본회의 유지
+                  및 운영에 필요한 경비 5만원을 회비로 정하고 있습니다.
+                  <br />
+                  <br /> 12기 총무계좌는 아래와 같습니다. <br />
+                  3333291762013 카카오뱅크 정고은
+                  <br />
+                  <br />
+                  5. 멋쟁이사자처럼 12기 회원 정보를 수합합니다. 추가로 회비
+                  입금 내역, 이후 일정 참가에 <br />
+                  대하여 아래 구글폼을 입력해주시면 감사하겠습니다. 구글폼은
+                  3/19(일) 오전 11:59(정오)까지 제출 부탁드립니다.
+                  <br />
+                  <br />
+                  https://forms.gle/YrDqQ1rSX3UBfvPh8
+                  <br />
+                  <br />
+                  다시 한번 멋쟁이사자처럼 서강대학교의 일원이 되신 것을
+                  축하드리며, 앞으로 여러분과 함께 하게 될 수많은 시간들을
+                  기대하고 있겠습니다! <br />
+                  <br />
+                  🦁 POSSIBILITY TO REALITY 🦁
+                </공지사항>
+                <Space height={'3.84rem'} />
               </>
             ) : (
               <>
@@ -65,7 +116,6 @@ function CheckIsPass() {
           </>
         ) : (
           <>
-            {' '}
             <Input
               type="text"
               placeholder="이메일로 발송된 고유 번호를 입력해주세요."
@@ -86,13 +136,42 @@ function CheckIsPass() {
     </motion.div>
   );
 }
+const CanvasContainer = styled.div`
+  position: fixed;
+  top: 10rem;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh);
+  z-index: 1;
+`;
 
+const LikeLionLogoImg = styled(LikeLionLogo)`
+  width: 22rem;
+`;
+
+const 공지사항 = styled.div`
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  width: 56.2rem;
+  margin: 0 auto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2.3rem; /* 143.75% */
+`;
 const CheckPassContainer = styled(ApplyContainer)`
-  height: calc(100vh - 2.75rem);
+  overflow: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -10;
 `;
 
 const TopBannerWrapper = styled.div`
   width: 100%;
+  z-index: 9999;
+  position: relative;
   display: flex;
   justify-content: center;
 `;
