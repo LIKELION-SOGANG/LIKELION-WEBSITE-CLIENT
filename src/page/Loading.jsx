@@ -34,6 +34,7 @@ const StyledLoadingScreen = styled(motion.div)`
   color: white;
   padding-right: 10vw;
   font-family: 'PP-Editorial';
+  font-weight: 400;
   font-size: 8vw;
   z-index: 9000;
 `;

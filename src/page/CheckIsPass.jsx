@@ -14,8 +14,8 @@ import FireLottie from '../components/lottie/FireLottie';
 function CheckIsPass() {
   const { textEnter, textLeave } = useMousePosition();
   const [text, setText] = useState('');
-  const [isViewResult, setIsViewResult] = useState(true);
-  const [isPass, setIsPass] = useState(true);
+  const [isViewResult, setIsViewResult] = useState(false);
+  const [isPass, setIsPass] = useState(false);
   const handleClickNumber = async () => {
     await instance.get(`application/${text}/result`);
     setIsViewResult(true);
@@ -30,11 +30,11 @@ function CheckIsPass() {
       <TopBannerWrapper>
         <TopBanner />
       </TopBannerWrapper>
-      <FireLottie />
+      {isPass && <FireLottie />}
       <CheckPassContainer>
         {isViewResult ? (
           <>
-            <Space height={'3.84rem'} />
+            <Space height={'13.84rem'} />
             <LikeLionLogoImg />
             <Space height={'3.84rem'} />
             {isPass ? (
@@ -102,20 +102,30 @@ function CheckIsPass() {
                 </Congratulation>
                 <Space height={'3.84rem'} />
                 <SubText>
-                  이선명 님께서 그동안 해오신 경험들을 꼼꼼히 검토하였습니다만,
+                  안녕하세요, 멋쟁이사자처럼 서강대학교 12기 운영진입니다.
+                  <br /> 우선 멋쟁이사자처럼 서강대학교에 많은 관심을 보내주셔서
+                  감사합니다.
                   <br />
-                  아쉽게도 이번에는 합격 소식을 전해 드리지 못하게 되었습니다.
                   <br />
-                  소중한 시간 내어 멋사 서강대 12기에 지원해주셔서 진심으로
-                  감사드립니다.
+                  제한된 선발 인원으로 인해 이번에는 아쉽게도 좋은 소식을 전하지
+                  못하게 되었습니다.
+                  <br /> 좋은 역량을 가지신 분임에도 불구하고,
+                  <br /> 불합격 소식을 알려 드리게 되어 무거운 마음입니다.
                   <br />
-                  <br /> 멋쟁이사자처럼 서강대학교 12기 임원진 드림
+                  <br />
+                  귀한 시간 내어 지원해주셔서 감사드리고,
+                  <br /> 다음 기회에 더 좋은 인연으로 함께할 수 있기를 진심으로
+                  바라겠습니다.
+                  <br />
+                  <br /> 감사합니다.
                 </SubText>
+                <Space height={'10rem'} />
               </>
             )}
           </>
         ) : (
           <>
+          <Space height="10rem"/>
             <Input
               type="text"
               placeholder="이메일로 발송된 고유 번호를 입력해주세요."
@@ -162,10 +172,8 @@ const 공지사항 = styled.div`
 `;
 const CheckPassContainer = styled(ApplyContainer)`
   overflow: scroll;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -10;
+  position: relative;
+  z-index: 10;
 `;
 
 const TopBannerWrapper = styled.div`
