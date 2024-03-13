@@ -4,7 +4,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import React, { Suspense, useEffect, useRef } from 'react';
 
 function Sogang3d() {
-  const model = useGLTF('./3d/logo3d.gltf');
+  const model = useGLTF('/3d/logo3d.gltf');
   const ref = useRef();
   const { camera } = useThree(); // useThree 훅을 사용하여 카메라 정보를 가져옵니다.
   // 카메라의 초기 위치와 시선을 설정합니다.
@@ -23,11 +23,11 @@ function Sogang3d() {
 
   return (
     <Suspense fallback={null}>
-      <pointLight position={[10, 0, 10]} />
-      <Environment preset="sunset" />
-      <group position={[0, 0, 0]}>
-        <primitive object={model.scene} ref={ref} scale={13} />
-      </group>
+        <pointLight position={[10, 0, 10]} />
+        <Environment preset="sunset" />
+        <group position={[0, 0, 0]}>
+          <primitive object={model.scene} ref={ref} scale={13} />
+        </group>
     </Suspense>
   );
 }
