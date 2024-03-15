@@ -16,9 +16,21 @@ function CheckIsPass() {
   const [text, setText] = useState('');
   const [isViewResult, setIsViewResult] = useState(false);
   const [isPass, setIsPass] = useState(false);
-  const handleClickNumber = async () => {
-    await instance.get(`application/${text}/result`);
-    setIsViewResult(true);
+  const [name, setName] = useState('');
+  const handleClickButton = async () => {
+    if (text.length !== 36) {
+      return;
+    }
+    try {
+      const res = await instance.get(`application/${text}/result`);
+      if (res?.status === 200) {
+        setIsViewResult(true);
+        setName(res?.data?.name);
+        setIsPass(res?.data?.isPass);
+      }
+    } catch (err) {
+      alert(err);
+    }
   };
   return (
     <motion.div
@@ -45,7 +57,7 @@ function CheckIsPass() {
                   </Canvas>
                 </CanvasContainer>
                 <Congratulation>
-                  이선명 님, 멋쟁이사자처럼 서강대학교 12기 <br /> 최종 합격을
+                  {name} 님, 멋쟁이사자처럼 서강대학교 12기 <br /> 최종 합격을
                   축하드려요!
                 </Congratulation>
                 <Space height={'3.84rem'} />
@@ -97,7 +109,7 @@ function CheckIsPass() {
             ) : (
               <>
                 <Congratulation>
-                  멋쟁이사자처럼 서강대학교에서 <br /> 이선명 님의 전형 결과를
+                  멋쟁이사자처럼 서강대학교에서 <br /> {name} 님의 전형 결과를
                   안내드립니다.
                 </Congratulation>
                 <Space height={'3.84rem'} />
@@ -125,7 +137,7 @@ function CheckIsPass() {
           </>
         ) : (
           <>
-          <Space height="10rem"/>
+            <Space height="10rem" />
             <Input
               type="text"
               placeholder="이메일로 발송된 고유 번호를 입력해주세요."
@@ -135,10 +147,13 @@ function CheckIsPass() {
               }}
               style={{ fontSize: '1.5rem' }}
             />
-            <Button isValid={text?.length > 0}>
-              <ButtonText onMouseEnter={textEnter} onMouseLeave={textLeave}>
-                최종 합격 여부 확인하기
-              </ButtonText>
+            <Button
+              isValid={text?.length === 36}
+              onMouseEnter={textEnter}
+              onMouseLeave={textLeave}
+              onClick={handleClickButton}
+            >
+              <ButtonText>최종 합격 여부 확인하기</ButtonText>
             </Button>
           </>
         )}
