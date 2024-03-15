@@ -241,6 +241,7 @@ const 공지사항 = styled.div`
 const CheckPassContainer = styled(ApplyContainer)`
   overflow: scroll;
   position: relative;
+  z-index: 100000;
 `;
 
 const TopBannerWrapper = styled.div`

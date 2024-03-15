@@ -25,13 +25,13 @@ const IntroSection = () => {
       <Background>
         <Back />
         <Text>{isMobile ? 'Want To\nJoin Us?' : 'Want To Join Us?'}</Text>
-        <ApplyButton
+        {/* <ApplyButton
           onMouseEnter={textEnter}
           onMouseLeave={textLeave}
           onClick={handleApplyClick}
         >
           <ApplyButtonText />
-        </ApplyButton>
+        </ApplyButton> */}
         <AnimationContainer>
           <ScrollDownAnimation />
         </AnimationContainer>
