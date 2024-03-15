@@ -13,7 +13,6 @@ import FireLottie from '../components/lottie/FireLottie';
 import useMediaQuery from '../hooks/useMediaQuery';
 
 function CheckIsPass() {
-  const { textEnter, textLeave } = useMousePosition();
   const [text, setText] = useState('');
   const [isViewResult, setIsViewResult] = useState(false);
   const [isViewCongratulation, setIsViewCongratulation] = useState(false);
@@ -130,7 +129,7 @@ function CheckIsPass() {
                   5. 멋쟁이사자처럼 12기 회원 정보를 수합합니다. 추가로 회비
                   입금 내역, 이후 일정 참가에 {!isMobileScreen && <br />}
                   대하여 아래 구글폼을 입력해주시면 감사하겠습니다. 구글폼은
-                  3/19(일) 오전 11:59(정오)까지 제출 부탁드립니다.
+                  3/19(일) 오후 18:00까지 제출 부탁드립니다.
                   <br />
                   <br />
                   <a href="https://forms.gle/YrDqQ1rSX3UBfvPh8" target="blank">
@@ -187,12 +186,7 @@ function CheckIsPass() {
               }}
               style={{ fontSize: '1.5rem' }}
             />
-            <Button
-              isValid={text?.length === 36}
-              onMouseEnter={textEnter}
-              onMouseLeave={textLeave}
-              onClick={handleClickButton}
-            >
+            <Button isValid={text?.length === 36} onClick={handleClickButton}>
               <ButtonText>최종 합격 여부 확인하기</ButtonText>
             </Button>
           </>
@@ -241,7 +235,7 @@ const 공지사항 = styled.div`
 const CheckPassContainer = styled(ApplyContainer)`
   overflow: scroll;
   position: relative;
-  z-index: 100000;
+  z-index: 1000;
 `;
 
 const TopBannerWrapper = styled.div`
