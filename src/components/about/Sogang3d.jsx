@@ -31,7 +31,7 @@ function Sogang3d() {
         <primitive
           object={model.scene}
           ref={ref}
-          scale={isMobileScreen ? 7 : 14}
+          scale={isMobileScreen ? 10 : 14}
         />
       </group>
     </Suspense>
