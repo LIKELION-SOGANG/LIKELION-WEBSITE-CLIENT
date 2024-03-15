@@ -10,13 +10,17 @@ import Space from '../util/Space';
 import { Canvas } from '@react-three/fiber';
 import Sogang3d from '../components/about/Sogang3d';
 import FireLottie from '../components/lottie/FireLottie';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 function CheckIsPass() {
-  const { textEnter, textLeave } = useMousePosition();
   const [text, setText] = useState('');
   const [isViewResult, setIsViewResult] = useState(false);
+  const [isViewCongratulation, setIsViewCongratulation] = useState(false);
   const [isPass, setIsPass] = useState(false);
   const [name, setName] = useState('');
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
+  const [isDisplayCongratulationMobile, setIsDisplayCongratulationMobile] =
+    useState(true);
   const handleClickButton = async () => {
     if (text.length !== 36) {
       return;
@@ -27,9 +31,17 @@ function CheckIsPass() {
         setIsViewResult(true);
         setName(res?.data?.name);
         setIsPass(res?.data?.isPass);
+        setTimeout(() => {
+          setIsViewCongratulation(true);
+        }, 300);
+        if (isMobileScreen) {
+          setTimeout(() => {
+            setIsDisplayCongratulationMobile(false);
+          }, 3000);
+        }
       }
     } catch (err) {
-      alert(err);
+      alert('고유 번호를 잘못 입력하셨습니다.');
     }
   };
   return (
@@ -43,19 +55,44 @@ function CheckIsPass() {
         <TopBanner />
       </TopBannerWrapper>
       {isPass && <FireLottie />}
-      <CheckPassContainer>
+      <CheckPassContainer $isView={isViewResult}>
         {isViewResult ? (
           <>
-            <Space height={'13.84rem'} />
-            <LikeLionLogoImg />
+            {!isMobileScreen && <Space height={'13.84rem'} />}
+
+            <LikeLionLogoImg
+              style={{
+                transition: 'opacity 3s ease',
+                opacity: isViewCongratulation ? 1 : !isPass ? 1 : 0,
+              }}
+            />
             <Space height={'3.84rem'} />
             {isPass ? (
-              <>
-                <CanvasContainer>
-                  <Canvas camera={{ near: 20, far: 100, position: [7, 7, 0] }}>
-                    <Sogang3d />
-                  </Canvas>
-                </CanvasContainer>
+              <CongratulationSection
+                style={{
+                  transition: 'opacity 3s ease',
+                  opacity: isViewCongratulation ? 1 : 0,
+                }}
+              >
+                {isMobileScreen && isDisplayCongratulationMobile && (
+                  <CanvasContainer>
+                    <Canvas
+                      camera={{ near: 20, far: 100, position: [7, 7, 0] }}
+                    >
+                      <Sogang3d />
+                    </Canvas>
+                  </CanvasContainer>
+                )}
+                {!isMobileScreen && (
+                  <CanvasContainer>
+                    <Canvas
+                      camera={{ near: 20, far: 100, position: [7, 7, 0] }}
+                    >
+                      <Sogang3d />
+                    </Canvas>
+                  </CanvasContainer>
+                )}
+
                 <Congratulation>
                   {name} 님, 멋쟁이사자처럼 서강대학교 12기 <br /> 최종 합격을
                   축하드려요!
@@ -90,12 +127,14 @@ function CheckIsPass() {
                   <br />
                   <br />
                   5. 멋쟁이사자처럼 12기 회원 정보를 수합합니다. 추가로 회비
-                  입금 내역, 이후 일정 참가에 <br />
+                  입금 내역, 이후 일정 참가에 {!isMobileScreen && <br />}
                   대하여 아래 구글폼을 입력해주시면 감사하겠습니다. 구글폼은
-                  3/19(일) 오전 11:59(정오)까지 제출 부탁드립니다.
+                  3/19(일) 오후 18:00까지 제출 부탁드립니다.
                   <br />
                   <br />
-                  https://forms.gle/YrDqQ1rSX3UBfvPh8
+                  <a href="https://forms.gle/YrDqQ1rSX3UBfvPh8" target="blank">
+                    <b>https://forms.gle/YrDqQ1rSX3UBfvPh8</b>
+                  </a>
                   <br />
                   <br />
                   다시 한번 멋쟁이사자처럼 서강대학교의 일원이 되신 것을
@@ -104,8 +143,8 @@ function CheckIsPass() {
                   <br />
                   🦁 POSSIBILITY TO REALITY 🦁
                 </공지사항>
-                <Space height={'3.84rem'} />
-              </>
+                <Space height={'10rem'} />
+              </CongratulationSection>
             ) : (
               <>
                 <Congratulation>
@@ -113,14 +152,14 @@ function CheckIsPass() {
                   안내드립니다.
                 </Congratulation>
                 <Space height={'3.84rem'} />
-                <SubText>
+                <FailMessage>
                   안녕하세요, 멋쟁이사자처럼 서강대학교 12기 운영진입니다.
                   <br /> 우선 멋쟁이사자처럼 서강대학교에 많은 관심을 보내주셔서
                   감사합니다.
                   <br />
                   <br />
-                  제한된 선발 인원으로 인해 이번에는 아쉽게도 좋은 소식을 전하지
-                  못하게 되었습니다.
+                  제한된 선발 인원으로 인해 <br /> 이번에는 아쉽게도 좋은 소식을
+                  전하지 못하게 되었습니다.
                   <br /> 좋은 역량을 가지신 분임에도 불구하고,
                   <br /> 불합격 소식을 알려 드리게 되어 무거운 마음입니다.
                   <br />
@@ -130,7 +169,7 @@ function CheckIsPass() {
                   바라겠습니다.
                   <br />
                   <br /> 감사합니다.
-                </SubText>
+                </FailMessage>
                 <Space height={'10rem'} />
               </>
             )}
@@ -147,12 +186,7 @@ function CheckIsPass() {
               }}
               style={{ fontSize: '1.5rem' }}
             />
-            <Button
-              isValid={text?.length === 36}
-              onMouseEnter={textEnter}
-              onMouseLeave={textLeave}
-              onClick={handleClickButton}
-            >
+            <Button isValid={text?.length === 36} onClick={handleClickButton}>
               <ButtonText>최종 합격 여부 확인하기</ButtonText>
             </Button>
           </>
@@ -168,6 +202,12 @@ const CanvasContainer = styled.div`
   width: 100vw;
   height: calc(100vh);
   z-index: 1;
+  display: ${(props) => (props.$isDisplayNone ? 'none' : 'block')};
+`;
+
+const CongratulationSection = styled.section`
+  transition: opacity 3s ease;
+  opacity:;
 `;
 
 const LikeLionLogoImg = styled(LikeLionLogo)`
@@ -176,6 +216,8 @@ const LikeLionLogoImg = styled(LikeLionLogo)`
 
 const 공지사항 = styled.div`
   color: #000;
+  position: relative;
+  z-index: 999;
   text-align: center;
   font-family: Pretendard;
   font-size: 1.6rem;
@@ -184,11 +226,16 @@ const 공지사항 = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: 2.3rem; /* 143.75% */
+  @media (max-width: 768px) {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1.5rem;
+  }
 `;
 const CheckPassContainer = styled(ApplyContainer)`
   overflow: scroll;
   position: relative;
-  z-index: 10;
+  z-index: 1000;
 `;
 
 const TopBannerWrapper = styled.div`
@@ -211,8 +258,11 @@ const Input = styled.input`
     color: #d9d9d9;
   }
   &:focus {
-    border-color: black;
     outline: none;
+  }
+  @media (max-width: 768px) {
+    width: calc(100% - 4rem);
+    margin: 1rem auto;
   }
 `;
 
@@ -228,6 +278,10 @@ const Button = styled(motion.button)`
   background: ${({ isValid }) => (isValid ? 'black' : '#d9d9d9')};
   cursor: ${({ isValid }) => (isValid ? 'pointer' : 'none')};
   margin-bottom: 1.2rem;
+  @media (max-width: 768px) {
+    width: calc(100% - 4rem);
+    margin: 0 auto;
+  }
 `;
 
 const ButtonText = styled.div`
@@ -251,9 +305,12 @@ const Congratulation = styled.div`
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
-const SubText = styled.div`
+const FailMessage = styled.div`
   color: #000;
   text-align: center;
   font-family: Pretendard;
@@ -262,5 +319,8 @@ const SubText = styled.div`
   font-weight: 500;
   line-height: 2.3rem; /* 143.75% */
   text-transform: capitalize;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 export default CheckIsPass;

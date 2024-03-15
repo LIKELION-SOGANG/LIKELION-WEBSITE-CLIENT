@@ -5,20 +5,18 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useMousePosition } from '../../util/MouseContextProvider';
 
-const Intro = () => {
+const IntroSection = () => {
   const { textEnter, textLeave } = useMousePosition();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const navigate = useNavigate();
-
   const handleApplyClick = () => {
-    alert('지원 기간이 아닙니다.');
+    // alert('지원 기간이 아닙니다.');
+    navigate('/recruit/ispass');
   };
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -27,13 +25,13 @@ const Intro = () => {
       <Background>
         <Back />
         <Text>{isMobile ? 'Want To\nJoin Us?' : 'Want To Join Us?'}</Text>
-        <ApplyButton
+        {/* <ApplyButton
           onMouseEnter={textEnter}
           onMouseLeave={textLeave}
           onClick={handleApplyClick}
         >
           <ApplyButtonText />
-        </ApplyButton>
+        </ApplyButton> */}
         <AnimationContainer>
           <ScrollDownAnimation />
         </AnimationContainer>
@@ -103,7 +101,7 @@ const ApplyButton = styled(motion.div)`
   align-items: center;
 
   @media (max-width: 768px) {
-    display: none;
+    // display: none;
   }
 `;
 
@@ -113,16 +111,16 @@ const ApplyButtonText = styled.div`
   color: black;
   padding: 1.5rem 3rem;
   &::before {
-    content: 'APPLY NOW';
+    content: '합격 조회하기';
   }
 
   &:hover::before {
-    font-family: 'Pretendard';
-    content: '12기 지원하기';
+    // font-family: 'Pretendard';
+    content: '합격 조회하기';
   }
 
   @media (max-width: 768px) {
-    display: none;
+    // display: none;
   }
 `;
 
@@ -133,4 +131,4 @@ const AnimationContainer = styled.div`
   transform: translateX(0%);
 `;
 
-export default Intro;
+export default IntroSection;
