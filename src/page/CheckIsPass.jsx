@@ -10,6 +10,7 @@ import Space from '../util/Space';
 import { Canvas } from '@react-three/fiber';
 import Sogang3d from '../components/about/Sogang3d';
 import FireLottie from '../components/lottie/FireLottie';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 function CheckIsPass() {
   const { textEnter, textLeave } = useMousePosition();
@@ -17,6 +18,7 @@ function CheckIsPass() {
   const [isViewResult, setIsViewResult] = useState(false);
   const [isPass, setIsPass] = useState(false);
   const [name, setName] = useState('');
+  const isMobileScreen = useMediaQuery('(max-width: 768px)');
   const handleClickButton = async () => {
     if (text.length !== 36) {
       return;
@@ -29,7 +31,7 @@ function CheckIsPass() {
         setIsPass(res?.data?.isPass);
       }
     } catch (err) {
-      alert(err);
+      alert('고유 번호를 잘못 입력하셨습니다.');
     }
   };
   return (
@@ -43,14 +45,20 @@ function CheckIsPass() {
         <TopBanner />
       </TopBannerWrapper>
       {isPass && <FireLottie />}
-      <CheckPassContainer>
+      <CheckPassContainer $isView={isViewResult}>
         {isViewResult ? (
           <>
-            <Space height={'13.84rem'} />
+            {!isMobileScreen && <Space height={'13.84rem'} />}
+
             <LikeLionLogoImg />
             <Space height={'3.84rem'} />
             {isPass ? (
-              <>
+              <div
+                style={{
+                  transition: 'opacity 1s ease',
+                  opacity: isPass ? 1 : 0,
+                }}
+              >
                 <CanvasContainer>
                   <Canvas camera={{ near: 20, far: 100, position: [7, 7, 0] }}>
                     <Sogang3d />
@@ -73,7 +81,7 @@ function CheckIsPass() {
                   1. 정규 세션시간: 매주 화요일 / 금요일 19:00~21:00
                   <br />
                   <br />
-                  2. 오리엔테이션: 3월 19일 (화요일) 19:00 마포 프론트원 - 공덕
+                  2. 오리엔테이션: 3월 19일 (화요일) 18:30 마포 프론트원 - 공덕
                   ICT COC
                   <br />
                   <br />
@@ -90,12 +98,14 @@ function CheckIsPass() {
                   <br />
                   <br />
                   5. 멋쟁이사자처럼 12기 회원 정보를 수합합니다. 추가로 회비
-                  입금 내역, 이후 일정 참가에 <br />
+                  입금 내역, 이후 일정 참가에 {!isMobileScreen && <br />}
                   대하여 아래 구글폼을 입력해주시면 감사하겠습니다. 구글폼은
                   3/19(일) 오전 11:59(정오)까지 제출 부탁드립니다.
                   <br />
                   <br />
-                  https://forms.gle/YrDqQ1rSX3UBfvPh8
+                  <a href="https://forms.gle/YrDqQ1rSX3UBfvPh8" target="blank">
+                    <b>https://forms.gle/YrDqQ1rSX3UBfvPh8</b>
+                  </a>
                   <br />
                   <br />
                   다시 한번 멋쟁이사자처럼 서강대학교의 일원이 되신 것을
@@ -104,8 +114,8 @@ function CheckIsPass() {
                   <br />
                   🦁 POSSIBILITY TO REALITY 🦁
                 </공지사항>
-                <Space height={'3.84rem'} />
-              </>
+                <Space height={'10rem'} />
+              </div>
             ) : (
               <>
                 <Congratulation>
@@ -176,6 +186,8 @@ const LikeLionLogoImg = styled(LikeLionLogo)`
 
 const 공지사항 = styled.div`
   color: #000;
+  position: relative;
+  z-index: 999;
   text-align: center;
   font-family: Pretendard;
   font-size: 1.6rem;
@@ -184,11 +196,15 @@ const 공지사항 = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: 2.3rem; /* 143.75% */
+  @media (max-width: 768px) {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1.5rem;
+  }
 `;
 const CheckPassContainer = styled(ApplyContainer)`
   overflow: scroll;
   position: relative;
-  z-index: 10;
 `;
 
 const TopBannerWrapper = styled.div`
@@ -211,8 +227,11 @@ const Input = styled.input`
     color: #d9d9d9;
   }
   &:focus {
-    border-color: black;
     outline: none;
+  }
+  @media (max-width: 768px) {
+    width: calc(100% - 4rem);
+    margin: 1rem auto;
   }
 `;
 
@@ -228,6 +247,10 @@ const Button = styled(motion.button)`
   background: ${({ isValid }) => (isValid ? 'black' : '#d9d9d9')};
   cursor: ${({ isValid }) => (isValid ? 'pointer' : 'none')};
   margin-bottom: 1.2rem;
+  @media (max-width: 768px) {
+    width: calc(100% - 4rem);
+    margin: 0 auto;
+  }
 `;
 
 const ButtonText = styled.div`
@@ -251,6 +274,9 @@ const Congratulation = styled.div`
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const SubText = styled.div`

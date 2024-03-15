@@ -20,7 +20,7 @@ function Router() {
       <Route path="/recruit" element={<Recruit />} />
       <Route path="/recruit/apply" element={<Apply />} />
       {/* 합격자 결과조회하는 페이지 */}
-      <Route path="/recruit/asdf" element={<CheckIsPass />} />
+      <Route path="/recruit/ispass" element={<CheckIsPass />} />
     </Routes>
   );
 }

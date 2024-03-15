@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Schedule from '../components/Recruit/Schedule';
 import styled from 'styled-components';
 import Faq from '../components/Recruit/Faq';
-import Intro from '../components/Recruit/Intro';
+import IntroSection from '../components/Recruit/IntroSection';
 import Header from '../components/common/Header';
 import useMediaQuery from '../hooks/useMediaQuery';
 import MobileHeader from '../components/common/MobileHeader';
@@ -52,7 +52,7 @@ function Recruit() {
   return (
     <OverallContainer style={{ backgroundColor: backgroundColor }}>
       <div className="first-section">
-        <Intro />
+        <IntroSection />
       </div>
       <div className="second-section" ref={observationRef2}>
         {isMobileScreen ? (
