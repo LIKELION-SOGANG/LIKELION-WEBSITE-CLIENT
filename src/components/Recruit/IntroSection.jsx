@@ -30,7 +30,7 @@ const IntroSection = () => {
           onMouseLeave={textLeave}
           onClick={handleApplyClick}
         >
-          <ApplyButtonText />
+          <ApplyButtonText>합격 조회하기</ApplyButtonText>
         </ApplyButton>
         <AnimationContainer>
           <ScrollDownAnimation />
@@ -94,7 +94,6 @@ const ApplyButton = styled(motion.div)`
   border-radius: 3rem;
   background-color: white;
   cursor: pointer;
-  width: 18rem;
   height: 5rem;
   display: flex;
   justify-content: center;
@@ -106,18 +105,10 @@ const ApplyButton = styled(motion.div)`
 `;
 
 const ApplyButtonText = styled.div`
-  font-family: Figtree;
+  font-family: Pretendard;
   font-size: 2rem;
   color: black;
   padding: 1.5rem 3rem;
-  &::before {
-    content: '합격 조회하기';
-  }
-
-  &:hover::before {
-    // font-family: 'Pretendard';
-    content: '합격 조회하기';
-  }
 
   @media (max-width: 768px) {
     // display: none;
