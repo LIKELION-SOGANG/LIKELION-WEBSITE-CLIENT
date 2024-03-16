@@ -37,7 +37,11 @@ function CheckIsPass() {
         if (isMobileScreen) {
           setTimeout(() => {
             setIsDisplayCongratulationMobile(false);
-          }, 3000);
+          }, 10000);
+        } else {
+          setTimeout(() => {
+            setIsDisplayCongratulationMobile(false);
+          }, 10000);
         }
       }
     } catch (err) {
@@ -54,7 +58,7 @@ function CheckIsPass() {
       <TopBannerWrapper>
         <TopBanner />
       </TopBannerWrapper>
-      {isPass && <FireLottie />}
+      {isPass && <FireLottie adjustZIndex={!isDisplayCongratulationMobile} />}
       <CheckPassContainer $isView={isViewResult}>
         {isViewResult ? (
           <>
@@ -74,16 +78,7 @@ function CheckIsPass() {
                   opacity: isViewCongratulation ? 1 : 0,
                 }}
               >
-                {isMobileScreen && isDisplayCongratulationMobile && (
-                  <CanvasContainer>
-                    <Canvas
-                      camera={{ near: 20, far: 100, position: [7, 7, 0] }}
-                    >
-                      <Sogang3d />
-                    </Canvas>
-                  </CanvasContainer>
-                )}
-                {!isMobileScreen && (
+                {isDisplayCongratulationMobile && (
                   <CanvasContainer>
                     <Canvas
                       camera={{ near: 20, far: 100, position: [7, 7, 0] }}
@@ -132,7 +127,11 @@ function CheckIsPass() {
                   3/19(일) 오후 18:00까지 제출 부탁드립니다.
                   <br />
                   <br />
-                  <a href="https://forms.gle/YrDqQ1rSX3UBfvPh8" target="blank">
+                  <a
+                    href="https://forms.gle/YrDqQ1rSX3UBfvPh8"
+                    target="blank"
+                    style={{ zIndex: 100000, display: 'block' }}
+                  >
                     <b>https://forms.gle/YrDqQ1rSX3UBfvPh8</b>
                   </a>
                   <br />
@@ -201,13 +200,12 @@ const CanvasContainer = styled.div`
   left: 0;
   width: 100vw;
   height: calc(100vh);
-  z-index: 1;
+  z-index: -100;
   display: ${(props) => (props.$isDisplayNone ? 'none' : 'block')};
 `;
 
 const CongratulationSection = styled.section`
   transition: opacity 3s ease;
-  opacity:;
 `;
 
 const LikeLionLogoImg = styled(LikeLionLogo)`

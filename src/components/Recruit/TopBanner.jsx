@@ -27,6 +27,7 @@ const TopBanner = () => {
 const Banner = styled.div`
   display: flex;
   width: 56.2rem;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   background: white;
