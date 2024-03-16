@@ -87,21 +87,21 @@ const Text = styled.div`
   }
 `;
 
-const ApplyButton = styled(motion.div)`
+const ApplyButton = styled.div`
   position: absolute;
-  top: calc(100vh - 40rem);
-  z-index: 100;
+  top: 30rem;
+  @media (max-width: 768px){
+    top: 45rem;
+  }
+  z-index: 999;
   border-radius: 3rem;
   background-color: white;
   cursor: pointer;
   height: 5rem;
   display: flex;
   justify-content: center;
+  margin: 0 auto;
   align-items: center;
-
-  @media (max-width: 768px) {
-    // display: none;
-  }
 `;
 
 const ApplyButtonText = styled.div`
