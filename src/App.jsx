@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Router from './Router';
 import styled from 'styled-components';
 import { GlobalStyles } from './style/GlobalStyles';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation, useNavigate } from 'react-router-dom';
 import Cursor from './util/Cursor';
 import { MouseContextProvider } from './util/MouseContextProvider';
 import Loading from './page/Loading';
@@ -13,6 +13,16 @@ function App() {
   const { isLoading, loadingProgress } = useLoading();
   useEffect(() => {
     instance.post('visit/');
+    blockOtherPage();
+  }, []);
+
+  const blockOtherPage = useCallback(() => {
+    const path = window.location.pathname;
+    if (path === '/') return;
+    else {
+      alert('현재 홈페이지 리모델링 작업중입니다. 🦁');
+      window.location.href='https://www.likelionsg.site/';
+    }
   }, []);
 
   return (
