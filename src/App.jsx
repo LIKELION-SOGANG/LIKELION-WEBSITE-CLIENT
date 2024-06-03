@@ -11,19 +11,6 @@ import { instance } from './api/axios';
 import useLoading from './hooks/useLoading';
 function App() {
   const { isLoading, loadingProgress } = useLoading();
-  useEffect(() => {
-    instance.post('visit/');
-    blockOtherPage();
-  }, []);
-
-  const blockOtherPage = useCallback(() => {
-    const path = window.location.pathname;
-    if (path === '/') return;
-    else {
-      alert('현재 홈페이지 리모델링 작업중입니다. 🦁');
-      window.location.href='https://www.likelionsg.site/';
-    }
-  }, []);
 
   return (
     <MouseContextProvider>
