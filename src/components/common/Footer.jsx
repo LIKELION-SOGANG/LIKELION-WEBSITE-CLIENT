@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useMousePosition } from '../../util/MouseContextProvider';
 import { instance } from '../../api/axios';
+import { faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { ConstantColorFactor } from 'three';
 
 function Footer({ isBackgroundBlack = true }) {
   const { textEnter, textLeave } = useMousePosition();
@@ -10,8 +12,12 @@ function Footer({ isBackgroundBlack = true }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await instance.get('visit/');
-      setVisitNum(res?.data?.data);
+      try {
+        const res = await instance.get('visit/');
+        setVisitNum(res?.data?.data);
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchData();
   }, []);
