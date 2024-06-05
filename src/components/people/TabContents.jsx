@@ -84,7 +84,6 @@ const TabContents = ({ data }) => {
   const { adult_lion, baby_lion, generation } = data;
 
   const slidesPerView = useSlidesPerView();
-  console.log(data);
   return (
     <>
       {adult_lion.length !== 1 && (

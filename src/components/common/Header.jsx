@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -11,6 +11,23 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
   const { textEnter, textLeave } = useMousePosition();
 
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  // 페이지 이동 막는 코드 추가
+  useEffect(() => {
+    // instance.post('visit/');
+    blockOtherPage();
+  }, []);
+
+  const blockOtherPage = useCallback(() => {
+    const path = window.location.pathname;
+    if (path === '/') return;
+    else {
+      alert('현재 홈페이지 리모델링 작업중입니다. 🦁');
+      navigate('/');
+    }
+  }, []);
+
   const [activate, setActivate] = useState({
     about: false,
     people: false,
@@ -30,7 +47,6 @@ function Header({ isBackGroundBlack = true, isVisibleHeaderLogo = true }) {
   const [selectedTab, setSelectedTab] = useState('11th');
   const [selectedProjects, setSelectedProjects] = useState([]);
   const { isLoading, loadingProgress } = useLoading(4);
-  const navigate = useNavigate();
   return (
     <HeaderWrapper $isBackGroundBlack={isBackGroundBlack}>
       <AnimatePresence>

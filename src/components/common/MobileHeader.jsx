@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -29,6 +29,21 @@ function MobileHeader({
     contact: false,
   });
   const navigate = useNavigate();
+  
+  // 페이지 이동 막는 코드 추가
+  useEffect(() => {
+    // instance.post('visit/');
+    blockOtherPage();
+  }, []);
+
+  const blockOtherPage = useCallback(() => {
+    const path = window.location.pathname;
+    if (path === '/') return;
+    else {
+      alert('현재 홈페이지 리모델링 작업중입니다. 🦁');
+      navigate('/');
+    }
+  }, []);
   useEffect(() => {
     if (pathname === '/') {
       setActivate({ ...activate, about: true });

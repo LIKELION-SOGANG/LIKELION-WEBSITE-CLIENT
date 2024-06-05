@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Router from './Router';
 import styled from 'styled-components';
 import { GlobalStyles } from './style/GlobalStyles';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation, useNavigate } from 'react-router-dom';
 import Cursor from './util/Cursor';
 import { MouseContextProvider } from './util/MouseContextProvider';
 import Loading from './page/Loading';
@@ -11,9 +11,6 @@ import { instance } from './api/axios';
 import useLoading from './hooks/useLoading';
 function App() {
   const { isLoading, loadingProgress } = useLoading();
-  useEffect(() => {
-    instance.post('visit/');
-  }, []);
 
   return (
     <MouseContextProvider>
